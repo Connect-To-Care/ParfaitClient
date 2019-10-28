@@ -1,3 +1,39 @@
 <app-navbar>
-  <p>home works!</p>
+  <app-page-title title="Your events"></app-page-title>
+  <div id="eventManager" fxLayout="row" fxLayout.lt-sm="column"  fxLayoutGap="20px">
+    <div class="cards" fxFlex.lt-md="0 50%" fxFlex.lt-sm="0 1">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>Big event</mat-card-title>
+          <mat-card-subtitle>October 23, 11:00AM - October 23, 12:00AM</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            Help us at EPHS!
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>SIGN UP</button>
+          <button mat-button>CONTACT</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <mat-tab-group fxFlex.lt-md="0 20%" fxFlex.lt-sm="0 1">
+      <mat-tab label="Upcoming events (8)">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              This is the expansion 1 title
+            </mat-expansion-panel-header>
+            This the expansion 1 content
+            <mat-action-row>
+              <button mat-button>Click me</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-tab>
+      <mat-tab label="Past Events (5)">
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 </app-navbar>
