@@ -5,20 +5,19 @@
         <mat-icon>menu</mat-icon>
       </button>
     </div>
-<!--    <h1>Connect To Care</h1>-->
-    <img src="/assets/c2c-logo.png">
+    <img src="assets/c2c-logo.png">
     <span class="spacer"></span>
     <div class="full-nav" fxShow="true" fxHide.lt-md="true">
-      <a *ngFor="let link of navBarAnnouncements" mat-button href="{{ link.url }}"> {{ link.title }} </a>
       <a *ngFor="let link of navBarLinks" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
+      <a *ngFor="let link of navBarAnnouncements" mat-button href="{{ link.url }}"> {{ link.title }} </a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container fxFlexFill class="example-container">
   <mat-sidenav #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true" class="mat-primary">
     <div fxLayout="column">
-      <a *ngFor="let link of navBarAnnouncements" mat-button href="{{ link.url }}"> {{ link.title }} </a>
       <a *ngFor="let link of navBarLinks" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
+      <a *ngFor="let link of navBarAnnouncements" mat-button href="{{ link.url }}"> {{ link.title }} </a>
     </div>
   </mat-sidenav>
   <mat-sidenav-content fxFlexFill>

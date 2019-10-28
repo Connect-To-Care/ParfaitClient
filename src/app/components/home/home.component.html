@@ -19,7 +19,10 @@
       </mat-card>
     </div>
     <mat-tab-group fxFlex.lt-md="0 0 40%" fxFlex.lt-sm="0 1">
-      <mat-tab label="Upcoming events (8)">
+      <mat-tab>
+        <ng-template matTabLabel>
+          <span matBadge="5" matBadgeOverlap="false">Upcoming Events</span>
+        </ng-template>
         <mat-accordion>
           <mat-expansion-panel>
             <mat-expansion-panel-header>
@@ -32,7 +35,10 @@
           </mat-expansion-panel>
         </mat-accordion>
       </mat-tab>
-      <mat-tab label="Past Events (5)">
+      <mat-tab>
+        <ng-template matTabLabel>
+          <span matBadge="20" matBadgeOverlap="false">Past Events</span>
+        </ng-template>
       </mat-tab>
     </mat-tab-group>
   </div>

@@ -9,7 +9,7 @@ export class NavbarComponent implements OnInit {
 
   readonly navBarAnnouncements = [
     {
-      title: 'Home',
+      title: 'Back to home',
       isAdmin: false,
       url: 'https://connect-tocare.org'
     }
@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
       url: 'events'
     },
     {
-      title: 'Manage Events',
+      title: 'Backroom',
       isAdmin: true,
       url: 'admin'
     },

@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import {
+  MatBadgeModule,
   MatButtonModule, MatCardModule,
   MatDividerModule,
   MatExpansionModule, MatGridListModule,
@@ -44,7 +45,8 @@ import { PageTitleComponent } from './components/page-title/page-title.component
     MatDividerModule,
     MatExpansionModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
