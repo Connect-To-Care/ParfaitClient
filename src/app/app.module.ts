@@ -1,16 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './components/app/app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomeComponent } from './components/home/home.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './components/app/app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {HomeComponent} from './components/home/home.component';
 import {
   MatBadgeModule,
-  MatButtonModule, MatCardModule,
+  MatButtonModule,
+  MatCardModule,
   MatDividerModule,
-  MatExpansionModule, MatGridListModule,
+  MatExpansionModule,
+  MatGridListModule,
   MatIconModule,
   MatSidenavModule,
   MatTabsModule,
@@ -19,7 +21,7 @@ import {
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
-import { PageTitleComponent } from './components/page-title/page-title.component';
+import {PageTitleComponent} from './components/page-title/page-title.component';
 
 @NgModule({
   declarations: [
@@ -51,4 +53,5 @@ import { PageTitleComponent } from './components/page-title/page-title.component
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

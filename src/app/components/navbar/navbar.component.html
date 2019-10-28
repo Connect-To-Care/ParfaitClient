@@ -1,23 +1,23 @@
 <mat-toolbar class="mat-primary">
   <mat-toolbar-row>
-    <div fxShow="true" fxHide.gt-sm="true">
-      <button mat-icon-button (click)="sidenav.toggle()">
+    <div fxHide.gt-sm="true" fxShow="true">
+      <button (click)="sidenav.toggle()" mat-icon-button>
         <mat-icon>menu</mat-icon>
       </button>
     </div>
     <img src="assets/c2c-logo.png">
     <span class="spacer"></span>
-    <div class="full-nav" fxShow="true" fxHide.lt-md="true">
+    <div class="full-nav" fxHide.lt-md="true" fxShow="true">
       <a *ngFor="let link of navBarLinks" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
-      <a *ngFor="let link of navBarAnnouncements" mat-button href="{{ link.url }}"> {{ link.title }} </a>
+      <a *ngFor="let link of navBarAnnouncements" href="{{ link.url }}" mat-button> {{ link.title }} </a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
-<mat-sidenav-container fxFlexFill class="example-container">
-  <mat-sidenav #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true" class="mat-primary">
+<mat-sidenav-container class="example-container" fxFlexFill>
+  <mat-sidenav #sidenav class="mat-primary" fxHide.gt-sm="true" fxLayout="column" mode="over" opened="false">
     <div fxLayout="column">
       <a *ngFor="let link of navBarLinks" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
-      <a *ngFor="let link of navBarAnnouncements" mat-button href="{{ link.url }}"> {{ link.title }} </a>
+      <a *ngFor="let link of navBarAnnouncements" href="{{ link.url }}" mat-button> {{ link.title }} </a>
     </div>
   </mat-sidenav>
   <mat-sidenav-content fxFlexFill>

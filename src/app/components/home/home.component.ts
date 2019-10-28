@@ -1,5 +1,4 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {CalendarView, CalendarEvent} from 'angular-calendar';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-home',
