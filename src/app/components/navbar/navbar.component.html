@@ -20,7 +20,7 @@
       <a *ngFor="let link of navBarAnnouncements" href="{{ link.url }}" mat-button> {{ link.title }} </a>
     </div>
   </mat-sidenav>
-  <mat-sidenav-content fxFlexFill>
+  <mat-sidenav-content>
     <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
