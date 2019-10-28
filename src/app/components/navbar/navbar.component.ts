@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
 
   readonly navBarLinks = [
     {
-      title: 'Your Events',
+      title: 'Browse Events',
       isAdmin: false,
       url: 'events'
     },
