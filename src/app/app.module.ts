@@ -16,19 +16,29 @@ import {
   MatIconModule,
   MatSidenavModule,
   MatTabsModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {PageTitleComponent} from './components/page-title/page-title.component';
+import {OAuthSuccessComponent} from './components/oauth-success/oauth-success.component';
+import {OAuthLoginComponent} from './components/oauth-login/oauth-login.component';
+import {OAuthFailureComponent} from './components/oauth-failure/oauth-failure.component';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {APIInterceptor} from './interceptors/api.interceptor';
+import {TokenInterceptor} from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    PageTitleComponent
+    PageTitleComponent,
+    OAuthSuccessComponent,
+    OAuthLoginComponent,
+    OAuthFailureComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +58,21 @@ import {PageTitleComponent} from './components/page-title/page-title.component';
     MatExpansionModule,
     MatGridListModule,
     MatCardModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatTooltipModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: APIInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
