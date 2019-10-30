@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
   readonly navBarLinks = [
     {
       title: 'Browse Events',
-      url: 'events'
+      url: '/'
     },
     {
       title: 'My Account',

@@ -59,13 +59,23 @@ export class APIService {
   ) {
   }
 
+  public signUp = async (eventId: string): Promise<void> => {
+    return (
+      (await this.httpClient.post<any>(
+        this.configService.config.apiRoot + 'users/me/signUp/', {
+          eventId
+        }
+      ).toPromise())
+    );
+  };
+
   public getEvents = async (): Promise<MyEventsResponse> => {
     return (
       (await this.httpClient.get<any>(
         this.configService.config.apiRoot + 'users/me/events/'
       ).toPromise()) as MyEventsResponse
     );
-  }
+  };
 
   public getAvailableEvents = async (): Promise<Array<EventModel>> => {
     return (
@@ -73,7 +83,7 @@ export class APIService {
         this.configService.config.apiRoot + 'users/me/events/available/'
       ).toPromise()) as Array<EventModel>
     );
-  }
+  };
 
   public logOut = () => localStorage.removeItem('session');
 
