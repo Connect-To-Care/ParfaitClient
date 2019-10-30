@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {APIService, EventModel, MyEventsResponse} from '../../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +8,21 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
+  availableEvents: Array<EventModel> = [];
+  myEvents: MyEventsResponse = {
+    future: [],
+    now: [],
+    past: []
+  };
+
+  constructor(
+    private readonly apiService: APIService
+  ) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.availableEvents = await this.apiService.getAvailableEvents();
+    this.myEvents = await this.apiService.getEvents();
   }
 
 }

@@ -22,8 +22,29 @@ export interface UserModel {
 }
 
 export interface UserSession {
-  user: UserModel;
+  data: {
+    user: UserModel
+  };
   token: string;
+}
+
+export interface EventModel {
+  displayName: string;
+  signedUp: Array<UserModel>;
+  maxSignups: number;
+  facilitatorCode: string;
+  facilitators: Array<UserModel>;
+  startTime: string;
+  endTime: string;
+  description: string;
+  requiredTags: string[];
+  _id: string;
+}
+
+export interface MyEventsResponse {
+  past: Array<EventModel>;
+  now: Array<EventModel>;
+  future: Array<EventModel>;
 }
 
 @Injectable({
@@ -34,11 +55,29 @@ export class APIService {
 
   constructor(
     private readonly configService: ConfigService,
-    private readonly httpClient: HttpClient
+    private readonly httpClient: HttpClient,
   ) {
   }
 
+  public getEvents = async (): Promise<MyEventsResponse> => {
+    return (
+      (await this.httpClient.get<any>(
+        this.configService.config.apiRoot + 'users/me/events/'
+      ).toPromise()) as MyEventsResponse
+    );
+  }
+
+  public getAvailableEvents = async (): Promise<Array<EventModel>> => {
+    return (
+      (await this.httpClient.get<any>(
+        this.configService.config.apiRoot + 'users/me/events/available/'
+      ).toPromise()) as Array<EventModel>
+    );
+  }
+
   public logOut = () => localStorage.removeItem('session');
+
+  public saveJwt = (jwt: string) => localStorage.setItem('session', jwt);
 
   get userSession(): UserSession {
     const sessionJwt = localStorage.getItem('session');
@@ -56,9 +95,7 @@ export class APIService {
 
     return {
       token: sessionJwt,
-      user: sessionJson
+      data: sessionJson
     };
   }
-
-
 }

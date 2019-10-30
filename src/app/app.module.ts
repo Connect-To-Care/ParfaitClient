@@ -13,7 +13,7 @@ import {
   MatDividerModule,
   MatExpansionModule,
   MatGridListModule,
-  MatIconModule,
+  MatIconModule, MatListModule,
   MatSidenavModule,
   MatTabsModule,
   MatToolbarModule,
@@ -26,9 +26,10 @@ import {PageTitleComponent} from './components/page-title/page-title.component';
 import {OAuthSuccessComponent} from './components/oauth-success/oauth-success.component';
 import {OAuthLoginComponent} from './components/oauth-login/oauth-login.component';
 import {OAuthFailureComponent} from './components/oauth-failure/oauth-failure.component';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {APIInterceptor} from './interceptors/api.interceptor';
 import {TokenInterceptor} from './interceptors/token.interceptor';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -38,9 +39,11 @@ import {TokenInterceptor} from './interceptors/token.interceptor';
     PageTitleComponent,
     OAuthSuccessComponent,
     OAuthLoginComponent,
-    OAuthFailureComponent
+    OAuthFailureComponent,
+    LogoutComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -59,7 +62,8 @@ import {TokenInterceptor} from './interceptors/token.interceptor';
     MatGridListModule,
     MatCardModule,
     MatBadgeModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatListModule
   ],
   providers: [
     {

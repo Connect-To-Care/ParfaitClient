@@ -1,0 +1,15 @@
+<app-navbar>
+  <app-page-title title="Login"></app-page-title>
+  <mat-card class="z-depth center">
+    <mat-card-header>
+      <mat-card-title>You must login to continue</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-nav-list>
+        <a mat-list-item href="{{ this.configService.config.googleOAuthURL }}">
+          <img src="/assets/googleLogin.png">
+          Login using Google </a>
+      </mat-nav-list>
+    </mat-card-content>
+  </mat-card>
+</app-navbar>

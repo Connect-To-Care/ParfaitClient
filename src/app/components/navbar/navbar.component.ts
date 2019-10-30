@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {APIService} from '../../services/api.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,6 @@ export class NavbarComponent implements OnInit {
   readonly navBarAnnouncements = [
     {
       title: 'Back to home',
-      isAdmin: false,
       url: 'https://connect-tocare.org'
     }
   ];
@@ -18,22 +18,28 @@ export class NavbarComponent implements OnInit {
   readonly navBarLinks = [
     {
       title: 'Browse Events',
-      isAdmin: false,
       url: 'events'
     },
     {
-      title: 'Backroom',
-      isAdmin: true,
-      url: 'admin'
+      title: 'My Account',
+      url: 'account'
     },
     {
-      title: 'My Account',
-      isAdmin: false,
-      url: 'account'
+      title: 'Logout',
+      url: 'logout'
     }
   ];
 
-  constructor() {
+  readonly navBarAdmin = [
+    {
+      title: 'Backroom',
+      url: 'admin'
+    },
+  ];
+
+  constructor(
+    public readonly apiService: APIService
+  ) {
   }
 
   ngOnInit() {
