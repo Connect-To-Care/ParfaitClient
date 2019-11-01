@@ -20,7 +20,6 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {PageTitleComponent} from './components/page-title/page-title.component';
 import {OAuthSuccessComponent} from './components/oauth-success/oauth-success.component';
@@ -54,10 +53,6 @@ import { AccountComponent } from './components/account/account.component';
     MatButtonModule,
     FlexLayoutModule,
     MatSidenavModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory
-    }),
     MatTabsModule,
     MatDividerModule,
     MatExpansionModule,
