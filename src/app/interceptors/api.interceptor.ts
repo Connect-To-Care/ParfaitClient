@@ -21,7 +21,8 @@ export class APIInterceptor implements HttpInterceptor {
         // Make sure we clear the server on logout
         location.reload(true);
       }
-      const error = err.removeError.message || err.statusText;
+      console.log(err);
+      const error = err.error.message || err.statusText;
       return throwError(error);
     }));
   }

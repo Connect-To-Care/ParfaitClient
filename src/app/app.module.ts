@@ -14,7 +14,7 @@ import {
   MatExpansionModule,
   MatGridListModule,
   MatIconModule, MatListModule,
-  MatSidenavModule,
+  MatSidenavModule, MatSnackBarModule,
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule
@@ -63,7 +63,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     MatCardModule,
     MatBadgeModule,
     MatTooltipModule,
-    MatListModule
+    MatListModule,
+    MatSnackBarModule
   ],
   providers: [
     {

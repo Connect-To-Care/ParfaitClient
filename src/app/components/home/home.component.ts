@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {APIService, EventModel, MyEventsResponse} from '../../services/api.service';
 import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,8 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(
-    private readonly apiService: APIService
+    private readonly apiService: APIService,
+    private readonly snackbar: MatSnackBar
   ) {
   }
 
@@ -39,12 +41,30 @@ export class HomeComponent implements OnInit {
     this.refreshMyEvents();
   }
 
+  drop = async (event: EventModel) => {
+    try {
+      await this.apiService.drop(event._id);
+      this.refreshEvents();
+      this.refreshMyEvents();
+    } catch (e) {
+      this.snackbar.open('Failed to drop event (' + e + ')');
+    }
+  };
+
   refreshEvents = async () => {
-    this.availableEvents = await this.apiService.getAvailableEvents();
+    try {
+      this.availableEvents = await this.apiService.getAvailableEvents();
+    } catch (e) {
+      this.snackbar.open('Failed to refresh events (' + e + ')');
+    }
   };
 
   refreshMyEvents = async () => {
-    this.myEvents = await this.apiService.getEvents();
+    try {
+      this.myEvents = await this.apiService.getEvents();
+    } catch (e) {
+      this.snackbar.open('Failed to refresh your events (' + e + ')');
+    }
   };
 
   formatDate = (strDate: string): string => {
@@ -75,9 +95,13 @@ export class HomeComponent implements OnInit {
   };
 
   signUp = async (event: EventModel): Promise<void> => {
-    await this.apiService.signUp(event._id);
-    this.refreshEvents();
-    this.refreshMyEvents()
+    try {
+      await this.apiService.signUp(event._id);
+      this.refreshEvents();
+      this.refreshMyEvents();
+    } catch (e) {
+      this.snackbar.open('Failed to sign up for event (' + e + ')');
+    }
   };
 
 }

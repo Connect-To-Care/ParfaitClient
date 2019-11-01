@@ -69,6 +69,16 @@ export class APIService {
     );
   };
 
+  public drop = async (eventId: string): Promise<void> => {
+    return (
+      (await this.httpClient.post<any>(
+        this.configService.config.apiRoot + 'users/me/drop/', {
+          eventId
+        }
+      ).toPromise())
+    );
+  };
+
   public getEvents = async (): Promise<MyEventsResponse> => {
     return (
       (await this.httpClient.get<any>(
