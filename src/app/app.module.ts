@@ -20,7 +20,6 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {PageTitleComponent} from './components/page-title/page-title.component';
 import {OAuthSuccessComponent} from './components/oauth-success/oauth-success.component';
 import {OAuthLoginComponent} from './components/oauth-login/oauth-login.component';
