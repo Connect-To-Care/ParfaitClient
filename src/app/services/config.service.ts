@@ -15,8 +15,8 @@ export class ConfigService {
 
   get config(): Config {
     return {
-      apiRoot: 'http://localhost:3000/',
-      googleOAuthURL: 'http://localhost:3000/auth/google'
+      apiRoot: 'https://api.connect-tocare.org/',
+      googleOAuthURL: 'https://volunteer.connect-tocare.org/auth/google'
     };
   }
 }
