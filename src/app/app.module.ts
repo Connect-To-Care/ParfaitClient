@@ -30,6 +30,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {APIInterceptor} from './interceptors/api.interceptor';
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import { LogoutComponent } from './components/logout/logout.component';
+import { AccountComponent } from './components/account/account.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     OAuthSuccessComponent,
     OAuthLoginComponent,
     OAuthFailureComponent,
-    LogoutComponent
+    LogoutComponent,
+    AccountComponent
   ],
   imports: [
     HttpClientModule,

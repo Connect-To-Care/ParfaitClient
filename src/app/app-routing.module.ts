@@ -6,12 +6,19 @@ import {OAuthLoginComponent} from './components/oauth-login/oauth-login.componen
 import {DeauthGuard} from './guards/deauth.guard';
 import {OAuthSuccessComponent} from './components/oauth-success/oauth-success.component';
 import {LogoutComponent} from './components/logout/logout.component';
+import {OAuthFailureComponent} from './components/oauth-failure/oauth-failure.component';
+import {AccountComponent} from './components/account/account.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'account',
+    component: AccountComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -22,6 +29,11 @@ const routes: Routes = [
   {
     path: 'login/success/:jwt',
     component: OAuthSuccessComponent,
+    canActivate: [DeauthGuard]
+  },
+  {
+    path: 'login/failure',
+    component: OAuthFailureComponent,
     canActivate: [DeauthGuard]
   },
   {

@@ -22,18 +22,18 @@ export class NavbarComponent implements OnInit {
     },
     {
       title: 'My Account',
-      url: 'account'
+      url: '/account'
     },
     {
       title: 'Logout',
-      url: 'logout'
+      url: '/logout'
     }
   ];
 
   readonly navBarAdmin = [
     {
       title: 'Backroom',
-      url: 'admin'
+      url: '/admin'
     },
   ];
 
