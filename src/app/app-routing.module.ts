@@ -8,6 +8,7 @@ import {OAuthSuccessComponent} from './components/oauth-success/oauth-success.co
 import {LogoutComponent} from './components/logout/logout.component';
 import {OAuthFailureComponent} from './components/oauth-failure/oauth-failure.component';
 import {AccountComponent} from './components/account/account.component';
+import {NotFoundComponent} from './components/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,10 @@ const routes: Routes = [
     path: 'logout',
     component: LogoutComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 

@@ -30,6 +30,7 @@ import {TokenInterceptor} from './interceptors/token.interceptor';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AccountComponent } from './components/account/account.component';
 import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-google-analytics';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-goog
     OAuthLoginComponent,
     OAuthFailureComponent,
     LogoutComponent,
-    AccountComponent
+    AccountComponent,
+    NotFoundComponent
   ],
   imports: [
     HttpClientModule,

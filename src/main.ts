@@ -9,6 +9,7 @@ if (environment.production) {
   enableProdMode();
 }
 
+// tslint:disable-next-line:max-line-length
 console.log('Know how to code and want to use it to change the world? Please contact us at contact@connect-tocare.org. We love meeting new people!');
 
 platformBrowserDynamic().bootstrapModule(AppModule)
