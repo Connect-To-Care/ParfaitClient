@@ -16,7 +16,7 @@ export class ConfigService {
   get config(): Config {
     return {
       apiRoot: 'https://api.connect-tocare.org/',
-      googleOAuthURL: 'https://volunteer.connect-tocare.org/auth/google'
+      googleOAuthURL: 'https://api.connect-tocare.org/auth/google'
     };
   }
 }
