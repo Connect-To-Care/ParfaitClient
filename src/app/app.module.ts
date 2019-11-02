@@ -29,6 +29,7 @@ import {APIInterceptor} from './interceptors/api.interceptor';
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AccountComponent } from './components/account/account.component';
+import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-google-analytics';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,9 @@ import { AccountComponent } from './components/account/account.component';
     MatBadgeModule,
     MatTooltipModule,
     MatListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxGoogleAnalyticsModule.forRoot('UA-149435955-2'),
+    NgxGoogleAnalyticsRouterModule
   ],
   providers: [
     {
