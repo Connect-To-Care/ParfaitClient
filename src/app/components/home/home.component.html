@@ -3,14 +3,14 @@
   <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px" id="eventManager">
     <div class="cards" fxFlex.lt-md="0 0 60%" fxFlex.lt-sm="0 1" [@listStagger]="availableEvents">
       <mat-toolbar class="mat-primary rounded-bar">
-        Available
+        Available Events
         <div class="spacer"></div>
         <mat-icon class="refresh" aria-hidden="false" aria-label="Refresh" (click)="refreshEvents()">refresh</mat-icon>
       </mat-toolbar>
       <mat-card *ngIf="availableEvents.length == 0">
         <mat-card-content>
           <p>
-            Nothing to display.
+            No events currently available.
           </p>
         </mat-card-content>
       </mat-card>
@@ -31,7 +31,7 @@
     </div>
     <div fxFlex.lt-md="0 0 40%" fxFlex.lt-sm="0 1">
       <mat-toolbar class="mat-primary rounded-bar">
-        Your events
+        Your Events
         <div class="spacer"></div>
         <mat-icon class="refresh" aria-hidden="false" aria-label="Refresh" (click)="refreshMyEvents()">refresh</mat-icon>
       </mat-toolbar>
@@ -43,7 +43,7 @@
           <mat-accordion *ngIf="myEvents.future.length == 0">
             <mat-expansion-panel [disabled]="true">
               <mat-expansion-panel-header>
-                Nothing to display.
+                No upcoming events.
               </mat-expansion-panel-header>
             </mat-expansion-panel>
           </mat-accordion>
@@ -68,7 +68,7 @@
           <mat-accordion *ngIf="myEvents.past.length == 0">
             <mat-expansion-panel [disabled]="true">
               <mat-expansion-panel-header>
-                Nothing to display.
+                No past events.
               </mat-expansion-panel-header>
             </mat-expansion-panel>
           </mat-accordion>
