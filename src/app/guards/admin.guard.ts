@@ -5,7 +5,7 @@ import {APIService} from '../services/api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
 
   constructor(
     private readonly apiService: APIService,
