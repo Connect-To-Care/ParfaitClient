@@ -32,8 +32,12 @@ export class NavbarComponent implements OnInit {
 
   readonly navBarAdmin = [
     {
-      title: 'Backroom',
-      url: '/admin'
+      title: 'Manage Events',
+      url: '/admin/events'
+    },
+    {
+      title: 'Manage Users',
+      url: '/admin/users'
     },
   ];
 

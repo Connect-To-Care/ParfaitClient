@@ -31,6 +31,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { AccountComponent } from './components/account/account.component';
 import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-google-analytics';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ManageUsersComponent } from './components/manage-users/manage-users.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     OAuthFailureComponent,
     LogoutComponent,
     AccountComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ManageUsersComponent
   ],
   imports: [
     HttpClientModule,

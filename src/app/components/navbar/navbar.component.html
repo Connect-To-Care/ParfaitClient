@@ -7,24 +7,24 @@
     </div>
     <img src="assets/c2c-logo.png">
     <span class="spacer"></span>
+    <div fxHide.lt-md="true" fxShow="true" *ngIf="apiService.userSession && apiService.userSession.data.user.isAdmin">
+      <a *ngFor="let link of navBarAdmin" routerLink="{{ link.url }}" mat-button> {{ link.title }} </a>
+    </div>
     <div fxHide.lt-md="true" fxShow="true"  *ngIf="apiService.userSession !== undefined">
       <a *ngFor="let link of navBarLinks" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
       <a *ngFor="let link of navBarAnnouncements" href="{{ link.url }}" mat-button> {{ link.title }} </a>
-    </div>
-    <div fxHide.lt-md="true" fxShow="true" *ngIf="apiService.userSession && apiService.userSession.data.user.isAdmin">
-      <a *ngFor="let link of navBarAdmin" routerLink="{{ link.url }}" mat-button> {{ link.title }} </a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container class="example-container" fxFlexFill>
   <mat-sidenav #sidenav class="mat-primary" fxHide.gt-sm="true" fxLayout="column" mode="over" opened="false">
     <div fxLayout="column">
+      <div *ngIf="apiService.userSession && apiService.userSession.data.user.isAdmin">
+        <a *ngFor="let link of navBarAdmin" routerLink="{{ link.url }}" mat-button> {{ link.title }} </a>
+      </div>
       <div *ngIf="apiService.userSession">
         <a *ngFor="let link of navBarLinks" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
         <a *ngFor="let link of navBarAnnouncements" href="{{ link.url }}" mat-button> {{ link.title }} </a>
-      </div>
-      <div *ngIf="apiService.userSession && apiService.userSession.data.user.isAdmin">
-        <a *ngFor="let link of navBarAdmin" routerLink="{{ link.url }}" mat-button> {{ link.title }} </a>
       </div>
     </div>
   </mat-sidenav>

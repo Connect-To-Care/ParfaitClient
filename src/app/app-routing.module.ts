@@ -9,6 +9,8 @@ import {LogoutComponent} from './components/logout/logout.component';
 import {OAuthFailureComponent} from './components/oauth-failure/oauth-failure.component';
 import {AccountComponent} from './components/account/account.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
+import {ManageUsersComponent} from './components/manage-users/manage-users.component';
+import {AdminGuard} from './guards/admin.guard';
 
 
 const routes: Routes = [
@@ -41,6 +43,11 @@ const routes: Routes = [
     path: 'logout',
     component: LogoutComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/users',
+    component: ManageUsersComponent,
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: '**',
