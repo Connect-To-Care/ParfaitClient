@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, Injectable, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './components/app/app.component';
@@ -9,12 +9,18 @@ import {HomeComponent} from './components/home/home.component';
 import {
   MatBadgeModule,
   MatButtonModule,
-  MatCardModule, MatDialogModule,
+  MatCardModule,
+  MatDialogModule,
   MatDividerModule,
-  MatExpansionModule, MatFormFieldModule,
+  MatExpansionModule,
+  MatFormFieldModule,
   MatGridListModule,
-  MatIconModule, MatInputModule, MatListModule,
-  MatSidenavModule, MatSnackBarModule, MatTableModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatSidenavModule,
+  MatSnackBarModule,
+  MatTableModule,
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule
@@ -27,14 +33,31 @@ import {OAuthFailureComponent} from './components/oauth-failure/oauth-failure.co
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {APIInterceptor} from './interceptors/api.interceptor';
 import {TokenInterceptor} from './interceptors/token.interceptor';
-import { LogoutComponent } from './components/logout/logout.component';
-import { AccountComponent } from './components/account/account.component';
+import {LogoutComponent} from './components/logout/logout.component';
+import {AccountComponent} from './components/account/account.component';
 import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-google-analytics';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { ManageUsersComponent } from './components/manage-users/manage-users.component';
-import { EditUserComponent } from './components/edit-user/edit-user.component';
+import {NotFoundComponent} from './components/not-found/not-found.component';
+import {ManageUsersComponent} from './components/manage-users/manage-users.component';
+import {EditUserComponent} from './components/edit-user/edit-user.component';
 import {PhoneNagComponent, PhoneNagDialogComponent} from './components/phone-nag/phone-nag.component';
 import {ReactiveFormsModule} from '@angular/forms';
+
+import * as Sentry from '@sentry/browser';
+
+Sentry.init({
+  dsn: 'https://0c84ea0d000c41958b0be30eccc3fa81@sentry.connect-tocare.org/2'
+});
+
+@Injectable()
+export class SentryErrorHandler implements ErrorHandler {
+  constructor() {
+  }
+
+  handleError(error) {
+    const eventId = Sentry.captureException(error.originalError || error);
+    Sentry.showReportDialog({eventId});
+  }
+}
 
 @NgModule({
   declarations: [
@@ -90,6 +113,9 @@ import {ReactiveFormsModule} from '@angular/forms';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
+    },
+    {
+      provide: ErrorHandler, useClass: SentryErrorHandler
     }
   ],
   entryComponents: [
