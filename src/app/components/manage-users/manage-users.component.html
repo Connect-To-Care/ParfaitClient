@@ -1,3 +1,28 @@
 <app-navbar>
   <app-page-title title="Manage Users"></app-page-title>
+  <div id="usersManager">
+    <mat-toolbar class="mat-primary rounded-bar">
+      Registered Users
+      <div class="spacer"></div>
+      <mat-icon class="refresh" aria-hidden="false" aria-label="Refresh" (click)="getUsers()">refresh</mat-icon>
+    </mat-toolbar>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <mat-accordion *ngFor="let user of usersSource">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          {{ user.fullName }} ({{ user._id }})
+        </mat-expansion-panel-header>
+        <p><b>Email:</b> {{ user.email }}</p>
+        <p><b>Admin:</b> {{ user.isAdmin }}</p>
+        <p><b>Phone:</b> {{ user.phone || 'Not provided' }}</p>
+        <p><b>Tags:</b> {{ user.userTags }}</p>
+        <p><b>Auth:</b> {{ user.auth.strategy }};{{ user.auth.profileID }}</p>
+        <mat-action-row>
+          <button mat-button routerLink="/admin/users/{{ user._id }}">Edit</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 </app-navbar>

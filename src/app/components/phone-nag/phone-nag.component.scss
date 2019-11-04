@@ -1,0 +1,21 @@
+.tel-input-container {
+  display: flex;
+}
+
+.tel-input-element {
+  border: none;
+  background: none;
+  padding: 0;
+  outline: none;
+  font: inherit;
+  text-align: center;
+}
+
+.tel-input-spacer {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+:host.floating .tel-input-spacer {
+  opacity: 1;
+}

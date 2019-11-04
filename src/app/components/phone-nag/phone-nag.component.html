@@ -1,0 +1,28 @@
+<app-navbar>
+  <app-page-title title="Account details"></app-page-title>
+  <mat-card class="z-depth center">
+    <mat-card-header>
+      <mat-card-title>Update your phone number</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>While optional, we ask that you provide your phone number to allow us to send text message notifications to your phone.</p>
+      <p>Connect To Care will not share this information with anyone. Additional carrier charges may apply.</p>
+      <form [formGroup]="phoneForm">
+        <mat-form-field>
+          <input matInput placeholder="Phone number" formControlName="phoneNumber"
+                 [errorStateMatcher]="matcher" maxlength="10">
+          <mat-error *ngIf="phoneForm.get('phoneNumber').hasError('required')">
+            Phone number is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="!phoneForm.get('phoneNumber').hasError('required') && phoneForm.get('phoneNumber').hasError('pattern')">
+            Please enter valid number
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button [disabled]="phoneFormLoading" (click)="openDialog()">No thanks</button>
+      <button mat-button [disabled]="phoneFormLoading" (click)="onSubmit()">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</app-navbar>

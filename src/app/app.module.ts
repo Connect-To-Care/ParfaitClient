@@ -9,12 +9,12 @@ import {HomeComponent} from './components/home/home.component';
 import {
   MatBadgeModule,
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatDialogModule,
   MatDividerModule,
-  MatExpansionModule,
+  MatExpansionModule, MatFormFieldModule,
   MatGridListModule,
-  MatIconModule, MatListModule,
-  MatSidenavModule, MatSnackBarModule,
+  MatIconModule, MatInputModule, MatListModule,
+  MatSidenavModule, MatSnackBarModule, MatTableModule,
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule
@@ -32,6 +32,9 @@ import { AccountComponent } from './components/account/account.component';
 import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-google-analytics';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
+import {PhoneNagComponent, PhoneNagDialogComponent} from './components/phone-nag/phone-nag.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { ManageUsersComponent } from './components/manage-users/manage-users.com
     LogoutComponent,
     AccountComponent,
     NotFoundComponent,
-    ManageUsersComponent
+    ManageUsersComponent,
+    EditUserComponent,
+    PhoneNagComponent,
+    PhoneNagDialogComponent
   ],
   imports: [
     HttpClientModule,
@@ -67,7 +73,12 @@ import { ManageUsersComponent } from './components/manage-users/manage-users.com
     MatListModule,
     MatSnackBarModule,
     NgxGoogleAnalyticsModule.forRoot('UA-149435955-2'),
-    NgxGoogleAnalyticsRouterModule
+    NgxGoogleAnalyticsRouterModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
@@ -80,6 +91,9 @@ import { ManageUsersComponent } from './components/manage-users/manage-users.com
       useClass: TokenInterceptor,
       multi: true
     }
+  ],
+  entryComponents: [
+    PhoneNagDialogComponent
   ],
   bootstrap: [AppComponent]
 })

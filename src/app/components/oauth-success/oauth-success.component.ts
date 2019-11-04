@@ -20,7 +20,11 @@ export class OAuthSuccessComponent implements OnInit {
     const jwt = this.activatedRoute.snapshot.paramMap.get('jwt');
     if (jwt) {
       this.apiService.saveJwt(jwt);
-      this.router.navigateByUrl('/');
+      if (!this.apiService.userSession.data.user.phone && !localStorage.getItem('phone-nag')) {
+        this.router.navigateByUrl('/nag/phone');
+      } else {
+        this.router.navigateByUrl('/');
+      }
     } else {
       this.router.navigateByUrl('/login');
     }

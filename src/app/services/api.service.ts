@@ -59,11 +59,29 @@ export class APIService {
   ) {
   }
 
+  public getUsers = async (): Promise<Array<UserModel>> => {
+    return (
+      (await this.httpClient.get<any>(
+        this.configService.config.apiRoot + 'users'
+      ).toPromise()) as Array<UserModel>
+    );
+  };
+
   public signUp = async (eventId: string): Promise<void> => {
     return (
       (await this.httpClient.post<any>(
         this.configService.config.apiRoot + 'users/me/signUp/', {
           eventId
+        }
+      ).toPromise())
+    );
+  };
+
+  public changePhoneNumber = async (phoneNumber: string): Promise<void> => {
+    return (
+      (await this.httpClient.post<any>(
+        this.configService.config.apiRoot + 'users/me/updatePhone/', {
+          phoneNumber
         }
       ).toPromise())
     );

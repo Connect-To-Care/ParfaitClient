@@ -11,6 +11,8 @@ import {AccountComponent} from './components/account/account.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {ManageUsersComponent} from './components/manage-users/manage-users.component';
 import {AdminGuard} from './guards/admin.guard';
+import {EditUserComponent} from './components/edit-user/edit-user.component';
+import {PhoneNagComponent} from './components/phone-nag/phone-nag.component';
 
 
 const routes: Routes = [
@@ -22,6 +24,11 @@ const routes: Routes = [
   {
     path: 'account',
     component: AccountComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'nag/phone',
+    component: PhoneNagComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -47,6 +54,11 @@ const routes: Routes = [
   {
     path: 'admin/users',
     component: ManageUsersComponent,
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path: 'admin/users/:user',
+    component: EditUserComponent,
     canActivate: [AuthGuard, AdminGuard]
   },
   {
