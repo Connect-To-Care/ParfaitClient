@@ -1,1 +1,24 @@
-<p>edit-user works!</p>
+<app-navbar>
+  <app-page-title title="Manage User"></app-page-title>
+  <mat-card class="z-depth center" *ngIf="user">
+    <mat-card-header>
+      <mat-card-title>Edit user {{ user.fullName }} ({{ user._id }})</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><b>Name:</b> {{ user.fullName }}</p>
+      <p><b>Email:</b> {{ user.email }}</p>
+      <p><b>User tags:</b> {{ user.userTags }}</p>
+      <p><b>Auth Token:</b> {{ user.auth.strategy }};{{ user.auth.profileID }}</p>
+      <p><b>Phone Number:</b> {{ user.phone || 'Not provided'}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" routerLink="/admin/users">Back</button>
+      <div fxFlex></div>
+      <button mat-raised-button color="primary" (click)="addTag()">Add tag</button>
+      <button mat-raised-button color="primary" (click)="removeTag()">Remove tag</button>
+      <button *ngIf="!user.isAdmin" mat-raised-button color="warn" (click)="giveAdmin()">Give admin</button>
+      <button *ngIf="user.isAdmin" mat-raised-button color="warn" (click)="removeAdmin()">Remove admin</button>
+
+    </mat-card-actions>
+  </mat-card>
+</app-navbar>

@@ -5,18 +5,24 @@
       <mat-card-title>View your account details</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>At Connect To Care, we deeply value user privacy. We will never share your personal information with anyone and do not store your account password.</p>
-      <p>If you have any questions about your account, send our <a href="mailto:contact@connect-tocare.org">support</a> an email.</p>
+      <p>At Connect To Care, we deeply value user privacy. We will never share your personal information with anyone and
+        do not store your account password.</p>
+      <p>If you have any questions about your account, send our <a href="mailto:contact@connect-tocare.org">support</a>
+        an email.</p>
       <br>
       <p><b>Account info:</b></p>
-      <p><b>Name:</b> {{ user.fullName }}</p>
-      <p><b>Email:</b> {{ user.email }}</p>
-      <p><b>User tags:</b> {{ user.userTags }}</p>
-      <p><b>Auth Token:</b> {{ user.auth.strategy }};{{ user.auth.profileID }}</p>
-      <p>This data was generated when you first signed in and cannot be changed.</p>
+      <div class="shifted">
+        <p><b>Name:</b> {{ user.fullName }}</p>
+        <p><b>Email:</b> {{ user.email }}</p>
+        <p><b>User tags:</b> {{ user.userTags }}</p>
+        <p><b>Auth Token:</b> {{ user.auth.strategy }};{{ user.auth.profileID }}</p>
+        <p>This data was generated when you first signed in and cannot be changed.</p>
+      </div>
       <br>
-      <p *ngIf="user.phone"><b>Personal info:</b></p>
-      <p *ngIf="user.phone"><b>Phone Number:</b> {{ user.phone }}</p>
+      <p><b>Personal info:</b></p>
+      <div class="shifted">
+        <p><b>Phone Number:</b> {{ user.phone || 'Not provided'}}</p>
+      </div>
 
     </mat-card-content>
   </mat-card>

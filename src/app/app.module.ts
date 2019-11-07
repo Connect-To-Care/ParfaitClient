@@ -38,9 +38,9 @@ import {AccountComponent} from './components/account/account.component';
 import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-google-analytics';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {ManageUsersComponent} from './components/manage-users/manage-users.component';
-import {EditUserComponent} from './components/edit-user/edit-user.component';
+import {AddTagDialogComponent, EditUserComponent, RemoveTagDialogComponent} from './components/edit-user/edit-user.component';
 import {PhoneNagComponent, PhoneNagDialogComponent} from './components/phone-nag/phone-nag.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import * as Sentry from '@sentry/browser';
 
@@ -74,7 +74,9 @@ export class SentryErrorHandler implements ErrorHandler {
     ManageUsersComponent,
     EditUserComponent,
     PhoneNagComponent,
-    PhoneNagDialogComponent
+    PhoneNagDialogComponent,
+    AddTagDialogComponent,
+    RemoveTagDialogComponent
   ],
   imports: [
     HttpClientModule,
@@ -101,7 +103,8 @@ export class SentryErrorHandler implements ErrorHandler {
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     {
@@ -114,12 +117,14 @@ export class SentryErrorHandler implements ErrorHandler {
       useClass: TokenInterceptor,
       multi: true
     },
-    {
-      provide: ErrorHandler, useClass: SentryErrorHandler
-    }
+    // {
+    //   provide: ErrorHandler, useClass: SentryErrorHandler
+    // }
   ],
   entryComponents: [
-    PhoneNagDialogComponent
+    PhoneNagDialogComponent,
+    AddTagDialogComponent,
+    RemoveTagDialogComponent
   ],
   bootstrap: [AppComponent]
 })

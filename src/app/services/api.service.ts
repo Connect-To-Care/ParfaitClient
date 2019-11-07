@@ -59,6 +59,50 @@ export class APIService {
   ) {
   }
 
+  public addTag = async (userId: string, tag: string): Promise<void> => {
+    return (
+      (await this.httpClient.post<any>(
+        this.configService.config.apiRoot + 'users/' + userId.replace('/', '') + '/addTag', {
+          tag
+        }
+      ).toPromise())
+    );
+  };
+
+  public removeTag = async (userId: string, tag: string): Promise<void> => {
+    return (
+      (await this.httpClient.post<any>(
+        this.configService.config.apiRoot + 'users/' + userId.replace('/', '') + '/removeTag', {
+          tag
+        }
+      ).toPromise())
+    );
+  };
+
+  public giveAdmin = async (userId: string): Promise<void> => {
+    return (
+      (await this.httpClient.get<any>(
+        this.configService.config.apiRoot + 'users/' + userId.replace('/', '') + '/giveAdmin'
+      ).toPromise())
+    );
+  };
+
+  public removeAdmin = async (userId: string): Promise<void> => {
+    return (
+      (await this.httpClient.get<any>(
+        this.configService.config.apiRoot + 'users/' + userId.replace('/', '') + '/removeAdmin'
+      ).toPromise())
+    );
+  };
+
+  public getUser = async (userId: string): Promise<UserModel> => {
+    return (
+      (await this.httpClient.get<any>(
+        this.configService.config.apiRoot + 'users/' + userId.replace('/', '') // Prevent //'s from escaping the url
+      ).toPromise()) as UserModel
+    );
+  };
+
   public getUsers = async (): Promise<Array<UserModel>> => {
     return (
       (await this.httpClient.get<any>(
