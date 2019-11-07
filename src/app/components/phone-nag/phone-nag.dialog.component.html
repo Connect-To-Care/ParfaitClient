@@ -3,6 +3,6 @@
   <p>Would you like to be asked next time you login?</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="skip(true)">Never show me again</button>
-  <button mat-button (click)="skip()" cdkFocusInitial>Remind me later</button>
+  <button (click)="skip(true)" mat-button>Never show me again</button>
+  <button (click)="skip()" cdkFocusInitial mat-button>Remind me later</button>
 </div>

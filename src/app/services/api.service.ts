@@ -59,6 +59,26 @@ export class APIService {
   ) {
   }
 
+  get userSession(): UserSession {
+    const sessionJwt = localStorage.getItem('session');
+
+    if (!sessionJwt) {
+      return undefined;
+    }
+
+    let sessionJson;
+    try {
+      sessionJson = JSON.parse(atob(sessionJwt.split('.')[1]));
+    } catch (e) {
+      return undefined;
+    }
+
+    return {
+      token: sessionJwt,
+      data: sessionJson
+    };
+  }
+
   public addTag = async (userId: string, tag: string): Promise<void> => {
     return (
       (await this.httpClient.post<any>(
@@ -160,24 +180,4 @@ export class APIService {
   public logOut = () => localStorage.removeItem('session');
 
   public saveJwt = (jwt: string) => localStorage.setItem('session', jwt);
-
-  get userSession(): UserSession {
-    const sessionJwt = localStorage.getItem('session');
-
-    if (!sessionJwt) {
-      return undefined;
-    }
-
-    let sessionJson;
-    try {
-      sessionJson = JSON.parse(atob(sessionJwt.split('.')[1]));
-    } catch (e) {
-      return undefined;
-    }
-
-    return {
-      token: sessionJwt,
-      data: sessionJson
-    };
-  }
 }

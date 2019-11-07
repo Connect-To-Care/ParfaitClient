@@ -1,6 +1,6 @@
 <app-navbar>
   <app-page-title title="Manage User"></app-page-title>
-  <mat-card class="z-depth center" *ngIf="user">
+  <mat-card *ngIf="user" class="z-depth center">
     <mat-card-header>
       <mat-card-title>Edit user {{ user.fullName }} ({{ user._id }})</mat-card-title>
     </mat-card-header>
@@ -12,12 +12,12 @@
       <p><b>Phone Number:</b> {{ user.phone || 'Not provided'}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" routerLink="/admin/users">Back</button>
+      <button color="primary" mat-raised-button routerLink="/admin/users">Back</button>
       <div fxFlex></div>
-      <button mat-raised-button color="primary" (click)="addTag()">Add tag</button>
-      <button mat-raised-button color="primary" (click)="removeTag()">Remove tag</button>
-      <button *ngIf="!user.isAdmin" mat-raised-button color="warn" (click)="giveAdmin()">Give admin</button>
-      <button *ngIf="user.isAdmin" mat-raised-button color="warn" (click)="removeAdmin()">Remove admin</button>
+      <button (click)="addTag()" color="primary" mat-raised-button>Add tag</button>
+      <button (click)="removeTag()" color="primary" mat-raised-button>Remove tag</button>
+      <button (click)="giveAdmin()" *ngIf="!user.isAdmin" color="warn" mat-raised-button>Give admin</button>
+      <button (click)="removeAdmin()" *ngIf="user.isAdmin" color="warn" mat-raised-button>Remove admin</button>
 
     </mat-card-actions>
   </mat-card>

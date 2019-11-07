@@ -4,10 +4,10 @@
     <mat-toolbar class="mat-primary rounded-bar">
       Registered Users
       <div class="spacer"></div>
-      <mat-icon class="refresh" aria-hidden="false" aria-label="Refresh" (click)="getUsers()">refresh</mat-icon>
+      <mat-icon (click)="getUsers()" aria-hidden="false" aria-label="Refresh" class="refresh">refresh</mat-icon>
     </mat-toolbar>
     <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
     </mat-form-field>
     <mat-accordion *ngFor="let user of usersSource">
       <mat-expansion-panel>

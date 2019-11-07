@@ -8,7 +8,8 @@ import {APIService} from '../services/api.service';
 export class APIInterceptor implements HttpInterceptor {
   constructor(
     private readonly apiService: APIService
-  ) { }
+  ) {
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(catchError(err => {

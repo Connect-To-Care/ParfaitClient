@@ -18,6 +18,13 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class PhoneNagComponent {
 
+  // https://stackblitz.com/edit/angular-2m1vdq-7vzaq8?file=app%2Finput-error-state-matcher-example.html
+  phoneForm = new FormGroup({
+    phoneNumber: new FormControl('', [Validators.pattern('[6-9]\\d{9}')]),
+  });
+  phoneFormLoading = false;
+  matcher = new MyErrorStateMatcher();
+
   constructor(
     private readonly router: Router,
     private readonly apiService: APIService,
@@ -25,15 +32,6 @@ export class PhoneNagComponent {
     private readonly snackbar: MatSnackBar
   ) {
   }
-
-  // https://stackblitz.com/edit/angular-2m1vdq-7vzaq8?file=app%2Finput-error-state-matcher-example.html
-  phoneForm = new FormGroup({
-    phoneNumber: new FormControl('', [Validators.pattern('[6-9]\\d{9}')]),
-  });
-
-  phoneFormLoading = false;
-
-  matcher = new MyErrorStateMatcher();
 
   public openDialog = () => {
     if (!this.apiService.userSession.data.user.phone && !localStorage.getItem('phone-nag')) {

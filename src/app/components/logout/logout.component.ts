@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {APIService} from '../../services/api.service';
 
@@ -12,7 +12,8 @@ export class LogoutComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly apiService: APIService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.apiService.logOut();

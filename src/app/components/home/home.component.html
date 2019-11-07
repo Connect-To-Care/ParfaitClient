@@ -1,11 +1,11 @@
 <app-navbar>
   <app-page-title title="Browse events"></app-page-title>
   <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px" id="eventManager">
-    <div class="cards" fxFlex.lt-md="0 0 60%" fxFlex.lt-sm="0 1" [@listStagger]="availableEvents">
+    <div [@listStagger]="availableEvents" class="cards" fxFlex.lt-md="0 0 60%" fxFlex.lt-sm="0 1">
       <mat-toolbar class="mat-primary rounded-bar">
         Available Events
         <div class="spacer"></div>
-        <mat-icon class="refresh" aria-hidden="false" aria-label="Refresh" (click)="refreshEvents()">refresh</mat-icon>
+        <mat-icon (click)="refreshEvents()" aria-hidden="false" aria-label="Refresh" class="refresh">refresh</mat-icon>
       </mat-toolbar>
       <mat-card *ngIf="availableEvents.length == 0">
         <mat-card-content>
@@ -24,7 +24,7 @@
           <p><b>Signed up ({{ event.signedUp.length }}/{{ event.maxSignups }}):</b> {{ listMembers(event)}}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button matTooltip="Sign up for this event" (click)="signUp(event)">SIGN UP</button>
+          <button (click)="signUp(event)" mat-button matTooltip="Sign up for this event">SIGN UP</button>
           <button mat-button matTooltip="Contact the facilitators of this event">CONTACT</button>
         </mat-card-actions>
       </mat-card>
@@ -33,7 +33,7 @@
       <mat-toolbar class="mat-primary rounded-bar">
         Your Events
         <div class="spacer"></div>
-        <mat-icon class="refresh" aria-hidden="false" aria-label="Refresh" (click)="refreshMyEvents()">refresh
+        <mat-icon (click)="refreshMyEvents()" aria-hidden="false" aria-label="Refresh" class="refresh">refresh
         </mat-icon>
       </mat-toolbar>
       <mat-tab-group>
@@ -57,7 +57,7 @@
               <p><b>About:</b> {{ future.description }}</p>
               <p><b>Signed up ({{ future.signedUp.length }}/{{ future.maxSignups }}):</b> {{ listMembers(future)}}</p>
               <mat-action-row>
-                <button mat-button (click)="drop(future)">Drop</button>
+                <button (click)="drop(future)" mat-button>Drop</button>
               </mat-action-row>
             </mat-expansion-panel>
           </mat-accordion>
