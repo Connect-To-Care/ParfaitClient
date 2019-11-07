@@ -102,7 +102,7 @@ export class APIService {
   public giveAdmin = async (userId: string): Promise<void> => {
     return (
       (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'users/' + userId.replace('/', '') + '/giveAdmin'
+        this.configService.config.apiRoot + 'users/' + userId.replace('/', '') + '/makeAdmin'
       ).toPromise())
     );
   };
