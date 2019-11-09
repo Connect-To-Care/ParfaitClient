@@ -7,7 +7,7 @@ As part of this initiative, we've developed our own custom volunteer platform th
 ## Development strategy
 We use Angular to maintain a clean codebase and because of its extensive library of tools.
 ## Building
-Clone the Github repo and install the Angular CLI using `npm i @angular.cli -g`. You can build the app using `ng build --prod` (production) and host a live development server using `ng serve`
+Clone the Github repo and install the Angular CLI using `npm i @angular/cli -g`. You can build the app using `ng build --prod` (production) and host a live development server using `ng serve`
 ## Contributing
 We would love any extra help. Most of our priories have been to suit our own needs. However, we would be happy to include features that are community contributed.
 
