@@ -1,27 +1,15 @@
-# C2cVolunteerClient
+# Connect To Care Volunteer Platform
+###### (Client)
+Connect To Care aims to provide everyone a chance to be the change in their lives and empower themselves to carve their own future.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.10.
+As part of this initiative, we've developed our own custom volunteer platform that supports our needs as a non-profit.
 
-## Development server
+## Development strategy
+We use Angular to maintain a clean codebase and because of its extensive library of tools.
+## Building
+Clone the Github repo and install the Angular CLI using `npm i @angular.cli -g`. You can build the app using `ng build --prod` (production) and host a live development server using `ng serve`
+## Contributing
+We would love any extra help. Most of our priories have been to suit our own needs. However, we would be happy to include features that are community contributed.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Contact
+This project is maintained by Alec Dusheck. Please email me at alec@simplyalec.com if you have any questions.
