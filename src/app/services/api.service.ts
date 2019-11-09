@@ -79,6 +79,14 @@ export class APIService {
     };
   }
 
+  public getEvents = async (): Promise<EventModel[]> => {
+    return (
+      (await this.httpClient.get<any>(
+        this.configService.config.apiRoot + 'events/'
+      ).toPromise())
+    );
+  };
+
   public addTag = async (userId: string, tag: string): Promise<void> => {
     return (
       (await this.httpClient.post<any>(
@@ -134,7 +142,7 @@ export class APIService {
   public signUp = async (eventId: string): Promise<void> => {
     return (
       (await this.httpClient.post<any>(
-        this.configService.config.apiRoot + 'users/me/signUp/', {
+        this.configService.config.apiRoot + 'events/me/signUp/', {
           eventId
         }
       ).toPromise())
@@ -155,25 +163,25 @@ export class APIService {
   public drop = async (eventId: string): Promise<void> => {
     return (
       (await this.httpClient.post<any>(
-        this.configService.config.apiRoot + 'users/me/drop/', {
+        this.configService.config.apiRoot + 'events/me/drop/', {
           eventId
         }
       ).toPromise())
     );
   };
 
-  public getEvents = async (): Promise<MyEventsResponse> => {
+  public getMyEvents = async (): Promise<MyEventsResponse> => {
     return (
       (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'users/me/events/'
+        this.configService.config.apiRoot + 'events/me/events/'
       ).toPromise()) as MyEventsResponse
     );
   };
 
-  public getAvailableEvents = async (): Promise<Array<EventModel>> => {
+  public getMyAvailableEvents = async (): Promise<Array<EventModel>> => {
     return (
       (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'users/me/events/available/'
+        this.configService.config.apiRoot + 'events/me/available/'
       ).toPromise()) as Array<EventModel>
     );
   };
