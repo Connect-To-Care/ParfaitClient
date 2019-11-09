@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Enter facilitator code</h1>
+<div mat-dialog-content>
+  <p>This code was provided by an administrator and is unique for each event.</p>
+  <mat-form-field>
+    <input [(ngModel)]="data.code" matInput>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button (click)="onNoClick()" mat-button>Back</button>
+  <button [mat-dialog-close]="data.code" cdkFocusInitial mat-button>Submit</button>
+</div>

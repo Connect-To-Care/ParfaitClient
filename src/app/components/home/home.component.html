@@ -1,11 +1,13 @@
 <app-navbar>
   <app-page-title title="Browse events"></app-page-title>
   <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px" id="eventManager">
-    <div [@listStagger]="availableEvents" class="cards" fxFlex.lt-md="0 0 60%" fxFlex.lt-sm="0 1">
+    <div [@listStagger]="availableEvents" class="cards" fxFlex.lt-md="1 1 60%" fxFlex.lt-sm="0 1">
       <mat-toolbar class="mat-primary rounded-bar">
         Available Events
         <div class="spacer"></div>
-        <mat-icon (click)="refreshEvents()" aria-hidden="false" aria-label="Refresh" class="refresh">refresh</mat-icon>
+        <mat-icon matTooltip="Refresh" (click)="refreshEvents()" aria-hidden="false" aria-label="Refresh"
+                  class="refresh">refresh
+        </mat-icon>
       </mat-toolbar>
       <mat-card *ngIf="availableEvents.length == 0">
         <mat-card-content>
@@ -21,19 +23,32 @@
         </mat-card-header>
         <mat-card-content>
           <p><b>About:</b> {{ event.description }}</p>
-          <p><b>Signed up ({{ event.signedUp.length }}/{{ event.maxSignups }}):</b> {{ listMembers(event)}}</p>
+          <p><b>Signed up ({{ event.signedUp.length }}/{{ event.maxSignups }}):</b> {{ formatMembers(event.signedUp)}}
+          </p>
+          <p *ngIf="event.facilitators.length > 0"><b>Facilitators:</b> {{ formatMembers(event.facilitators)}}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button (click)="signUp(event)" mat-button matTooltip="Sign up for this event">SIGN UP</button>
-          <button mat-button matTooltip="Contact the facilitators of this event">CONTACT</button>
+          <button [disabled]="checkEventFacilitator(event)" (click)="signUp(event)" mat-button
+                  matTooltip="Sign up for this event">SIGN UP
+          </button>
+          <a mat-button matTooltip="Contact the facilitators of this event"
+             href="{{ formatMailto(event) }}">CONTACT</a>
+          <div fxFlex></div>
+          <button *ngIf="!checkEventFacilitator(event)" (click)="enterCode(event)" mat-button
+                  matTooltip="Become an event facilitator">ENTER CODE
+          </button>
+          <button *ngIf="checkEventFacilitator(event)" routerLink="/admin/events/{{ event._id }}" mat-button
+                  matTooltip="Edit event details">FACILITATOR EDIT
+          </button>
         </mat-card-actions>
       </mat-card>
     </div>
-    <div fxFlex.lt-md="0 0 40%" fxFlex.lt-sm="0 1">
+    <div fxFlex.lt-md="1 1 40%" fxFlex.lt-sm="0 1">
       <mat-toolbar class="mat-primary rounded-bar">
         Your Events
         <div class="spacer"></div>
-        <mat-icon (click)="refreshMyEvents()" aria-hidden="false" aria-label="Refresh" class="refresh">refresh
+        <mat-icon matTooltip="Refresh" (click)="refreshMyEvents()" aria-hidden="false" aria-label="Refresh"
+                  class="refresh">refresh
         </mat-icon>
       </mat-toolbar>
       <mat-tab-group>
@@ -55,9 +70,13 @@
               </mat-expansion-panel-header>
               <p><b>Time:</b> {{ formatDate(future.startTime) }} - {{ formatDate(future.endTime) }}</p>
               <p><b>About:</b> {{ future.description }}</p>
-              <p><b>Signed up ({{ future.signedUp.length }}/{{ future.maxSignups }}):</b> {{ listMembers(future)}}</p>
+              <p><b>Signed up ({{ future.signedUp.length }}/{{ future.maxSignups }}
+                ):</b> {{ formatMembers(future.signedUp)}}</p>
+              <p *ngIf="future.facilitators.length > 0"><b>Facilitators:</b> {{ formatMembers(future.facilitators)}}</p>
               <mat-action-row>
-                <button (click)="drop(future)" mat-button>Drop</button>
+                <button (click)="drop(future)" mat-button>DROP</button>
+                <a mat-button matTooltip="Contact the facilitators of this event"
+                   href="{{ formatMailto(future) }}">CONTACT</a>
               </mat-action-row>
             </mat-expansion-panel>
           </mat-accordion>
@@ -80,7 +99,9 @@
               </mat-expansion-panel-header>
               <p><b>Time:</b> {{ formatDate(past.startTime) }} - {{ formatDate(past.endTime) }}</p>
               <p><b>About:</b> {{ past.description }}</p>
-              <p><b>Signed up ({{ past.signedUp.length }}/{{ past.maxSignups }}):</b> {{ listMembers(past)}}</p>
+              <p><b>Signed up ({{ past.signedUp.length }}/{{ past.maxSignups }}):</b> {{ formatMembers(past.signedUp)}}
+              </p>
+              <p *ngIf="past.facilitators.length > 0"><b>Facilitators:</b> {{ formatMembers(past.facilitators)}}</p>
             </mat-expansion-panel>
           </mat-accordion>
         </mat-tab>

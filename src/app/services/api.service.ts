@@ -178,6 +178,17 @@ export class APIService {
     );
   };
 
+  public enterCode = async (eventId: string, code: string): Promise<void> => {
+    return (
+      (await this.httpClient.post<any>(
+        this.configService.config.apiRoot + 'events/' + eventId.replace('/', '') + '/enterCode',
+        {
+          code
+        }
+      ).toPromise())
+    );
+  };
+
   public getMyAvailableEvents = async (): Promise<Array<EventModel>> => {
     return (
       (await this.httpClient.get<any>(
