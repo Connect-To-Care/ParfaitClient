@@ -117,9 +117,9 @@ export class SentryErrorHandler implements ErrorHandler {
       useClass: TokenInterceptor,
       multi: true
     },
-    // {
-    //   provide: ErrorHandler, useClass: SentryErrorHandler
-    // }
+    {
+      provide: ErrorHandler, useClass: SentryErrorHandler
+    }
   ],
   entryComponents: [
     PhoneNagDialogComponent,
