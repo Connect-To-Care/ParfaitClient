@@ -142,13 +142,14 @@ export class APIService {
   };
 
   public changePhoneNumber = async (phoneNumber: string): Promise<void> => {
-    return (
-      (await this.httpClient.post<any>(
-        this.configService.config.apiRoot + 'users/me/updatePhone/', {
-          phoneNumber
-        }
-      ).toPromise())
-    );
+    const data = (await this.httpClient.post<any>(
+      this.configService.config.apiRoot + 'users/me/updatePhone/', {
+        phoneNumber
+      }
+    ).toPromise()) as {
+      newToken: string
+    };
+    this.saveJwt(data.newToken);
   };
 
   public drop = async (eventId: string): Promise<void> => {
