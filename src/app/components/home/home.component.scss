@@ -1,5 +1,5 @@
 #eventManager {
-  margin: 20px;
+  padding: 30px;
 }
 
 .cards {
@@ -22,3 +22,9 @@ mat-card {
   color: rgba(0, 0, 0, 0.87) !important;
 }
 
+.recurring {
+  color: red;
+  font-size: .5rem;
+  margin-left: 2px;
+  position: relative;
+}

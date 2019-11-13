@@ -45,6 +45,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import * as Sentry from '@sentry/browser';
 import {ManageEventsComponent} from './components/manage-events/manage-events.component';
 import {EditEventComponent} from './components/edit-event/edit-event.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
 
 Sentry.init({
   dsn: 'https://0c84ea0d000c41958b0be30eccc3fa81@sentry.connect-tocare.org/2'
@@ -81,7 +82,8 @@ export class SentryErrorHandler implements ErrorHandler {
     RemoveTagDialogComponent,
     ManageEventsComponent,
     EditEventComponent,
-    FacilitatorAddDialogComponent
+    FacilitatorAddDialogComponent,
+    EventDetailsComponent
   ],
   imports: [
     HttpClientModule,

@@ -18,17 +18,13 @@
       </mat-card>
       <mat-card *ngFor="let event of availableEvents">
         <mat-card-header>
-          <mat-card-title>{{ event.displayName }}</mat-card-title>
-          <mat-card-subtitle>{{ formatDate(event.startTime) }} - {{ formatDate(event.endTime) }}</mat-card-subtitle>
+          <mat-card-title>{{ event.displayName }} <span *ngIf="event.recurring" class="recurring">[RECURRING]</span></mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <p><b>About:</b> {{ event.description }}</p>
-          <p><b>Signed up ({{ event.signedUp.length }}/{{ event.maxSignups }}):</b> {{ formatMembers(event.signedUp)}}
-          </p>
-          <p *ngIf="event.facilitators.length > 0"><b>Facilitators:</b> {{ formatMembers(event.facilitators)}}</p>
+          <app-event-details [event]="event"></app-event-details>
         </mat-card-content>
         <mat-card-actions>
-          <button [disabled]="checkEventFacilitator(event)" (click)="signUp(event)" mat-button
+          <button (click)="signUp(event)" mat-button
                   matTooltip="Sign up for this event">SIGN UP
           </button>
           <a mat-button matTooltip="Contact the facilitators of this event"
@@ -66,13 +62,9 @@
           <mat-accordion *ngFor="let future of myEvents.future">
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                {{ future.displayName }}
+                {{ future.displayName }} <span *ngIf="future.recurring" class="recurring">[RECURRING]</span>
               </mat-expansion-panel-header>
-              <p><b>Time:</b> {{ formatDate(future.startTime) }} - {{ formatDate(future.endTime) }}</p>
-              <p><b>About:</b> {{ future.description }}</p>
-              <p><b>Signed up ({{ future.signedUp.length }}/{{ future.maxSignups }}
-                ):</b> {{ formatMembers(future.signedUp)}}</p>
-              <p *ngIf="future.facilitators.length > 0"><b>Facilitators:</b> {{ formatMembers(future.facilitators)}}</p>
+              <app-event-details [event]="future"></app-event-details>
               <mat-action-row>
                 <button (click)="drop(future)" mat-button>DROP</button>
                 <a mat-button matTooltip="Contact the facilitators of this event"
@@ -95,13 +87,9 @@
           <mat-accordion *ngFor="let past of myEvents.past">
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                {{ past.displayName }}
+                {{ past.displayName }} <span *ngIf="past.recurring" class="recurring">[RECURRING]</span>
               </mat-expansion-panel-header>
-              <p><b>Time:</b> {{ formatDate(past.startTime) }} - {{ formatDate(past.endTime) }}</p>
-              <p><b>About:</b> {{ past.description }}</p>
-              <p><b>Signed up ({{ past.signedUp.length }}/{{ past.maxSignups }}):</b> {{ formatMembers(past.signedUp)}}
-              </p>
-              <p *ngIf="past.facilitators.length > 0"><b>Facilitators:</b> {{ formatMembers(past.facilitators)}}</p>
+              <app-event-details [event]="past"></app-event-details>
             </mat-expansion-panel>
           </mat-accordion>
         </mat-tab>

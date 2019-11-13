@@ -14,14 +14,12 @@
           </mat-expansion-panel-header>
         </mat-expansion-panel>
       </mat-accordion>
-      <mat-accordion *ngFor="let past of events">
+      <mat-accordion *ngFor="let event of events">
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            {{ past.displayName }}
+            {{ event.displayName }}
           </mat-expansion-panel-header>
-          <p><b>Time:</b> {{ past.startTime }} - {{ past.endTime }}</p>
-          <p><b>About:</b> {{ past.description }}</p>
-          <p><b>Signed up:</b> {{ past.signedUp.length }}/{{ past.maxSignups }}</p>
+          <app-event-details [event]="event"></app-event-details>
           <mat-action-row>
             <button mat-button>EDIT</button>
           </mat-action-row>
@@ -46,9 +44,7 @@
           <mat-expansion-panel-header>
             {{ past.displayName }}
           </mat-expansion-panel-header>
-          <p><b>Time:</b> {{ past.startTime }} - {{ past.endTime }}</p>
-          <p><b>About:</b> {{ past.description }}</p>
-          <p><b>Signed up:</b> {{ past.signedUp.length }}/{{ past.maxSignups }}</p>
+          <app-event-details [event]="past"></app-event-details>
           <mat-action-row>
             <button mat-button>VIEW</button>
           </mat-action-row>

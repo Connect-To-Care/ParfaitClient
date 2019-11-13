@@ -39,6 +39,10 @@ export interface EventModel {
   description: string;
   requiredTags: string[];
   _id: string;
+  recurring?: {
+    days: number;
+    hasRecurred: boolean;
+  }
 }
 
 export interface MyEventsResponse {
