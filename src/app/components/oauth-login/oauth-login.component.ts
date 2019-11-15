@@ -8,6 +8,8 @@ import {ConfigService} from '../../services/config.service';
 })
 export class OAuthLoginComponent implements OnInit {
 
+  loading = false;
+
   constructor(
     public readonly configService: ConfigService
   ) {
