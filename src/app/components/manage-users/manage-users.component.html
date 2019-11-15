@@ -1,6 +1,8 @@
 <app-navbar>
   <app-page-title title="Manage Users"></app-page-title>
-  <div id="usersManager">
+  <mat-progress-bar mode="indeterminate" *ngIf="!users"></mat-progress-bar>
+
+  <div id="usersManager" *ngIf="users">
     <mat-toolbar class="mat-primary rounded-bar">
       Registered Users
       <div class="spacer"></div>

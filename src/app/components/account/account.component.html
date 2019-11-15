@@ -4,7 +4,8 @@
     <mat-card-header>
       <mat-card-title>View your account details</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
+    <mat-progress-bar mode="indeterminate" *ngIf="!user"></mat-progress-bar>
+    <mat-card-content *ngIf="user">
       <p>At Connect To Care, we deeply value user privacy. We will never share your personal information with anyone and
         do not store your account password.</p>
       <p>If you have any questions about your account, send our <a href="mailto:contact@connect-tocare.org">support</a>

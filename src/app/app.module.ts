@@ -17,7 +17,7 @@ import {
   MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
+  MatListModule, MatProgressBarModule,
   MatSidenavModule,
   MatSnackBarModule,
   MatTableModule,
@@ -115,6 +115,7 @@ export class SentryErrorHandler implements ErrorHandler {
     MatCheckboxModule,
     MatDatepickerModule,
     MatMomentDateModule,
+    MatProgressBarModule,
   ],
   providers: [
     {

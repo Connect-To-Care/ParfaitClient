@@ -7,8 +7,8 @@ import {APIService, UserModel} from '../../services/api.service';
   styleUrls: ['./manage-users.component.scss'],
 })
 export class ManageUsersComponent implements OnInit {
-  users: Array<UserModel> = [];
-  usersSource: Array<UserModel> = [];
+  users: Array<UserModel>;
+  usersSource: Array<UserModel>;
 
   constructor(
     private readonly apiService: APIService
@@ -35,6 +35,4 @@ export class ManageUsersComponent implements OnInit {
       this.usersSource = this.users;
     }
   };
-
-
 }

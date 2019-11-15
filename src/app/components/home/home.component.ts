@@ -23,12 +23,8 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/ma
 })
 export class HomeComponent implements OnInit {
 
-  availableEvents: Array<EventModel> = [];
-  myEvents: MyEventsResponse = {
-    future: [],
-    now: [],
-    past: []
-  };
+  availableEvents: Array<EventModel>;
+  myEvents: MyEventsResponse;
 
   constructor(
     private readonly apiService: APIService,

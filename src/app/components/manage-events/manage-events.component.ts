@@ -22,8 +22,10 @@ import {animate, query, stagger, style, transition, trigger} from '@angular/anim
 })
 export class ManageEventsComponent implements OnInit {
 
-  pastEvents: Array<EventModel> = [];
-  events: Array<EventModel> = [];
+  pastEvents: Array<EventModel>;
+  pastEventsSource: Array<EventModel>;
+
+  events: Array<EventModel>;
 
   constructor(
     private readonly apiService: APIService,
@@ -33,6 +35,9 @@ export class ManageEventsComponent implements OnInit {
   async ngOnInit() {
     const events = await this.apiService.getEvents();
 
+    this.pastEvents = [];
+    this.events = [];
+
     events.forEach(event => {
       if (new Date(event.endTime).getTime() < new Date().getTime()) { // Past
         this.pastEvents.push(event);
@@ -40,5 +45,19 @@ export class ManageEventsComponent implements OnInit {
         this.events.push(event);
       }
     });
+
+    this.pastEventsSource = this.pastEvents;
   }
+
+  public applyPastFilter = (filter: string) => {
+    if (filter) {
+      this.pastEventsSource = this.pastEvents.filter(
+        candidate => candidate.displayName.toLowerCase().includes(filter.toLowerCase()) ||
+          candidate._id.includes(filter)
+      );
+    } else {
+      this.pastEventsSource = this.pastEvents;
+    }
+  };
+
 }

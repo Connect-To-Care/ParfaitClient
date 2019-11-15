@@ -1,6 +1,8 @@
 <app-navbar>
   <app-page-title title="Browse events"></app-page-title>
-  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px" id="eventManager">
+  <mat-progress-bar mode="indeterminate" *ngIf="!availableEvents || !myEvents"></mat-progress-bar>
+
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px" id="eventManager" *ngIf="availableEvents && myEvents">
     <div [@listStagger]="availableEvents" class="cards" fxFlex.lt-md="1 1 60%" fxFlex.lt-sm="0 1">
       <mat-toolbar class="mat-primary rounded-bar">
         Available Events
