@@ -1,7 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {APIService, UserModel} from '../../services/api.service';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
+import {MatChipInputEvent, MatDialog, MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-edit-user',
@@ -11,8 +11,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/ma
 export class EditUserComponent implements OnInit {
 
   user: UserModel;
-
-  userLoading: boolean = false;
+  userLoading = false;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -35,28 +34,16 @@ export class EditUserComponent implements OnInit {
     }
   };
 
-  public addTag = async () => {
+  public addTag = async (event: MatChipInputEvent) => {
     this.userLoading = true;
-    const dialogRef = this.dialog.open(AddTagDialogComponent, {
-      data: {
-        tag: ''
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (!result) {
-        this.userLoading = false;
-        return;
-      }
-
-      this.apiService.addTag(this.user._id, result).then(() => {
-        this.userLoading = false;
-        this.getUser();
-      }).catch(e => {
-        this.snackbar.open('Failed to add tag (' + e + ')')._dismissAfter(2000);
-        this.userLoading = false;
-      });
-    });
+    try {
+      await this.apiService.addTag(this.user._id, event.value);
+      await this.getUser();
+    } catch (e) {
+      this.snackbar.open('Failed to add tag (' + e + ')')._dismissAfter(2000);
+    }
+    this.userLoading = false;
+    event.input.value = '';
   };
 
   public giveAdmin = async () => {
@@ -83,63 +70,14 @@ export class EditUserComponent implements OnInit {
     }
   };
 
-  public removeTag = async () => {
+  public removeTag = async (tag: string) => {
     this.userLoading = true;
-    const dialogRef = this.dialog.open(RemoveTagDialogComponent, {
-      data: {
-        tag: ''
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (!result) {
-        this.userLoading = false;
-        return;
-      }
-
-      this.apiService.removeTag(this.user._id, result).then(() => {
-        this.userLoading = false;
-        this.getUser();
-      }).catch(e => {
-        this.snackbar.open('Failed to remove tag (' + e + ')')._dismissAfter(2000);
-        this.userLoading = false;
-      });
-    });
+    try {
+      await this.apiService.removeTag(this.user._id, tag);
+      await this.getUser();
+    } catch (e) {
+      this.snackbar.open('Failed to remove tag (' + e + ')')._dismissAfter(2000);
+    }
+    this.userLoading = false;
   };
-}
-
-export interface TagDialogData {
-  tag: string;
-}
-
-@Component({
-  selector: 'app-remove-tag',
-  templateUrl: 'removeTag.dialog.component.html',
-})
-export class RemoveTagDialogComponent {
-
-  constructor(
-    public dialogRef: MatDialogRef<RemoveTagDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: TagDialogData) {
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-@Component({
-  selector: 'app-add-tag',
-  templateUrl: 'addTag.dialog.component.html',
-})
-export class AddTagDialogComponent {
-
-  constructor(
-    public dialogRef: MatDialogRef<AddTagDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: TagDialogData) {
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 }

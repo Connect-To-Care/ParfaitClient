@@ -9,7 +9,7 @@ import {FacilitatorAddDialogComponent, HomeComponent} from './components/home/ho
 import {
   MatBadgeModule,
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatCheckboxModule, MatChipsModule,
   MatDialogModule,
   MatDividerModule,
   MatExpansionModule,
@@ -38,7 +38,7 @@ import {AccountComponent} from './components/account/account.component';
 import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-google-analytics';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {ManageUsersComponent} from './components/manage-users/manage-users.component';
-import {AddTagDialogComponent, EditUserComponent, RemoveTagDialogComponent} from './components/edit-user/edit-user.component';
+import {EditUserComponent} from './components/edit-user/edit-user.component';
 import {PhoneNagComponent, PhoneNagDialogComponent} from './components/phone-nag/phone-nag.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -46,6 +46,7 @@ import * as Sentry from '@sentry/browser';
 import {ManageEventsComponent} from './components/manage-events/manage-events.component';
 import {EditEventComponent} from './components/edit-event/edit-event.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
+import {MatDatepickerModule, MatMomentDateModule} from '@coachcare/datepicker';
 
 Sentry.init({
   dsn: 'https://0c84ea0d000c41958b0be30eccc3fa81@sentry.connect-tocare.org/2'
@@ -78,8 +79,6 @@ export class SentryErrorHandler implements ErrorHandler {
     EditUserComponent,
     PhoneNagComponent,
     PhoneNagDialogComponent,
-    AddTagDialogComponent,
-    RemoveTagDialogComponent,
     ManageEventsComponent,
     EditEventComponent,
     FacilitatorAddDialogComponent,
@@ -111,7 +110,11 @@ export class SentryErrorHandler implements ErrorHandler {
     MatInputModule,
     MatDialogModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatChipsModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
   ],
   providers: [
     {
@@ -130,8 +133,6 @@ export class SentryErrorHandler implements ErrorHandler {
   ],
   entryComponents: [
     PhoneNagDialogComponent,
-    AddTagDialogComponent,
-    RemoveTagDialogComponent,
     FacilitatorAddDialogComponent
   ],
   bootstrap: [AppComponent]

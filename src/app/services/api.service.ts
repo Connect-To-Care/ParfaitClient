@@ -15,8 +15,8 @@ export interface UserModel {
   fullName: string;
   phone?: string;
   email: string;
-  userTags: string[];
-  auth: OAuthProviderIdentity;
+  userTags?: string[];
+  auth?: OAuthProviderIdentity;
   isAdmin: boolean;
   _id: string;
 }
@@ -83,6 +83,14 @@ export class APIService {
     };
   }
 
+  public getEvent = async (eventId: string): Promise<EventModel> => {
+    return (
+      (await this.httpClient.get<any>(
+        this.configService.config.apiRoot + 'events/' + eventId.replace('/', '') // Prevent //'s from escaping the url
+      ).toPromise()) as EventModel
+    );
+  };
+
   public getEvents = async (): Promise<EventModel[]> => {
     return (
       (await this.httpClient.get<any>(
@@ -124,6 +132,16 @@ export class APIService {
       (await this.httpClient.get<any>(
         this.configService.config.apiRoot + 'users/' + userId.replace('/', '') + '/removeAdmin'
       ).toPromise())
+    );
+  };
+
+  public getUserByEmail = async (email: string): Promise<UserModel> => {
+    return (
+      (await this.httpClient.post<any>(
+        this.configService.config.apiRoot + 'users/checkEmail', {
+          email
+        }
+      ).toPromise()) as UserModel
     );
   };
 

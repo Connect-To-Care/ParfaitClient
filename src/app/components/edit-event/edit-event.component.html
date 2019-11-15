@@ -1,1 +1,92 @@
-<p>edit-event works!</p>
+<app-navbar>
+  <app-page-title title="Manage Event"></app-page-title>
+  <mat-card class="z-depth center">
+    <mat-card-header>
+      <mat-card-title *ngIf="event">Edit event {{ event.displayName }} ({{ event._id }})</mat-card-title>
+      <mat-card-title *ngIf="!event">New event</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="eventForm">
+        <mat-form-field>
+          <input formControlName="displayName" matInput
+                 type="text" maxlength="100" minlength="1" placeholder="Display Name">
+          <mat-error *ngIf="eventForm.get('displayName').hasError('required')">
+            Display Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="description" matInput
+                 type="text" maxlength="100" minlength="1" placeholder="Description">
+          <mat-error *ngIf="eventForm.get('description').hasError('required')">
+            Description is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="facilitatorCode" matInput
+                 type="text" maxlength="100" minlength="1" placeholder="Facilitator Code">
+          <mat-error *ngIf="eventForm.get('facilitatorCode').hasError('required')">
+            Facilitator Code is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="maxSignups" matInput
+                 type="number" placeholder="Max Signups">
+          <mat-error *ngIf="eventForm.get('maxSignups').hasError('required')">
+            Max signups is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="startTime" [matDatepicker]="startPicker" placeholder="Start Time">
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker type="datetime" #startPicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="endTime" [matDatepicker]="endPicker" placeholder="End Time">
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker type="datetime" #endPicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-chip-list #signedUpList aria-label="Signed up">
+            <mat-chip *ngFor="let person of eventForm.get('signedUp').value" [selectable]="false"
+                      [removable]="true" (removed)="removeSignedUp(person)">
+              {{person.fullName}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Signed up"
+                   [matChipInputFor]="signedUpList"
+                   (matChipInputTokenEnd)="addSignedUp($event)">
+          </mat-chip-list>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-chip-list #facilitatorsList aria-label="Signed up">
+            <mat-chip *ngFor="let person of eventForm.get('facilitators').value" [selectable]="false"
+                      [removable]="true" (removed)="removeFacilitator(person)">
+              {{person.fullName}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Facilitators"
+                   [matChipInputFor]="facilitatorsList"
+                   (matChipInputTokenEnd)="addFacilitator($event)">
+          </mat-chip-list>
+        </mat-form-field>
+        <mat-checkbox formControlName="isRecurring">Recurring event</mat-checkbox>
+        <mat-error *ngIf="eventForm.get('isRecurring').hasError('required')">
+          Is Recurring is <strong>required</strong>
+        </mat-error>
+        <mat-form-field *ngIf="eventForm.get('isRecurring').value" id="recurDays">
+          <input formControlName="recurringDays" matInput
+                 type="number" placeholder="Days to recur">
+          <mat-error *ngIf="eventForm.get('recurringDays').hasError('required')">
+            Recurring Days is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button color="primary" mat-raised-button routerLink="/admin/events">Back</button>
+      <div fxFlex></div>
+      <button *ngIf="event" color="primary" mat-raised-button [disabled]="eventLoading">Update</button>
+      <button *ngIf="!event" color="primary" mat-raised-button [disabled]="eventLoading">Create</button>
+    </mat-card-actions>
+  </mat-card>
+</app-navbar>

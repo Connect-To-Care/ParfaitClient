@@ -6,6 +6,7 @@
         Upcoming events
         <div class="spacer"></div>
         <mat-icon aria-hidden="false" aria-label="Refresh" class="refresh">refresh</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Add Event" class="add" matTooltip="Add new event" routerLink="/admin/events/new">add_box</mat-icon>
       </mat-toolbar>
       <mat-accordion *ngIf="events.length == 0">
         <mat-expansion-panel [disabled]="true">
@@ -21,7 +22,7 @@
           </mat-expansion-panel-header>
           <app-event-details [event]="event"></app-event-details>
           <mat-action-row>
-            <button mat-button>EDIT</button>
+            <button routerLink="/admin/events/{{ event._id }}" mat-button>EDIT</button>
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>
@@ -46,7 +47,7 @@
           </mat-expansion-panel-header>
           <app-event-details [event]="past"></app-event-details>
           <mat-action-row>
-            <button mat-button>VIEW</button>
+            <button routerLink="/admin/events/{{ past._id }}" mat-button>EDIT</button>
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>

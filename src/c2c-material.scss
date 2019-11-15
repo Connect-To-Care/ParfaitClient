@@ -217,6 +217,11 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
   @include angular-material-theme($altTheme);
 }
 
+// Init time picker
+@import '~@coachcare/datepicker/theming';
+
+@include mat-datepicker-theme($theme);
+
 
 // Specific component overrides, pieces that are not in line with the general theming
 

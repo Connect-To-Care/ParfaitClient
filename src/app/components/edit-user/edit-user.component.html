@@ -7,15 +7,25 @@
     <mat-card-content>
       <p><b>Name:</b> {{ user.fullName }}</p>
       <p><b>Email:</b> {{ user.email }}</p>
-      <p><b>User tags:</b> {{ user.userTags }}</p>
+      <!--      <p><b>User tags:</b> {{ user.userTags }}</p>-->
       <p><b>Auth Token:</b> {{ user.auth.strategy }};{{ user.auth.profileID }}</p>
       <p><b>Phone Number:</b> {{ user.phone || 'Not provided'}}</p>
+      <p><b>Tags:</b></p>
+      <mat-form-field class="example-chip-list">
+        <mat-chip-list #tagList aria-label="Fruit selection">
+          <mat-chip *ngFor="let tag of user.userTags"
+                    [removable]="true" (removed)="removeTag(tag)">
+            {{tag}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input [matChipInputFor]="tagList"
+                 (matChipInputTokenEnd)="addTag($event)">
+        </mat-chip-list>
+      </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
       <button color="primary" mat-raised-button routerLink="/admin/users">Back</button>
       <div fxFlex></div>
-      <button (click)="addTag()" color="primary" mat-raised-button>Add tag</button>
-      <button (click)="removeTag()" color="primary" mat-raised-button>Remove tag</button>
       <button (click)="giveAdmin()" *ngIf="!user.isAdmin" color="warn" mat-raised-button>Give admin</button>
       <button (click)="removeAdmin()" *ngIf="user.isAdmin" color="warn" mat-raised-button>Remove admin</button>
 
