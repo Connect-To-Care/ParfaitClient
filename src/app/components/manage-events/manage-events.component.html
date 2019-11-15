@@ -1,14 +1,16 @@
 <app-navbar>
   <app-page-title title="Manage Events"></app-page-title>
-  <mat-progress-bar mode="indeterminate" *ngIf="!events || !pastEvents"></mat-progress-bar>
+  <mat-progress-bar *ngIf="!events || !pastEvents" mode="indeterminate"></mat-progress-bar>
 
-  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px" id="eventManager" *ngIf="events && pastEvents">
+  <div *ngIf="events && pastEvents" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px" id="eventManager">
     <div class="cards" fxFlex>
       <mat-toolbar class="mat-primary rounded-bar">
         Upcoming events
         <div class="spacer"></div>
         <mat-icon aria-hidden="false" aria-label="Refresh" class="refresh">refresh</mat-icon>
-        <mat-icon aria-hidden="false" aria-label="Add Event" class="add" matTooltip="Add new event" routerLink="/admin/events/new">add_box</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Add Event" class="add" matTooltip="Add new event"
+                  routerLink="/admin/events/new">add_box
+        </mat-icon>
       </mat-toolbar>
       <mat-accordion *ngIf="events.length == 0">
         <mat-expansion-panel [disabled]="true">
@@ -24,7 +26,7 @@
           </mat-expansion-panel-header>
           <app-event-details [event]="event"></app-event-details>
           <mat-action-row>
-            <button routerLink="/admin/events/{{ event._id }}" mat-button>EDIT</button>
+            <button mat-button routerLink="/admin/events/{{ event._id }}">EDIT</button>
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>
@@ -52,7 +54,7 @@
           </mat-expansion-panel-header>
           <app-event-details [event]="past"></app-event-details>
           <mat-action-row>
-            <button routerLink="/admin/events/{{ past._id }}" mat-button>EDIT</button>
+            <button mat-button routerLink="/admin/events/{{ past._id }}">EDIT</button>
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>

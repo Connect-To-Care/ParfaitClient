@@ -1,14 +1,14 @@
 <app-navbar>
   <app-page-title title="Browse events"></app-page-title>
-  <mat-progress-bar mode="indeterminate" *ngIf="!availableEvents || !myEvents"></mat-progress-bar>
+  <mat-progress-bar *ngIf="!availableEvents || !myEvents" mode="indeterminate"></mat-progress-bar>
 
-  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px" id="eventManager" *ngIf="availableEvents && myEvents">
+  <div *ngIf="availableEvents && myEvents" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px" id="eventManager">
     <div [@listStagger]="availableEvents" class="cards" fxFlex.lt-md="1 1 60%" fxFlex.lt-sm="0 1">
       <mat-toolbar class="mat-primary rounded-bar">
         Available Events
         <div class="spacer"></div>
-        <mat-icon matTooltip="Refresh" (click)="refreshEvents()" aria-hidden="false" aria-label="Refresh"
-                  class="refresh">refresh
+        <mat-icon (click)="refreshEvents()" aria-hidden="false" aria-label="Refresh" class="refresh"
+                  matTooltip="Refresh">refresh
         </mat-icon>
       </mat-toolbar>
       <mat-card *ngIf="availableEvents.length == 0">
@@ -20,7 +20,8 @@
       </mat-card>
       <mat-card *ngFor="let event of availableEvents">
         <mat-card-header>
-          <mat-card-title>{{ event.displayName }} <span *ngIf="event.recurring" class="recurring">[RECURRING]</span></mat-card-title>
+          <mat-card-title>{{ event.displayName }} <span *ngIf="event.recurring" class="recurring">[RECURRING]</span>
+          </mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <app-event-details [event]="event"></app-event-details>
@@ -29,14 +30,14 @@
           <button (click)="signUp(event)" mat-button
                   matTooltip="Sign up for this event">SIGN UP
           </button>
-          <a mat-button matTooltip="Contact the facilitators of this event"
-             href="{{ formatMailto(event) }}">CONTACT</a>
+          <a href="{{ formatMailto(event) }}" mat-button
+             matTooltip="Contact the facilitators of this event">CONTACT</a>
           <div fxFlex></div>
-          <button *ngIf="!checkEventFacilitator(event)" (click)="enterCode(event)" mat-button
+          <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
                   matTooltip="Become an event facilitator">ENTER CODE
           </button>
-          <button *ngIf="checkEventFacilitator(event)" routerLink="/admin/events/{{ event._id }}" mat-button
-                  matTooltip="Edit event details">FACILITATOR EDIT
+          <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Edit event details"
+                  routerLink="/admin/events/{{ event._id }}">FACILITATOR EDIT
           </button>
         </mat-card-actions>
       </mat-card>
@@ -45,8 +46,8 @@
       <mat-toolbar class="mat-primary rounded-bar">
         Your Events
         <div class="spacer"></div>
-        <mat-icon matTooltip="Refresh" (click)="refreshMyEvents()" aria-hidden="false" aria-label="Refresh"
-                  class="refresh">refresh
+        <mat-icon (click)="refreshMyEvents()" aria-hidden="false" aria-label="Refresh" class="refresh"
+                  matTooltip="Refresh">refresh
         </mat-icon>
       </mat-toolbar>
       <mat-tab-group>
@@ -69,8 +70,8 @@
               <app-event-details [event]="future"></app-event-details>
               <mat-action-row>
                 <button (click)="drop(future)" mat-button>DROP</button>
-                <a mat-button matTooltip="Contact the facilitators of this event"
-                   href="{{ formatMailto(future) }}">CONTACT</a>
+                <a href="{{ formatMailto(future) }}" mat-button
+                   matTooltip="Contact the facilitators of this event">CONTACT</a>
               </mat-action-row>
             </mat-expansion-panel>
           </mat-accordion>

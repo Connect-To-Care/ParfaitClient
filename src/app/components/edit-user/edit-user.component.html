@@ -13,13 +13,13 @@
       <p><b>Tags:</b></p>
       <mat-form-field class="example-chip-list">
         <mat-chip-list #tagList aria-label="Fruit selection">
-          <mat-chip *ngFor="let tag of user.userTags"
-                    [removable]="true" (removed)="removeTag(tag)">
+          <mat-chip (removed)="removeTag(tag)"
+                    *ngFor="let tag of user.userTags" [removable]="true">
             {{tag}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
-          <input [matChipInputFor]="tagList"
-                 (matChipInputTokenEnd)="addTag($event)">
+          <input (matChipInputTokenEnd)="addTag($event)"
+                 [matChipInputFor]="tagList">
         </mat-chip-list>
       </mat-form-field>
     </mat-card-content>

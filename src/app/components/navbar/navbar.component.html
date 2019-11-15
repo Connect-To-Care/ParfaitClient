@@ -20,11 +20,14 @@
   <mat-sidenav #sidenav class="mat-primary" fxHide.gt-sm="true" fxLayout="column" mode="over" opened="false">
     <div fxLayout="column">
       <div *ngIf="apiService.userSession && apiService.userSession.data.user.isAdmin">
-        <a class="sidenav-btn" *ngFor="let link of navBarAdmin" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
+        <a *ngFor="let link of navBarAdmin" class="sidenav-btn" mat-button
+           routerLink="{{ link.url }}"> {{ link.title }} </a>
       </div>
       <div *ngIf="apiService.userSession">
-        <a class="sidenav-btn" *ngFor="let link of navBarLinks" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
-        <a class="sidenav-btn" *ngFor="let link of navBarAnnouncements" href="{{ link.url }}" mat-button> {{ link.title }} </a>
+        <a *ngFor="let link of navBarLinks" class="sidenav-btn" mat-button
+           routerLink="{{ link.url }}"> {{ link.title }} </a>
+        <a *ngFor="let link of navBarAnnouncements" class="sidenav-btn" href="{{ link.url }}"
+           mat-button> {{ link.title }} </a>
       </div>
     </div>
   </mat-sidenav>

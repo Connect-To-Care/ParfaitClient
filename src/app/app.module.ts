@@ -9,7 +9,9 @@ import {FacilitatorAddDialogComponent, HomeComponent} from './components/home/ho
 import {
   MatBadgeModule,
   MatButtonModule,
-  MatCardModule, MatCheckboxModule, MatChipsModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
   MatDialogModule,
   MatDividerModule,
   MatExpansionModule,
@@ -17,7 +19,8 @@ import {
   MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatProgressBarModule,
+  MatListModule,
+  MatProgressBarModule,
   MatSidenavModule,
   MatSnackBarModule,
   MatTableModule,
@@ -45,7 +48,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import * as Sentry from '@sentry/browser';
 import {ManageEventsComponent} from './components/manage-events/manage-events.component';
 import {EditEventComponent} from './components/edit-event/edit-event.component';
-import { EventDetailsComponent } from './components/event-details/event-details.component';
+import {EventDetailsComponent} from './components/event-details/event-details.component';
 import {MatDatepickerModule, MatMomentDateModule} from '@coachcare/datepicker';
 
 Sentry.init({

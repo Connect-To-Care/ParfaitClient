@@ -9,64 +9,64 @@
       <form [formGroup]="eventForm">
         <mat-form-field>
           <input formControlName="displayName" matInput
-                 type="text" maxlength="100" minlength="1" placeholder="Display Name">
+                 maxlength="100" minlength="1" placeholder="Display Name" type="text">
           <mat-error *ngIf="eventForm.get('displayName').hasError('required')">
             Display Name is <strong>required</strong>
           </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input formControlName="description" matInput
-                 type="text" maxlength="100" minlength="1" placeholder="Description">
+                 maxlength="100" minlength="1" placeholder="Description" type="text">
           <mat-error *ngIf="eventForm.get('description').hasError('required')">
             Description is <strong>required</strong>
           </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input formControlName="facilitatorCode" matInput
-                 type="text" maxlength="100" minlength="1" placeholder="Facilitator Code">
+                 maxlength="100" minlength="1" placeholder="Facilitator Code" type="text">
           <mat-error *ngIf="eventForm.get('facilitatorCode').hasError('required')">
             Facilitator Code is <strong>required</strong>
           </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input formControlName="maxSignups" matInput
-                 type="number" placeholder="Max Signups">
+                 placeholder="Max Signups" type="number">
           <mat-error *ngIf="eventForm.get('maxSignups').hasError('required')">
             Max signups is <strong>required</strong>
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput formControlName="startTime" [matDatepicker]="startPicker" placeholder="Start Time">
-          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-          <mat-datepicker type="datetime" #startPicker></mat-datepicker>
+          <input [matDatepicker]="startPicker" formControlName="startTime" matInput placeholder="Start Time">
+          <mat-datepicker-toggle [for]="startPicker" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #startPicker type="datetime"></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
-          <input matInput formControlName="endTime" [matDatepicker]="endPicker" placeholder="End Time">
-          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-          <mat-datepicker type="datetime" #endPicker></mat-datepicker>
+          <input [matDatepicker]="endPicker" formControlName="endTime" matInput placeholder="End Time">
+          <mat-datepicker-toggle [for]="endPicker" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #endPicker type="datetime"></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
           <mat-chip-list #signedUpList aria-label="Signed up">
-            <mat-chip *ngFor="let person of eventForm.get('signedUp').value" [selectable]="false"
-                      [removable]="true" (removed)="removeSignedUp(person)">
+            <mat-chip (removed)="removeSignedUp(person)" *ngFor="let person of eventForm.get('signedUp').value"
+                      [removable]="true" [selectable]="false">
               {{person.fullName}}
               <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
-            <input placeholder="Signed up"
+            <input (matChipInputTokenEnd)="addSignedUp($event)"
                    [matChipInputFor]="signedUpList"
-                   (matChipInputTokenEnd)="addSignedUp($event)">
+                   placeholder="Signed up">
           </mat-chip-list>
         </mat-form-field>
         <mat-form-field>
           <mat-chip-list #facilitatorsList aria-label="Signed up">
-            <mat-chip *ngFor="let person of eventForm.get('facilitators').value" [selectable]="false"
-                      [removable]="true" (removed)="removeFacilitator(person)">
+            <mat-chip (removed)="removeFacilitator(person)" *ngFor="let person of eventForm.get('facilitators').value"
+                      [removable]="true" [selectable]="false">
               {{person.fullName}}
               <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
-            <input placeholder="Facilitators"
+            <input (matChipInputTokenEnd)="addFacilitator($event)"
                    [matChipInputFor]="facilitatorsList"
-                   (matChipInputTokenEnd)="addFacilitator($event)">
+                   placeholder="Facilitators">
           </mat-chip-list>
         </mat-form-field>
         <mat-checkbox formControlName="isRecurring">Recurring event</mat-checkbox>
@@ -75,7 +75,7 @@
         </mat-error>
         <mat-form-field *ngIf="eventForm.get('isRecurring').value" id="recurDays">
           <input formControlName="recurringDays" matInput
-                 type="number" placeholder="Days to recur">
+                 placeholder="Days to recur" type="number">
           <mat-error *ngIf="eventForm.get('recurringDays').hasError('required')">
             Recurring Days is <strong>required</strong>
           </mat-error>
@@ -85,8 +85,8 @@
     <mat-card-actions>
       <button color="primary" mat-raised-button routerLink="/admin/events">Back</button>
       <div fxFlex></div>
-      <button *ngIf="event" color="primary" mat-raised-button [disabled]="eventLoading">Update</button>
-      <button *ngIf="!event" color="primary" mat-raised-button [disabled]="eventLoading">Create</button>
+      <button *ngIf="event" [disabled]="eventLoading" color="primary" mat-raised-button>Update</button>
+      <button *ngIf="!event" [disabled]="eventLoading" color="primary" mat-raised-button>Create</button>
     </mat-card-actions>
   </mat-card>
 </app-navbar>

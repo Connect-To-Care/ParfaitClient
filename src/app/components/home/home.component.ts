@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {APIService, EventModel, MyEventsResponse, UserModel} from '../../services/api.service';
+import {APIService, EventModel, MyEventsResponse} from '../../services/api.service';
 import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 
@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit {
       others.forEach(facilitator => {
         link += ';' + facilitator.email;
       });
-      link += '?cc=connect-tocare.org'
+      link += '?cc=connect-tocare.org';
     }
 
     return link;
