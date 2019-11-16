@@ -18,7 +18,7 @@ export interface UserModel {
   userTags?: string[];
   auth?: OAuthProviderIdentity;
   isAdmin: boolean;
-  _id: string;
+  _id?: string;
 }
 
 export interface UserSession {
@@ -41,7 +41,7 @@ export interface EventModel {
   endTime: string;
   description: string;
   requiredTags: string[];
-  _id: string;
+  _id?: string;
   recurring?: {
     days: number;
     hasRecurred: boolean;
@@ -85,6 +85,24 @@ export class APIService {
       data: sessionJson
     };
   }
+
+  public editEvent = async (eventId: string, data: EventModel): Promise<EventModel> => {
+    return (
+      (await this.httpClient.post<any>(
+        this.configService.config.apiRoot + 'events/' +  eventId.replace('/', ''),
+        { ...data }
+      ).toPromise()) as EventModel
+    );
+  };
+
+  public addEvent = async (data: EventModel): Promise<EventModel> => {
+    return (
+      (await this.httpClient.post<any>(
+        this.configService.config.apiRoot + 'events/',
+        { ...data }
+      ).toPromise()) as EventModel
+    );
+  };
 
   public getEvent = async (eventId: string): Promise<EventModel> => {
     return (

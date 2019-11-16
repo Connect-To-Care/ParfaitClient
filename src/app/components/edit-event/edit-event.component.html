@@ -46,6 +46,18 @@
           <mat-datepicker #endPicker type="datetime"></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
+          <mat-chip-list #tagsList aria-label="RequiredTags">
+            <mat-chip (removed)="removeTag(tag)" *ngFor="let tag of eventForm.get('requiredTags').value"
+                      [removable]="true" [selectable]="false">
+              {{tag}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input (matChipInputTokenEnd)="addTag($event)"
+                   [matChipInputFor]="tagsList"
+                   placeholder="Required tags">
+          </mat-chip-list>
+        </mat-form-field>
+        <mat-form-field>
           <mat-chip-list #signedUpList aria-label="Signed up">
             <mat-chip (removed)="removeSignedUp(signUp.user)" *ngFor="let signUp of eventForm.get('signedUp').value"
                       [removable]="true" [selectable]="false">
@@ -85,8 +97,8 @@
     <mat-card-actions>
       <button color="primary" mat-raised-button routerLink="/admin/events">Back</button>
       <div fxFlex></div>
-      <button *ngIf="event" [disabled]="eventLoading" color="primary" mat-raised-button>Update</button>
-      <button *ngIf="!event" [disabled]="eventLoading" color="primary" mat-raised-button>Create</button>
+      <button *ngIf="event" [disabled]="eventLoading" color="primary" mat-raised-button (click)="onSubmit()">Update</button>
+      <button *ngIf="!event" [disabled]="eventLoading" color="primary" mat-raised-button (click)="onSubmit()">Create</button>
     </mat-card-actions>
   </mat-card>
 </app-navbar>
