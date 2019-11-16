@@ -47,9 +47,9 @@
         </mat-form-field>
         <mat-form-field>
           <mat-chip-list #signedUpList aria-label="Signed up">
-            <mat-chip (removed)="removeSignedUp(person)" *ngFor="let person of eventForm.get('signedUp').value"
+            <mat-chip (removed)="removeSignedUp(signUp.user)" *ngFor="let signUp of eventForm.get('signedUp').value"
                       [removable]="true" [selectable]="false">
-              {{person.fullName}}
+              {{signUp.user.fullName}}
               <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
             <input (matChipInputTokenEnd)="addSignedUp($event)"

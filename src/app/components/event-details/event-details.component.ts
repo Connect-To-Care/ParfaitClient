@@ -28,6 +28,10 @@ export class EventDetailsComponent implements OnInit {
     return date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear() + '  ' + strTime;
   };
 
+  getSignUps = (event: EventModel): Array<UserModel> => {
+    return event.signedUp.map(signUp => signUp.user);
+  };
+
   formatMembers = (people: UserModel[]): string => {
     let members = '';
     people.forEach(member => {

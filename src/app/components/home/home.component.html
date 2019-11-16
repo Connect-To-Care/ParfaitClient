@@ -51,6 +51,23 @@
         </mat-icon>
       </mat-toolbar>
       <mat-tab-group>
+        <mat-tab *ngIf="myEvents.now.length !== 0">
+          <ng-template matTabLabel>
+            <span matBadge="{{ myEvents.now.length }}" matBadgeOverlap="false">Right now</span>
+          </ng-template>
+          <mat-accordion *ngFor="let now of myEvents.now">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                {{ now.displayName }} <span *ngIf="now.recurring" class="recurring">[RECURRING]</span>
+              </mat-expansion-panel-header>
+              <app-event-details [event]="now"></app-event-details>
+              <mat-action-row>
+                <a href="{{ formatMailto(now) }}" mat-button
+                   matTooltip="Contact the facilitators of this event">CONTACT</a>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-tab>
         <mat-tab>
           <ng-template matTabLabel>
             <span matBadge="{{ myEvents.future.length }}" matBadgeOverlap="false">Upcoming</span>

@@ -30,7 +30,10 @@ export interface UserSession {
 
 export interface EventModel {
   displayName: string;
-  signedUp: Array<UserModel>;
+  signedUp: [{
+    attended: boolean,
+    user: UserModel
+  }];
   maxSignups: number;
   facilitatorCode: string;
   facilitators: Array<UserModel>;

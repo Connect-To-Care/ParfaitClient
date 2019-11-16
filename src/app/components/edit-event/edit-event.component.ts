@@ -76,7 +76,7 @@ export class EditEventComponent implements OnInit {
 
   public removeSignedUp = async (user: UserModel) => {
     this.eventForm.get('signedUp').setValue(
-      this.eventForm.get('signedUp').value.filter(signedUp => signedUp._id !== user._id
+      this.eventForm.get('signedUp').value.filter(signUp => signUp.user._id !== user._id
       ));
   };
 
@@ -90,12 +90,16 @@ export class EditEventComponent implements OnInit {
       return;
     }
 
-    if (this.eventForm.get('signedUp').value.find(signedUp => signedUp._id === user._id)) {
+    if (this.eventForm.get('signedUp').value.find(signUp => signUp.user._id === user._id)) {
       return;
     }
 
     const existing = this.eventForm.get('signedUp').value;
-    existing.push(user);
+    existing.push({
+      user,
+      attended: false
+    });
+
     this.eventForm.get('signedUp').setValue(existing);
     event.input.value = '';
   };
