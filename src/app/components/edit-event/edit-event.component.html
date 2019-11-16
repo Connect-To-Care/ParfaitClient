@@ -98,6 +98,7 @@
       <button color="primary" mat-raised-button routerLink="/admin/events">Back</button>
       <div fxFlex></div>
       <button *ngIf="event" [disabled]="eventLoading" color="primary" mat-raised-button (click)="onSubmit()">Update</button>
+      <button *ngIf="event" [disabled]="eventLoading" color="warn" mat-raised-button (click)="delete()">Delete</button>
       <button *ngIf="!event" [disabled]="eventLoading" color="primary" mat-raised-button (click)="onSubmit()">Create</button>
     </mat-card-actions>
   </mat-card>

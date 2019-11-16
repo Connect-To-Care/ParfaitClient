@@ -95,6 +95,14 @@ export class APIService {
     );
   };
 
+  public deleteEvent = async (eventId: string): Promise<EventModel> => {
+    return (
+      (await this.httpClient.get<any>(
+        this.configService.config.apiRoot + 'events/' +  eventId.replace('/', '') + '/delete'
+      ).toPromise()) as EventModel
+    );
+  };
+
   public addEvent = async (data: EventModel): Promise<EventModel> => {
     return (
       (await this.httpClient.post<any>(
