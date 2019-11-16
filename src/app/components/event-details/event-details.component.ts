@@ -41,7 +41,7 @@ export class EventDetailsComponent implements OnInit {
     if (members === '') {
       members = 'No one';
     } else {
-      members = members.substring(0, members.length - 1);
+      members = members.substring(0, members.length - 2);
     }
     return members;
   };

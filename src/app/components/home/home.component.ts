@@ -64,25 +64,6 @@ export class HomeComponent implements OnInit {
     }
   };
 
-  formatMailto = (event: EventModel): string => {
-    let link = 'mailto:';
-    if (event.facilitators.length === 0) {
-      link += 'contact@connect-tocare.org';
-    } else if (event.facilitators.length === 1) {
-      link = 'mailto:' + event.facilitators[0].email + '?cc=contact@connect-tocare.org';
-    } else {
-      link = 'mailto:' + event.facilitators[0].email;
-      const others = event.facilitators;
-      others.shift();
-      others.forEach(facilitator => {
-        link += ';' + facilitator.email;
-      });
-      link += '?cc=connect-tocare.org';
-    }
-
-    return link;
-  };
-
   signUp = async (event: EventModel): Promise<void> => {
     try {
       await this.apiService.signUp(event._id);
@@ -117,6 +98,14 @@ export class HomeComponent implements OnInit {
 
   checkEventFacilitator = (event: EventModel): boolean => {
     return event.facilitators.find(facilitator => facilitator._id === this.apiService.userSession.data.user._id) !== undefined;
+  };
+
+  checkQualified = (event: EventModel): boolean => {
+    if (event.requiredTags.length === 0) {
+      return true;
+    }
+
+    return event.requiredTags.every(requiredTag => this.apiService.userSession.data.user.userTags.includes(requiredTag));
   };
 }
 

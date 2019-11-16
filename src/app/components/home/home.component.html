@@ -25,13 +25,12 @@
         </mat-card-header>
         <mat-card-content>
           <app-event-details [event]="event"></app-event-details>
+          <p class="notQualified" *ngIf="!checkQualified(event)">You are missing a required qualification for this event</p>
         </mat-card-content>
         <mat-card-actions>
-          <button (click)="signUp(event)" mat-button
+          <button [disabled]="!checkQualified(event)" (click)="signUp(event)" mat-button
                   matTooltip="Sign up for this event">SIGN UP
           </button>
-          <a href="{{ formatMailto(event) }}" mat-button
-             matTooltip="Contact the facilitators of this event">CONTACT</a>
           <div fxFlex></div>
           <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
                   matTooltip="Become an event facilitator">ENTER CODE
@@ -61,10 +60,6 @@
                 {{ now.displayName }} <span *ngIf="now.recurring" class="recurring">[RECURRING]</span>
               </mat-expansion-panel-header>
               <app-event-details [event]="now"></app-event-details>
-              <mat-action-row>
-                <a href="{{ formatMailto(now) }}" mat-button
-                   matTooltip="Contact the facilitators of this event">CONTACT</a>
-              </mat-action-row>
             </mat-expansion-panel>
           </mat-accordion>
         </mat-tab>
@@ -87,8 +82,6 @@
               <app-event-details [event]="future"></app-event-details>
               <mat-action-row>
                 <button (click)="drop(future)" mat-button>DROP</button>
-                <a href="{{ formatMailto(future) }}" mat-button
-                   matTooltip="Contact the facilitators of this event">CONTACT</a>
               </mat-action-row>
             </mat-expansion-panel>
           </mat-accordion>
