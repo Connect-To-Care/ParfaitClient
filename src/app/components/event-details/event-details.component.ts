@@ -35,7 +35,7 @@ export class EventDetailsComponent implements OnInit {
   formatMembers = (people: UserModel[]): string => {
     let members = '';
     people.forEach(member => {
-      members += member.fullName + ',';
+      members += member.fullName + ', ';
     });
 
     if (members === '') {
