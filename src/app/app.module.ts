@@ -50,6 +50,7 @@ import {ManageEventsComponent} from './components/manage-events/manage-events.co
 import {EditEventComponent} from './components/edit-event/edit-event.component';
 import {EventDetailsComponent} from './components/event-details/event-details.component';
 import {MatDatepickerModule, MatMomentDateModule} from '@coachcare/datepicker';
+import { GiveDecaTagComponent } from './components/give-deca-tag/give-deca-tag.component';
 
 Sentry.init({
   dsn: 'https://0c84ea0d000c41958b0be30eccc3fa81@sentry.connect-tocare.org/2'
@@ -85,7 +86,8 @@ export class SentryErrorHandler implements ErrorHandler {
     ManageEventsComponent,
     EditEventComponent,
     FacilitatorAddDialogComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    GiveDecaTagComponent
   ],
   imports: [
     HttpClientModule,

@@ -86,11 +86,20 @@ export class APIService {
     };
   }
 
+  public giveDecaTag = async (): Promise<void> => {
+    const data = (
+      (await this.httpClient.get<any>(
+        this.configService.config.apiRoot + 'extra/deca'
+      ).toPromise())
+    );
+    this.saveJwt(data.newToken);
+  };
+
   public editEvent = async (eventId: string, data: EventModel): Promise<EventModel> => {
     return (
       (await this.httpClient.post<any>(
-        this.configService.config.apiRoot + 'events/' +  eventId.replace('/', ''),
-        { ...data }
+        this.configService.config.apiRoot + 'events/' + eventId.replace('/', ''),
+        {...data}
       ).toPromise()) as EventModel
     );
   };
@@ -98,7 +107,7 @@ export class APIService {
   public deleteEvent = async (eventId: string): Promise<EventModel> => {
     return (
       (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'events/' +  eventId.replace('/', '') + '/delete'
+        this.configService.config.apiRoot + 'events/' + eventId.replace('/', '') + '/delete'
       ).toPromise()) as EventModel
     );
   };
@@ -107,7 +116,7 @@ export class APIService {
     return (
       (await this.httpClient.post<any>(
         this.configService.config.apiRoot + 'events/',
-        { ...data }
+        {...data}
       ).toPromise()) as EventModel
     );
   };

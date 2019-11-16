@@ -15,6 +15,7 @@ import {EditUserComponent} from './components/edit-user/edit-user.component';
 import {PhoneNagComponent} from './components/phone-nag/phone-nag.component';
 import {EditEventComponent} from './components/edit-event/edit-event.component';
 import {ManageEventsComponent} from './components/manage-events/manage-events.component';
+import {GiveDecaTagComponent} from './components/give-deca-tag/give-deca-tag.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path: 'account',
     component: AccountComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'deca',
+    component: GiveDecaTagComponent,
     canActivate: [AuthGuard]
   },
   {

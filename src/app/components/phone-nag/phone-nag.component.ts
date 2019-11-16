@@ -52,7 +52,7 @@ export class PhoneNagComponent {
       localStorage.setItem('phone-nag', 'shown');
       this.router.navigateByUrl('/');
     } catch (e) {
-      this.snackbar.open('Failed to change phone number (' + e + ')');
+      this.snackbar.open('Failed to change phone number (' + e + ')')._dismissAfter(2000);
     }
 
     this.phoneFormLoading = false;
