@@ -70,6 +70,10 @@ export class EditEventComponent implements OnInit {
           requiredTags: this.event.requiredTags
         });
       } catch (e) {
+        if (e === 'Forbidden resource') { // The user lied! This don't have access to this
+          await this.router.navigateByUrl('/');
+        }
+
         this.snackbar.open('Failed to get event (' + e + ')')._dismissAfter(2000);
       }
     }
@@ -157,7 +161,7 @@ export class EditEventComponent implements OnInit {
   public delete = async () => {
     try {
       await this.apiService.deleteEvent(this.event._id);
-      await this.router.navigateByUrl('/admin/events')
+      await this.router.navigateByUrl('/admin/events');
     } catch (e) {
       this.snackbar.open('Failed to delete event (' + e + ')')._dismissAfter(2000);
     }

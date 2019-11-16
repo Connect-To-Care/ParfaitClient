@@ -82,7 +82,7 @@ const routes: Routes = [
   {
     path: 'admin/events/:event',
     component: EditEventComponent,
-    canActivate: [AuthGuard, AdminGuard]
+    canActivate: [AuthGuard] // We handle this on the page itself because the user may be a facilitator
   },
   {
     path: '**',

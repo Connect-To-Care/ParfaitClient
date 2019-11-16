@@ -60,6 +60,11 @@
                 {{ now.displayName }} <span *ngIf="now.recurring" class="recurring">[RECURRING]</span>
               </mat-expansion-panel-header>
               <app-event-details [event]="now"></app-event-details>
+              <mat-action-row>
+                <button *ngIf="checkEventFacilitator(now)" mat-button matTooltip="Edit event details"
+                        routerLink="/admin/events/{{ now._id }}">EDIT
+                </button>
+              </mat-action-row>
             </mat-expansion-panel>
           </mat-accordion>
         </mat-tab>
@@ -82,6 +87,9 @@
               <app-event-details [event]="future"></app-event-details>
               <mat-action-row>
                 <button (click)="drop(future)" mat-button>DROP</button>
+                <button *ngIf="checkEventFacilitator(future)" mat-button matTooltip="Edit event details"
+                        routerLink="/admin/events/{{ future._id }}">EDIT
+                </button>
               </mat-action-row>
             </mat-expansion-panel>
           </mat-accordion>
@@ -103,6 +111,11 @@
                 {{ past.displayName }} <span *ngIf="past.recurring" class="recurring">[RECURRING]</span>
               </mat-expansion-panel-header>
               <app-event-details [event]="past"></app-event-details>
+              <mat-action-row>
+                <button *ngIf="checkEventFacilitator(past)" mat-button matTooltip="Edit event details"
+                        routerLink="/admin/events/{{ past._id }}">EDIT
+                </button>
+              </mat-action-row>
             </mat-expansion-panel>
           </mat-accordion>
         </mat-tab>
