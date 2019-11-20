@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './components/app/app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavbarComponent} from './components/navbar/navbar.component';
-import {FacilitatorAddDialogComponent, HomeComponent} from './components/home/home.component';
+import {FacilitatorAddDialogComponent, DashComponent} from './components/dash/dash.component';
 import {
   MatBadgeModule,
   MatButtonModule,
@@ -51,6 +51,7 @@ import {EditEventComponent} from './components/edit-event/edit-event.component';
 import {EventDetailsComponent} from './components/event-details/event-details.component';
 import {MatDatepickerModule, MatMomentDateModule} from '@coachcare/datepicker';
 import { GiveDecaTagComponent } from './components/give-deca-tag/give-deca-tag.component';
+import { HomeComponent } from './components/home/home.component';
 
 Sentry.init({
   dsn: 'https://0c84ea0d000c41958b0be30eccc3fa81@sentry.connect-tocare.org/2'
@@ -71,7 +72,7 @@ export class SentryErrorHandler implements ErrorHandler {
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent,
+    DashComponent,
     PageTitleComponent,
     OAuthSuccessComponent,
     OAuthLoginComponent,
@@ -87,7 +88,8 @@ export class SentryErrorHandler implements ErrorHandler {
     EditEventComponent,
     FacilitatorAddDialogComponent,
     EventDetailsComponent,
-    GiveDecaTagComponent
+    GiveDecaTagComponent,
+    HomeComponent
   ],
   imports: [
     HttpClientModule,

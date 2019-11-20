@@ -10,8 +10,13 @@
     <div *ngIf="apiService.userSession && apiService.userSession.data.user.isAdmin" fxHide.lt-md="true" fxShow="true">
       <a *ngFor="let link of navBarAdmin" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
     </div>
-    <div *ngIf="apiService.userSession !== undefined" fxHide.lt-md="true" fxShow="true">
+    <div *ngIf="apiService.userSession" fxHide.lt-md="true" fxShow="true">
       <a *ngFor="let link of navBarLinks" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
+    </div>
+    <div *ngIf="!apiService.userSession"  fxHide.lt-md="true" fxShow="true">
+      <a *ngFor="let link of navBarLoggedOut" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
+    </div>
+    <div fxHide.lt-md="true" fxShow="true">
       <a *ngFor="let link of navBarAnnouncements" href="{{ link.url }}" mat-button> {{ link.title }} </a>
     </div>
   </mat-toolbar-row>
@@ -26,6 +31,12 @@
       <div *ngIf="apiService.userSession">
         <a *ngFor="let link of navBarLinks" class="sidenav-btn" mat-button
            routerLink="{{ link.url }}"> {{ link.title }} </a>
+      </div>
+      <div *ngIf="!apiService.userSession">
+        <a *ngFor="let link of navBarLoggedOut" class="sidenav-btn" mat-button
+           routerLink="{{ link.url }}"> {{ link.title }} </a>
+      </div>
+      <div>
         <a *ngFor="let link of navBarAnnouncements" class="sidenav-btn" href="{{ link.url }}"
            mat-button> {{ link.title }} </a>
       </div>

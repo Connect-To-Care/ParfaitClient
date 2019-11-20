@@ -1,34 +1,37 @@
-#eventManager {
-  padding: 30px;
+header {
+  h1, h2 {
+    margin-top: 0;
+    text-align: center;
+    color: white;
+  }
+
+  margin-top: 0;
+  background-color: #4275ff; /* css bruh */
+  padding-top: 5%;
+  padding-bottom: 5%;
+  box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 10;
 }
 
-.cards {
+#background {
+  background-image: url("/assets/homeless-youth.jpg");
+  background-position: left;
+  height: 35vh;
   width: 100%;
+  background-repeat: no-repeat;
+  box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.2);
+
+}
+
+#details {
+  padding-top: 2%;
+}
+
+.mat-card-title {
+  font-size: 30px;
 }
 
 mat-card {
-  margin-bottom: 10px;
-}
-
-.refresh {
-  cursor: pointer;
-}
-
-.gavel {
-  padding-left: 5px;
-}
-
-.mat-button-wrapper {
-  color: rgba(0, 0, 0, 0.87) !important;
-}
-
-.recurring {
-  color: red;
-  font-size: .5rem;
-  margin-left: 2px;
-  position: relative;
-}
-
-.notQualified {
-  color: red;
+  margin-top: 2%;
 }

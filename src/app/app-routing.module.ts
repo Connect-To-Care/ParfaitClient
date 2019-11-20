@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from './components/home/home.component';
+import {DashComponent} from './components/dash/dash.component';
 import {AuthGuard} from './guards/auth.guard';
 import {OAuthLoginComponent} from './components/oauth-login/oauth-login.component';
 import {DeauthGuard} from './guards/deauth.guard';
@@ -16,12 +16,18 @@ import {PhoneNagComponent} from './components/phone-nag/phone-nag.component';
 import {EditEventComponent} from './components/edit-event/edit-event.component';
 import {ManageEventsComponent} from './components/manage-events/manage-events.component';
 import {GiveDecaTagComponent} from './components/give-deca-tag/give-deca-tag.component';
+import {HomeComponent} from './components/home/home.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: []
+  },
+  {
+    path: 'dash',
+    component: DashComponent,
     canActivate: [AuthGuard]
   },
   {

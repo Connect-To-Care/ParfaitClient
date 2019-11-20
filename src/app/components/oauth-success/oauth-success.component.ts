@@ -23,7 +23,7 @@ export class OAuthSuccessComponent implements OnInit {
       if (!this.apiService.userSession.data.user.phone && !localStorage.getItem('phone-nag')) {
         this.router.navigateByUrl('/nag/phone');
       } else {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/dash');
       }
     } else {
       this.router.navigateByUrl('/login');

@@ -1,0 +1,125 @@
+<app-navbar>
+  <app-page-title title="Browse events"></app-page-title>
+  <mat-progress-bar *ngIf="!availableEvents || !myEvents" mode="indeterminate"></mat-progress-bar>
+
+  <div *ngIf="availableEvents && myEvents" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px" id="eventManager">
+    <div [@listStagger]="availableEvents" class="cards" fxFlex.lt-md="1 1 60%" fxFlex.lt-sm="0 1">
+      <mat-toolbar class="mat-primary rounded-bar">
+        Available Events
+        <div class="spacer"></div>
+        <mat-icon (click)="refreshEvents()" aria-hidden="false" aria-label="Refresh" class="refresh"
+                  matTooltip="Refresh">refresh
+        </mat-icon>
+      </mat-toolbar>
+      <mat-card *ngIf="availableEvents.length == 0">
+        <mat-card-content>
+          <p>
+            No events currently available.
+          </p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card *ngFor="let event of availableEvents">
+        <mat-card-header>
+          <mat-card-title>{{ event.displayName }} <span *ngIf="event.recurring" class="recurring">[RECURRING]</span>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <app-event-details [event]="event"></app-event-details>
+          <p class="notQualified" *ngIf="!checkQualified(event)">You are missing a required qualification for this event</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button [disabled]="!checkQualified(event)" (click)="signUp(event)" mat-button
+                  matTooltip="Sign up for this event">SIGN UP
+          </button>
+          <div fxFlex></div>
+          <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
+                  matTooltip="Become an event facilitator">ENTER CODE
+          </button>
+          <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Edit event details"
+                  routerLink="/admin/events/{{ event._id }}">FACILITATOR EDIT
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div fxFlex.lt-md="1 1 40%" fxFlex.lt-sm="0 1">
+      <mat-toolbar class="mat-primary rounded-bar">
+        Your Events
+        <div class="spacer"></div>
+        <mat-icon (click)="refreshMyEvents()" aria-hidden="false" aria-label="Refresh" class="refresh"
+                  matTooltip="Refresh">refresh
+        </mat-icon>
+      </mat-toolbar>
+      <mat-tab-group>
+        <mat-tab *ngIf="myEvents.now.length !== 0">
+          <ng-template matTabLabel>
+            <span matBadge="{{ myEvents.now.length }}" matBadgeOverlap="false">Right now</span>
+          </ng-template>
+          <mat-accordion *ngFor="let now of myEvents.now">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                {{ now.displayName }} <span *ngIf="now.recurring" class="recurring">[RECURRING]</span>
+              </mat-expansion-panel-header>
+              <app-event-details [event]="now"></app-event-details>
+              <mat-action-row>
+                <button *ngIf="checkEventFacilitator(now)" mat-button matTooltip="Edit event details"
+                        routerLink="/admin/events/{{ now._id }}">EDIT
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-tab>
+        <mat-tab>
+          <ng-template matTabLabel>
+            <span matBadge="{{ myEvents.future.length }}" matBadgeOverlap="false">Upcoming</span>
+          </ng-template>
+          <mat-accordion *ngIf="myEvents.future.length == 0">
+            <mat-expansion-panel [disabled]="true">
+              <mat-expansion-panel-header>
+                No upcoming events.
+              </mat-expansion-panel-header>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <mat-accordion *ngFor="let future of myEvents.future">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                {{ future.displayName }} <span *ngIf="future.recurring" class="recurring">[RECURRING]</span>
+              </mat-expansion-panel-header>
+              <app-event-details [event]="future"></app-event-details>
+              <mat-action-row>
+                <button (click)="drop(future)" mat-button>DROP</button>
+                <button *ngIf="checkEventFacilitator(future)" mat-button matTooltip="Edit event details"
+                        routerLink="/admin/events/{{ future._id }}">EDIT
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-tab>
+        <mat-tab>
+          <ng-template matTabLabel>
+            <span matBadge="{{ myEvents.past.length }}" matBadgeOverlap="false">Past</span>
+          </ng-template>
+          <mat-accordion *ngIf="myEvents.past.length == 0">
+            <mat-expansion-panel [disabled]="true">
+              <mat-expansion-panel-header>
+                No past events.
+              </mat-expansion-panel-header>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <mat-accordion *ngFor="let past of myEvents.past">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                {{ past.displayName }} <span *ngIf="past.recurring" class="recurring">[RECURRING]</span>
+              </mat-expansion-panel-header>
+              <app-event-details [event]="past"></app-event-details>
+              <mat-action-row>
+                <button *ngIf="checkEventFacilitator(past)" mat-button matTooltip="Edit event details"
+                        routerLink="/admin/events/{{ past._id }}">EDIT
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</app-navbar>

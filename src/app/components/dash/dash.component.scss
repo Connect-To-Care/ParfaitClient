@@ -1,0 +1,34 @@
+#eventManager {
+  padding: 30px;
+}
+
+.cards {
+  width: 100%;
+}
+
+mat-card {
+  margin-bottom: 10px;
+}
+
+.refresh {
+  cursor: pointer;
+}
+
+.gavel {
+  padding-left: 5px;
+}
+
+.mat-button-wrapper {
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
+.recurring {
+  color: red;
+  font-size: .5rem;
+  margin-left: 2px;
+  position: relative;
+}
+
+.notQualified {
+  color: red;
+}

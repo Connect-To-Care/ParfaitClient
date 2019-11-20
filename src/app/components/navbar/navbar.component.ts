@@ -30,6 +30,13 @@ export class NavbarComponent implements OnInit {
     }
   ];
 
+  readonly navBarLoggedOut = [
+    {
+      title: 'Login',
+      url: '/login'
+    }
+  ];
+
   readonly navBarAdmin = [
     {
       title: 'Manage Events',

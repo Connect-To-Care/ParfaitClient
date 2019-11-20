@@ -17,7 +17,7 @@ export class DeauthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
     if (this.apiService.userSession) {
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/dash');
       return false;
     }
     return true;

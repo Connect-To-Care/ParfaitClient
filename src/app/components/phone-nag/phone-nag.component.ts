@@ -29,7 +29,6 @@ export class PhoneNagComponent {
     private readonly router: Router,
     private readonly apiService: APIService,
     private readonly dialog: MatDialog,
-    private readonly snackbar: MatSnackBar
   ) {
   }
 
@@ -37,7 +36,7 @@ export class PhoneNagComponent {
     if (!this.apiService.userSession.data.user.phone && !localStorage.getItem('phone-nag')) {
       this.dialog.open(PhoneNagDialogComponent);
     } else {
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/dash');
     }
   };
 
@@ -50,7 +49,7 @@ export class PhoneNagComponent {
     try {
       await this.apiService.changePhoneNumber(this.phoneForm.get('phoneNumber').value);
       localStorage.setItem('phone-nag', 'shown');
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/dash');
     } catch (e) {
       this.snackbar.open('Failed to change phone number (' + e + ')')._dismissAfter(2000);
     }

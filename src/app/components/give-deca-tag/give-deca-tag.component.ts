@@ -24,7 +24,7 @@ export class GiveDecaTagComponent implements OnInit {
     } catch (e) {
       this.snackbar.open('Failed to get DECA tag (' + e + ')')._dismissAfter(2000);
       setTimeout(() => {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/dash');
       }, 2500);
     }
   }
