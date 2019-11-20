@@ -29,6 +29,7 @@ export class PhoneNagComponent {
     private readonly router: Router,
     private readonly apiService: APIService,
     private readonly dialog: MatDialog,
+    private readonly snackbar: MatSnackBar,
   ) {
   }
 
