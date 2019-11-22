@@ -19,7 +19,10 @@ export class NavbarComponent implements OnInit {
     {
       title: 'Browse Events',
       url: '/dash'
-    },
+    }
+  ];
+
+  readonly accountLoggedIn = [
     {
       title: 'My Account',
       url: '/account'
@@ -30,7 +33,7 @@ export class NavbarComponent implements OnInit {
     }
   ];
 
-  readonly navBarLoggedOut = [
+  readonly accountLoggedOut = [
     {
       title: 'Login',
       url: '/login'

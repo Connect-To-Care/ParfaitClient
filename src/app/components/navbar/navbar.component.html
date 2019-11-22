@@ -13,8 +13,17 @@
     <div *ngIf="apiService.userSession" fxHide.lt-md="true" fxShow="true">
       <a *ngFor="let link of navBarLinks" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
     </div>
-    <div *ngIf="!apiService.userSession"  fxHide.lt-md="true" fxShow="true">
-      <a *ngFor="let link of navBarLoggedOut" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
+    <div fxHide.lt-md="true" fxShow="true" *ngIf="apiService.userSession">
+      <button mat-button [matMenuTriggerFor]="accountMenu">{{ apiService.userSession.data.user.fullName }} <mat-icon>arrow_drop_down</mat-icon></button>
+      <mat-menu #accountMenu="matMenu" xPosition="before">
+        <button *ngFor="let link of accountLoggedIn" mat-menu-item routerLink="{{ link.url }}">{{ link.title }}</button>
+      </mat-menu>
+    </div>
+    <div fxHide.lt-md="true" fxShow="true" *ngIf="!apiService.userSession">
+      <button mat-button [matMenuTriggerFor]="accountMenu">Account <mat-icon>arrow_drop_down</mat-icon></button>
+      <mat-menu #accountMenu="matMenu" xPosition="before">
+        <button *ngFor="let link of accountLoggedOut" mat-menu-item routerLink="{{ link.url }}">{{ link.title }}</button>
+      </mat-menu>
     </div>
     <div fxHide.lt-md="true" fxShow="true">
       <a *ngFor="let link of navBarAnnouncements" href="{{ link.url }}" mat-button> {{ link.title }} </a>
@@ -32,8 +41,12 @@
         <a *ngFor="let link of navBarLinks" class="sidenav-btn" mat-button
            routerLink="{{ link.url }}"> {{ link.title }} </a>
       </div>
+      <div *ngIf="apiService.userSession">
+        <a *ngFor="let link of accountLoggedIn" class="sidenav-btn" mat-button
+           routerLink="{{ link.url }}"> {{ link.title }} </a>
+      </div>
       <div *ngIf="!apiService.userSession">
-        <a *ngFor="let link of navBarLoggedOut" class="sidenav-btn" mat-button
+        <a *ngFor="let link of accountLoggedOut" class="sidenav-btn" mat-button
            routerLink="{{ link.url }}"> {{ link.title }} </a>
       </div>
       <div>

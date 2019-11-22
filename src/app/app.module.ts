@@ -26,7 +26,8 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatMenuModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {PageTitleComponent} from './components/page-title/page-title.component';
@@ -125,6 +126,7 @@ export class SentryErrorHandler implements ErrorHandler {
     MatDatepickerModule,
     MatMomentDateModule,
     MatProgressBarModule,
+    MatMenuModule
   ],
   providers: [
     {
