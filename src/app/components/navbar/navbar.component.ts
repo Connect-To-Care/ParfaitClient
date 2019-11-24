@@ -30,6 +30,10 @@ export class NavbarComponent implements OnInit {
     {
       title: 'Logout',
       url: '/logout'
+    },
+    {
+      title: 'About',
+      url: '/about'
     }
   ];
 
@@ -37,6 +41,10 @@ export class NavbarComponent implements OnInit {
     {
       title: 'Login',
       url: '/login'
+    },
+    {
+      title: 'About',
+      url: '/about'
     }
   ];
 

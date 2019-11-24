@@ -1,9 +1,12 @@
 import {Injectable} from '@angular/core';
+import * as git from '../../../git.json';
+
 
 export interface Config {
   apiRoot: string;
   googleOAuthURL: string;
-  debug: boolean
+  debug: boolean;
+  hash: string;
 }
 
 @Injectable({
@@ -19,7 +22,8 @@ export class ConfigService {
     return {
       apiRoot: 'http://localhost:3000/',
       googleOAuthURL: 'http://localhost:3000/auth/google',
-      debug: true
+      debug: true,
+      hash: git.raw || 'Unknown'
     };
   }
 }

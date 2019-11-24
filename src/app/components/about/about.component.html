@@ -1,1 +1,14 @@
-<p>about works!</p>
+<app-navbar>
+  <app-page-title title="About"></app-page-title>
+  <mat-card class="z-depth center">
+    <mat-card-header>
+      <mat-card-title>About this application</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>This application was developed by Connect To Care, a Minnesota based non-profit.</p>
+      <p>A simplyalec Website. alec@simplyalec.com</p>
+      <br>
+      <p><b>Raw commit hash: {{ configService.config.hash }}</b></p>
+    </mat-card-content>
+  </mat-card>
+</app-navbar>

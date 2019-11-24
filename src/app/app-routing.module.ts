@@ -17,12 +17,19 @@ import {EditEventComponent} from './components/edit-event/edit-event.component';
 import {ManageEventsComponent} from './components/manage-events/manage-events.component';
 import {GiveDecaTagComponent} from './components/give-deca-tag/give-deca-tag.component';
 import {HomeComponent} from './components/home/home.component';
+import {EventSigninComponent} from './components/event-signin/event-signin.component';
+import {AboutComponent} from './components/about/about.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: []
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
     canActivate: []
   },
   {
@@ -88,6 +95,11 @@ const routes: Routes = [
   {
     path: 'admin/events/:event',
     component: EditEventComponent,
+    canActivate: [AuthGuard] // We handle this on the page itself because the user may be a facilitator
+  },
+  {
+    path: 'admin/events/:event/signin',
+    component: EventSigninComponent,
     canActivate: [AuthGuard] // We handle this on the page itself because the user may be a facilitator
   },
   {

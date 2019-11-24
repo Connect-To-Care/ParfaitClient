@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
+import * as git from '../../../git.json';
 
 export interface Config {
   apiRoot: string;
   googleOAuthURL: string;
-  debug: boolean
+  debug: boolean;
+  hash: string;
 }
 
 @Injectable({
@@ -19,7 +21,8 @@ export class ConfigService {
     return {
       apiRoot: 'https://api.connect-tocare.org/',
       googleOAuthURL: 'https://api.connect-tocare.org/auth/google',
-      debug: false
+      debug: false,
+      hash: git.raw || 'Unknown'
     };
   }
 }
