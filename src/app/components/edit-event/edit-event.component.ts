@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {APIService, EventModel, UserModel} from '../../services/api.service';
+import {APIService, EventModel, SignupModel, UserModel} from '../../services/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatChipInputEvent, MatDialog, MatSnackBar} from '@angular/material';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -165,6 +165,13 @@ export class EditEventComponent implements OnInit {
     } catch (e) {
       this.snackbar.open('Failed to delete event (' + e + ')')._dismissAfter(2000);
     }
+  };
+
+  public toggleAttend = async (oldSignUp: SignupModel) => {
+    const signedUp = this.eventForm.get('signedUp').value;
+    const signUp = signedUp.find(signUpCanidate => signUpCanidate.user._id === oldSignUp.user._id);
+    signUp.attended = !oldSignUp.attended;
+    this.eventForm.get('signedUp').setValue(signedUp);
   };
 
   public onSubmit = async () => {

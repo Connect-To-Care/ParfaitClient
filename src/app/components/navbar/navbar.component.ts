@@ -10,7 +10,7 @@ export class NavbarComponent implements OnInit {
 
   readonly navBarAnnouncements = [
     {
-      title: 'Back to home',
+      title: 'Back to site',
       url: 'https://connect-tocare.org'
     }
   ];

@@ -5,3 +5,11 @@ mat-form-field {
 #recurDays {
   padding-left: 10px;
 }
+
+.mat-chip-notattended {
+  background-color: rgb(240,128,128) !important;
+}
+
+.mat-chip-attended {
+  background-color: rgb(104, 240, 104) !important;
+}

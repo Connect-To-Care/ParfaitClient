@@ -28,12 +28,14 @@ export interface UserSession {
   token: string;
 }
 
+export interface SignupModel {
+  attended: boolean,
+  user: UserModel
+}
+
 export interface EventModel {
   displayName: string;
-  signedUp: [{
-    attended: boolean,
-    user: UserModel
-  }];
+  signedUp: Array<SignupModel>;
   maxSignups: number;
   facilitatorCode: string;
   facilitators: Array<UserModel>;

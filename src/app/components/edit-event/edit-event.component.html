@@ -60,7 +60,10 @@
         <mat-form-field>
           <mat-chip-list #signedUpList aria-label="Signed up">
             <mat-chip (removed)="removeSignedUp(signUp.user)" *ngFor="let signUp of eventForm.get('signedUp').value"
-                      [removable]="true" [selectable]="false">
+                      (click)="toggleAttend(signUp)"
+                      [removable]="true" [selectable]="false" [class.mat-chip-notattended]="!signUp.attended"
+                      [class.mat-chip-attended]="signUp.attended"
+                      matTooltip="{{ signUp.attended ? 'This user has attended' : 'This user has not attended' }}">
               {{signUp.user.fullName}}
               <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
@@ -97,8 +100,8 @@
     <mat-card-actions>
       <button color="primary" mat-raised-button routerLink="/admin/events">Back</button>
       <div fxFlex></div>
-      <button *ngIf="event" [disabled]="eventLoading" color="primary" mat-raised-button (click)="onSubmit()">Update</button>
       <button *ngIf="event" [disabled]="eventLoading" color="warn" mat-raised-button (click)="delete()">Delete</button>
+      <button *ngIf="event" [disabled]="eventLoading" color="primary" mat-raised-button (click)="onSubmit()">Update</button>
       <button *ngIf="!event" [disabled]="eventLoading" color="primary" mat-raised-button (click)="onSubmit()">Create</button>
     </mat-card-actions>
   </mat-card>
