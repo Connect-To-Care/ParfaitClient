@@ -8,10 +8,10 @@
     <img routerLink="/" src="assets/c2c-logo.png">
     <span class="spacer"></span>
     <div *ngIf="apiService.userSession && apiService.userSession.data.user.isAdmin" fxHide.lt-md="true" fxShow="true">
-      <a *ngFor="let link of navBarAdmin" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
+      <a *ngFor="let link of navBarAdmin" mat-button routerLink="{{ link.url }}"> {{ link.title }} <mat-icon>{{ link.icon }}</mat-icon></a>
     </div>
     <div *ngIf="apiService.userSession" fxHide.lt-md="true" fxShow="true">
-      <a *ngFor="let link of navBarLinks" mat-button routerLink="{{ link.url }}"> {{ link.title }} </a>
+      <a *ngFor="let link of navBarLinks" mat-button routerLink="{{ link.url }}"> {{ link.title }} <mat-icon>{{ link.icon }}</mat-icon></a>
     </div>
     <div fxHide.lt-md="true" fxShow="true" *ngIf="apiService.userSession">
       <button mat-button [matMenuTriggerFor]="accountMenu">{{ apiService.userSession.data.user.fullName }} <mat-icon>arrow_drop_down</mat-icon></button>
@@ -19,7 +19,7 @@
         <button *ngFor="let link of accountLoggedIn" mat-menu-item routerLink="{{ link.url }}">{{ link.title }}</button>
       </mat-menu>
     </div>
-    <div fxHide.lt-md="true" fxShow="true" *ngIf="!apiService.userSession">
+    <div id="accountMenu" fxHide.lt-md="true" fxShow="true" *ngIf="!apiService.userSession">
       <button mat-button [matMenuTriggerFor]="accountMenu">Account <mat-icon>arrow_drop_down</mat-icon></button>
       <mat-menu #accountMenu="matMenu" xPosition="before">
         <button *ngFor="let link of accountLoggedOut" mat-menu-item routerLink="{{ link.url }}">{{ link.title }}</button>

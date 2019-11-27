@@ -18,7 +18,8 @@ export class NavbarComponent implements OnInit {
   readonly navBarLinks = [
     {
       title: 'Browse Events',
-      url: '/dash'
+      url: '/dash',
+      icon: 'event'
     }
   ];
 
@@ -51,11 +52,13 @@ export class NavbarComponent implements OnInit {
   readonly navBarAdmin = [
     {
       title: 'Manage Events',
-      url: '/admin/events'
+      url: '/admin/events',
+      icon: 'note_add'
     },
     {
       title: 'Manage Users',
-      url: '/admin/users'
+      url: '/admin/users',
+      icon: 'supervised_user_circle'
     },
   ];
 
