@@ -88,6 +88,14 @@ export class APIService {
     };
   }
 
+  public downloadCsv = async (eventId: string): Promise<Blob> => {
+    return (
+      (await this.httpClient.get<Blob>(
+        this.configService.config.apiRoot + 'events/' + eventId.replace('/', '') + '/export', {responseType: 'blob' as 'json'}
+      ).toPromise())
+    );
+  };
+
   public attend = async (eventId: string, userId: string): Promise<void> => {
     return (
       (await this.httpClient.post<any>(

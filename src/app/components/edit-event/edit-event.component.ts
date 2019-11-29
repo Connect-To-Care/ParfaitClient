@@ -3,6 +3,7 @@ import {APIService, EventModel, SignupModel, UserModel} from '../../services/api
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatChipInputEvent, MatDialog, MatSnackBar} from '@angular/material';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-edit-event',
@@ -218,4 +219,8 @@ export class EditEventComponent implements OnInit {
     this.eventFormLoading = false;
   };
 
+  public exportCsv = async () => {
+   const blob = await this.apiService.downloadCsv(this.event._id);
+   saveAs(blob, `${this.event._id}-export.csv`);
+  };
 }
