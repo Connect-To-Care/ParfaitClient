@@ -94,6 +94,26 @@ export class EventSigninComponent implements OnInit, AfterViewInit {
     }
   };
 
+  public exit = async () => {
+    this.closeFullscreen();
+    await this.router.navigateByUrl('/admin/events');
+  };
+
+  public closeFullscreen = () => {
+    if (this.document.exitFullscreen) {
+      this.document.exitFullscreen().catch(() => {}); // Ignore
+    } else if (this.document.mozCancelFullScreen) {
+      /* Firefox */
+      this.document.mozCancelFullScreen();
+    } else if (this.document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.document.webkitExitFullscreen();
+    } else if (this.document.msExitFullscreen) {
+      /* IE/Edge */
+      this.document.msExitFullscreen();
+    }
+  };
+
   public attend = async (user: UserModel) => {
     try {
       await this.apiService.attend(this.event._id, user._id);

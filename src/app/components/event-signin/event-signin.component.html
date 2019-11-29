@@ -1,6 +1,6 @@
 <app-navbar>
   <app-page-title title="Event signin">
-    <button color="primary" routerLink="/admin/events" mat-raised-button>Back</button>
+    <button color="primary" (click)="exit()" mat-raised-button>Back</button>
   </app-page-title>
   <div *ngIf="event" class="center" id="countdown">
     <h1>{{ time }}</h1>
