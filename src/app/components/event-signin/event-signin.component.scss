@@ -1,0 +1,25 @@
+#signinManager {
+  padding: 30px;
+}
+
+.cards {
+  width: 100%;
+}
+
+mat-card {
+  margin-bottom: 10px;
+}
+
+mat-card {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+mat-toolbar, .mat-card-title {
+  font-size: 1rem;
+}
+
+#countdown {
+  text-align: center;
+  padding-bottom: 10%;
+}

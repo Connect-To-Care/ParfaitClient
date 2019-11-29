@@ -88,6 +88,28 @@ export class APIService {
     };
   }
 
+  public attend = async (eventId: string, userId: string): Promise<void> => {
+    return (
+      (await this.httpClient.post<any>(
+        this.configService.config.apiRoot + 'events/' + eventId.replace('/', '') + '/attend',
+        {
+          userId
+        }
+      ).toPromise())
+    );
+  };
+
+  public unattend = async (eventId: string, userId: string): Promise<void> => {
+    return (
+      (await this.httpClient.post<any>(
+        this.configService.config.apiRoot + 'events/' + eventId.replace('/', '') + '/unattend',
+        {
+          userId
+        }
+      ).toPromise())
+    );
+  };
+
   public giveDecaTag = async (): Promise<void> => {
     const data = (
       (await this.httpClient.get<any>(

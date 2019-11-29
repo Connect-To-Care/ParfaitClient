@@ -27,6 +27,7 @@
           <app-event-details [event]="event"></app-event-details>
           <mat-action-row>
             <button mat-button routerLink="/admin/events/{{ event._id }}">EDIT</button>
+            <button mat-button routerLink="/admin/events/{{ event._id }}/signin">SIGNIN</button>
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>

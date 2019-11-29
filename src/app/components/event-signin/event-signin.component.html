@@ -1,1 +1,28 @@
-<p>event-signin works!</p>
+<app-navbar>
+  <app-page-title title="Event signin">
+    <button color="primary" routerLink="/admin/events" mat-raised-button>Back</button>
+  </app-page-title>
+  <div *ngIf="event" class="center" id="countdown">
+    <h1>{{ time }}</h1>
+    <h2>{{ minsLeft }} minutes left until end</h2>
+  </div>
+  <div *ngIf="signedUp" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px" id="signinManager">
+    <div [@listStagger]="signedUp" class="cards">
+      <mat-toolbar class="mat-primary rounded-bar">
+        Please select your name from below
+      </mat-toolbar>
+      <mat-card *ngIf="signedUp.length == 0">
+        <mat-card-content>
+          <p>
+            No results.
+          </p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card *ngFor="let signUp of signedUp" (click)="attend(signUp.user)">
+        <mat-card-header>
+          <mat-card-title>{{ signUp.user.fullName }}</mat-card-title>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+</app-navbar>
