@@ -65,6 +65,8 @@ export class EventSigninComponent implements OnInit, AfterViewInit {
       }, data => this.updateSignup(data));
 
       this.socket.on('eventUpdate', data => this.updateSignup(data));
+    }).on('exception', () => { // The user lied! This don't have access to this
+      this.router.navigateByUrl('/');
     });
   }
 
