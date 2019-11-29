@@ -20,7 +20,7 @@ export class OAuthLoginComponent implements OnInit {
   ngOnInit() {
     const decaLogin = this.activatedRoute.snapshot.queryParams.deca;
     console.log(decaLogin);
-    if (decaLogin !== null) {
+    if (decaLogin !== undefined) {
       localStorage.setItem('deca-login', 'true');
     } else {
       localStorage.removeItem('deca-login');
