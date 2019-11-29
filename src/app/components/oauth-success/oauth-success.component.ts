@@ -21,8 +21,7 @@ export class OAuthSuccessComponent implements OnInit {
     if (jwt) {
       this.apiService.saveJwt(jwt);
 
-      const decaLogin = this.activatedRoute.snapshot.queryParams.deca;
-      if (decaLogin !== null) {
+      if (localStorage.getItem('deca-login')) {
         localStorage.removeItem('deca-login');
         await this.router.navigateByUrl('/deca');
       } else {
