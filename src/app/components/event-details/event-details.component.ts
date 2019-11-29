@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {EventModel, UserModel} from '../../services/api.service';
+import {DateUtil} from '../../../DateUtil';
 
 @Component({
   selector: 'app-event-details',
@@ -7,26 +8,15 @@ import {EventModel, UserModel} from '../../services/api.service';
   styleUrls: ['./event-details.component.scss']
 })
 export class EventDetailsComponent implements OnInit {
-  @Input() event: EventModel;
 
   constructor() {
   }
+  @Input() event: EventModel;
+
+  public formatDate = DateUtil.formatDate; // Make this accessible in the component
 
   ngOnInit() {
   }
-
-  formatDate = (strDate: string): string => {
-    const date = new Date(strDate);
-
-    let hours = date.getHours();
-    let minutes: any = date.getMinutes();
-    const ampm = hours >= 12 ? 'pm' : 'am';
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    const strTime = hours + ':' + minutes + ' ' + ampm;
-    return date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear() + '  ' + strTime;
-  };
 
   getSignUps = (event: EventModel): Array<UserModel> => {
     return event.signedUp.map(signUp => signUp.user);

@@ -8,6 +8,7 @@ import {DOCUMENT} from '@angular/common';
 import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
 import {MatSnackBar} from '@angular/material';
 import {interval, Subscription} from 'rxjs';
+import {DateUtil} from '../../../DateUtil';
 
 @Component({
   selector: 'app-event-signin',
@@ -101,7 +102,8 @@ export class EventSigninComponent implements OnInit, AfterViewInit {
 
   public closeFullscreen = () => {
     if (this.document.exitFullscreen) {
-      this.document.exitFullscreen().catch(() => {}); // Ignore
+      this.document.exitFullscreen().catch(() => {
+      }); // Ignore
     } else if (this.document.mozCancelFullScreen) {
       /* Firefox */
       this.document.mozCancelFullScreen();
@@ -124,27 +126,12 @@ export class EventSigninComponent implements OnInit, AfterViewInit {
 
   public updateTime = () => {
     const date = new Date();
-    const unit = (date.getHours() < 12) ? 'AM' : 'PM';
 
-    let hour: string | number = (date.getHours() < 12) ? date.getHours() : date.getHours() - 12;
-    let minutes: string | number = date.getMinutes();
-    let seconds: string | number = date.getSeconds();
-
-    if (hour < 10) {
-      hour = '0' + hour;
-    }
-    if (minutes < 10) {
-      minutes = '0' + minutes;
-    }
-    if (seconds < 10) {
-      seconds = '0' + seconds;
-    }
-
-    this.time = `${hour}:${minutes}:${seconds} ${unit}`;
+    this.time = DateUtil.getStrTime(date);
 
     if (this.event) {
       const endTime = new Date(this.event.endTime);
-      this.minsLeft = Math.floor((endTime.getTime() - new Date().getTime()) / 1000 / 60);
+      this.minsLeft = Math.floor((endTime.getTime() - date.getTime()) / 1000 / 60);
     } else {
       this.minsLeft = 0;
     }
