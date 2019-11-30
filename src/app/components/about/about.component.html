@@ -5,10 +5,11 @@
       <mat-card-title>About this application</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>This application was developed by Connect To Care, a Minnesota based non-profit.</p>
-      <p>A simplyalec Website. alec@simplyalec.com</p>
+      <p><b>Commit ID:</b> {{ configService.config.hash }}</p>
       <br>
-      <p><b>Raw commit hash: {{ configService.config.hash }}</b></p>
+      <p>We are Connect To Care, an Eden Prairie based non-profit.</p>
+      <p>This is a <b>simplyalec</b> website. alec@simplyalec.com</p>
+      <p>Like coding? We do too! View source code and contribute by checking out our <a href="https://github.com/Connect-To-Care/">Github</a>.</p>
     </mat-card-content>
   </mat-card>
 </app-navbar>
