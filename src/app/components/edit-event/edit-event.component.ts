@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {APIService, EventModel, SignupModel, UserModel} from '../../services/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {MatChipInputEvent, MatDialog, MatSnackBar} from '@angular/material';
+import {MAT_DIALOG_DATA, MatChipInputEvent, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import { saveAs } from 'file-saver';
+import {saveAs} from 'file-saver';
+import {FacilitatorAddDialogComponent, FacilitatorAddDialogData} from '../dash/dash.component';
 
 @Component({
   selector: 'app-edit-event',
@@ -160,12 +161,20 @@ export class EditEventComponent implements OnInit {
   };
 
   public delete = async () => {
-    try {
-      await this.apiService.deleteEvent(this.event._id);
-      await this.router.navigateByUrl('/admin/events');
-    } catch (e) {
-      this.snackbar.open('Failed to delete event (' + e + ')')._dismissAfter(2000);
-    }
+    const dialogRef = this.dialog.open(DeleteEventDialogComponent);
+
+    dialogRef.afterClosed().subscribe(async result => {
+      if (!result) {
+        return;
+      }
+
+      try {
+        await this.apiService.deleteEvent(this.event._id);
+        await this.router.navigateByUrl('/admin/events');
+      } catch (e) {
+        this.snackbar.open('Failed to delete event (' + e + ')')._dismissAfter(2000);
+      }
+    });
   };
 
   public toggleAttend = async (oldSignUp: SignupModel) => {
@@ -220,7 +229,24 @@ export class EditEventComponent implements OnInit {
   };
 
   public exportCsv = async () => {
-   const blob = await this.apiService.downloadCsv(this.event._id);
-   saveAs(blob, `${this.event._id}-export.csv`);
+    const blob = await this.apiService.downloadCsv(this.event._id);
+    saveAs(blob, `${this.event._id}-export.csv`);
   };
 }
+
+@Component({
+  selector: 'app-delete-event',
+  templateUrl: 'deleteEvent.dialog.component.html',
+})
+export class DeleteEventDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<DeleteEventDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: FacilitatorAddDialogData) {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+

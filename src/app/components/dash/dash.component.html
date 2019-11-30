@@ -64,6 +64,9 @@
                 <button *ngIf="checkEventFacilitator(now)" mat-button matTooltip="Edit event details"
                         routerLink="/admin/events/{{ now._id }}">EDIT
                 </button>
+                <button (click)="enterCode(now)" *ngIf="!checkEventFacilitator(now)" mat-button
+                        matTooltip="Become an event facilitator">CODE
+                </button>
               </mat-action-row>
             </mat-expansion-panel>
           </mat-accordion>
@@ -90,6 +93,9 @@
                 <button *ngIf="checkEventFacilitator(future)" mat-button matTooltip="Edit event details"
                         routerLink="/admin/events/{{ future._id }}">EDIT
                 </button>
+                <button (click)="enterCode(future)" *ngIf="!checkEventFacilitator(future)" mat-button
+                        matTooltip="Become an event facilitator">CODE
+                </button>
               </mat-action-row>
             </mat-expansion-panel>
           </mat-accordion>
@@ -114,6 +120,9 @@
               <mat-action-row>
                 <button *ngIf="checkEventFacilitator(past)" mat-button matTooltip="Edit event details"
                         routerLink="/admin/events/{{ past._id }}">EDIT
+                </button>
+                <button (click)="enterCode(past)" *ngIf="!checkEventFacilitator(past)" mat-button
+                        matTooltip="Become an event facilitator">CODE
                 </button>
               </mat-action-row>
             </mat-expansion-panel>

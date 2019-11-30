@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './components/app/app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavbarComponent} from './components/navbar/navbar.component';
-import {FacilitatorAddDialogComponent, DashComponent} from './components/dash/dash.component';
+import {DashComponent, FacilitatorAddDialogComponent} from './components/dash/dash.component';
 import {
   MatBadgeModule,
   MatButtonModule,
@@ -20,14 +20,14 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
+  MatMenuModule,
   MatProgressBarModule,
   MatSidenavModule,
   MatSnackBarModule,
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule,
-  MatMenuModule
+  MatTooltipModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {PageTitleComponent} from './components/page-title/page-title.component';
@@ -48,13 +48,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import * as Sentry from '@sentry/browser';
 import {ManageEventsComponent} from './components/manage-events/manage-events.component';
-import {EditEventComponent} from './components/edit-event/edit-event.component';
+import {DeleteEventDialogComponent, EditEventComponent} from './components/edit-event/edit-event.component';
 import {EventDetailsComponent} from './components/event-details/event-details.component';
 import {MatDatepickerModule, MatMomentDateModule} from '@coachcare/datepicker';
-import { GiveDecaTagComponent } from './components/give-deca-tag/give-deca-tag.component';
-import { HomeComponent } from './components/home/home.component';
-import { EventSigninComponent } from './components/event-signin/event-signin.component';
-import { AboutComponent } from './components/about/about.component';
+import {GiveDecaTagComponent} from './components/give-deca-tag/give-deca-tag.component';
+import {HomeComponent} from './components/home/home.component';
+import {EventSigninComponent} from './components/event-signin/event-signin.component';
+import {AboutComponent} from './components/about/about.component';
 
 Sentry.init({
   dsn: 'https://0c84ea0d000c41958b0be30eccc3fa81@sentry.connect-tocare.org/2'
@@ -90,6 +90,7 @@ export class SentryErrorHandler implements ErrorHandler {
     ManageEventsComponent,
     EditEventComponent,
     FacilitatorAddDialogComponent,
+    DeleteEventDialogComponent,
     EventDetailsComponent,
     GiveDecaTagComponent,
     HomeComponent,
@@ -147,7 +148,8 @@ export class SentryErrorHandler implements ErrorHandler {
   ],
   entryComponents: [
     PhoneNagDialogComponent,
-    FacilitatorAddDialogComponent
+    FacilitatorAddDialogComponent,
+    DeleteEventDialogComponent
   ],
   bootstrap: [AppComponent]
 })

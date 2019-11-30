@@ -82,6 +82,10 @@ export class DashComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+
       this.tryCode(event, result);
     });
   };
