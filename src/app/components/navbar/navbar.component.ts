@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {APIService} from '../../services/api.service';
 
 @Component({
@@ -7,6 +7,8 @@ import {APIService} from '../../services/api.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
+  @Input() hideLinks: boolean;
 
   readonly navBarAnnouncements = [
     {
