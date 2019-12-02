@@ -14,7 +14,7 @@
       <a *ngFor="let link of navBarLinks" mat-button routerLink="{{ link.url }}"> {{ link.title }} <mat-icon>{{ link.icon }}</mat-icon></a>
     </div>
     <div fxHide.lt-md="true" fxShow="true" *ngIf="apiService.userSession && !hideLinks" id="loggedInNav">
-      <button mat-button [matMenuTriggerFor]="accountMenu">{{ apiService.userSession.data.user.fullName }} <mat-icon>arrow_drop_down</mat-icon></button>
+      <button mat-button [matMenuTriggerFor]="accountMenu">{{ apiService.userSession.data.user.name.fullName }} <mat-icon>arrow_drop_down</mat-icon></button>
       <mat-menu #accountMenu="matMenu" xPosition="before">
         <button *ngFor="let link of accountLoggedIn" mat-menu-item routerLink="{{ link.url }}">{{ link.title }}</button>
       </mat-menu>

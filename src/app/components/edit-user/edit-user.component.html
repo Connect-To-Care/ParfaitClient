@@ -2,10 +2,10 @@
   <app-page-title title="Manage User"></app-page-title>
   <mat-card *ngIf="user" class="z-depth center">
     <mat-card-header>
-      <mat-card-title>Edit user {{ user.fullName }} ({{ user._id }})</mat-card-title>
+      <mat-card-title>Edit user {{ user.name.fullName }} ({{ user._id }})</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p><b>Name:</b> {{ user.fullName }}</p>
+      <p><b>Name:</b> {{ user.name.fullName }}</p>
       <p><b>Email:</b> {{ user.email }}</p>
       <!--      <p><b>User tags:</b> {{ user.userTags }}</p>-->
       <p><b>Auth Token:</b> {{ user.auth.strategy }};{{ user.auth.profileID }}</p>

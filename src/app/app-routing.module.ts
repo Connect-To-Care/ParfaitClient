@@ -19,6 +19,7 @@ import {GiveDecaTagComponent} from './components/give-deca-tag/give-deca-tag.com
 import {HomeComponent} from './components/home/home.component';
 import {EventSigninComponent} from './components/event-signin/event-signin.component';
 import {AboutComponent} from './components/about/about.component';
+import {NameNagComponent} from './components/name-nag/name-nag.component';
 
 
 const routes: Routes = [
@@ -45,6 +46,11 @@ const routes: Routes = [
   {
     path: 'deca',
     component: GiveDecaTagComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'nag/name',
+    component: NameNagComponent,
     canActivate: [AuthGuard]
   },
   {

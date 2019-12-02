@@ -55,6 +55,7 @@ import {GiveDecaTagComponent} from './components/give-deca-tag/give-deca-tag.com
 import {HomeComponent} from './components/home/home.component';
 import {EventSigninComponent} from './components/event-signin/event-signin.component';
 import {AboutComponent} from './components/about/about.component';
+import { NameNagComponent } from './components/name-nag/name-nag.component';
 
 Sentry.init({
   dsn: 'https://0c84ea0d000c41958b0be30eccc3fa81@sentry.connect-tocare.org/2'
@@ -95,7 +96,8 @@ export class SentryErrorHandler implements ErrorHandler {
     GiveDecaTagComponent,
     HomeComponent,
     EventSigninComponent,
-    AboutComponent
+    AboutComponent,
+    NameNagComponent
   ],
   imports: [
     HttpClientModule,

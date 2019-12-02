@@ -11,8 +11,13 @@ export interface OAuthProviderIdentity {
   profileID: string;
 }
 
-export interface UserModel {
+export interface Name {
   fullName: string;
+  checked: boolean;
+}
+
+export interface UserModel {
+  name: Name;
   phone?: string;
   email: string;
   userTags?: string[];
@@ -239,6 +244,17 @@ export class APIService {
         }
       ).toPromise())
     );
+  };
+
+  public changeName = async (name: string): Promise<void> => {
+    const data = (await this.httpClient.post<any>(
+      this.configService.config.apiRoot + 'users/me/updateName/', {
+        name
+      }
+    ).toPromise()) as {
+      newToken: string
+    };
+    this.saveJwt(data.newToken);
   };
 
   public changePhoneNumber = async (phoneNumber: string): Promise<void> => {

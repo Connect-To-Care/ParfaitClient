@@ -20,7 +20,7 @@
       </mat-card>
       <mat-card *ngFor="let signUp of signedUp" (click)="attend(signUp.user)">
         <mat-card-header>
-          <mat-card-title>{{ signUp.user.fullName }}</mat-card-title>
+          <mat-card-title>{{ signUp.user.name.fullName }}</mat-card-title>
         </mat-card-header>
       </mat-card>
     </div>

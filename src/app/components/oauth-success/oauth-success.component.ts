@@ -25,7 +25,9 @@ export class OAuthSuccessComponent implements OnInit {
         localStorage.removeItem('deca-login');
         await this.router.navigateByUrl('/deca');
       } else {
-        if (!this.apiService.userSession.data.user.phone && !localStorage.getItem('phone-nag')) {
+        if (!this.apiService.userSession.data.user.name.checked) {
+          await this.router.navigateByUrl('/nag/name');
+        } else if (!this.apiService.userSession.data.user.phone && !localStorage.getItem('phone-nag')) {
           await this.router.navigateByUrl('/nag/phone');
         } else {
           await this.router.navigateByUrl('/dash');

@@ -28,7 +28,7 @@ export class ManageUsersComponent implements OnInit {
   public applyFilter = (filter: string) => {
     if (filter) {
       this.usersSource = this.users.filter(
-        candidate => candidate.fullName.toLowerCase().includes(filter.toLowerCase()) ||
+        candidate => candidate.name.fullName.toLowerCase().includes(filter.toLowerCase()) ||
           candidate._id.includes(filter)
       );
     } else {

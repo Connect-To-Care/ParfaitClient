@@ -14,7 +14,7 @@
     <mat-accordion *ngFor="let user of usersSource">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          {{ user.fullName }} ({{ user._id }})
+          {{ user.name.fullName }} ({{ user._id }})
         </mat-expansion-panel-header>
         <p><b>Email:</b> {{ user.email }}</p>
         <p><b>Admin:</b> {{ user.isAdmin }}</p>
