@@ -21,19 +21,22 @@ export class GiveDecaTagComponent implements OnInit {
     try {
       await this.apiService.giveDecaTag();
     } catch (e) {
-      this.snackbar.open('Failed to get DECA tag (' + e + ')')._dismissAfter(2000);
+      this.snackbar.open('Failed to get DECA tag (' + e + ')')._dismissAfter(4000);
+      await new Promise(resolve => {
+        setTimeout(() => {
+          return resolve();
+        }, 4000);
+      });
     }
 
-    setTimeout(async () => { // Try to sign them up for the event anyways
-      const events = await this.apiService.getMyAvailableEvents();
-      const decaEvent = events.find(event => event.requiredTags.includes('DECA'));
+    const events = await this.apiService.getMyAvailableEvents();
+    const decaEvent = events.find(event => event.requiredTags.includes('DECA'));
 
-      if (decaEvent) {
-        await this.apiService.signUp(decaEvent._id);
-      }
+    if (decaEvent) {
+      await this.apiService.signUp(decaEvent._id);
+    }
 
-      await this.router.navigateByUrl('/dash');
-    }, 2500);
+    await this.router.navigateByUrl('/dash');
   }
 
 }
