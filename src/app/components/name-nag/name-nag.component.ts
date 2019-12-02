@@ -36,7 +36,7 @@ export class NameNagComponent implements OnInit {
   };
 
   public onSubmit = async () => {
-    if (!this.nameForm.get('name').touched || this.nameForm.get('name').errors) {
+    if (this.nameForm.get('name').errors) {
       return;
     }
 
