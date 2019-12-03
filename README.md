@@ -1,15 +1,29 @@
-# Connect To Care Volunteer Platform
-###### (Client)
-Connect To Care aims to provide everyone a chance to be the change in their lives and empower themselves to carve their own future.
+# Parfait Client
 
-As part of this initiative, we've developed our own custom volunteer platform that supports our needs as a non-profit.
+Parfait is a all-in-one online volunteer platform, developed by Connect To Care.
 
-## Development strategy
-We use Angular to maintain a clean codebase and because of its extensive library of tools.
-## Building
-Clone the Github repo and install the Angular CLI using `npm i @angular/cli -g`. You can build the app using `ng build --prod` (production) and host a live development server using `ng serve`
-## Contributing
-We would love any extra help. Most of our priorities have been to suit our own needs. However, we would be happy to include features that are community contributed.
+<p align="center">
+  <img src="https://i.imgur.com/F8BpDF5.png" alt="Website" width="738">
+</p>
 
-## Contact
-This project is maintained by Alec Dusheck. Please email me at alec@simplyalec.com if you have any questions.
+* Parfait includes automated ***text reminders*** and ***emails***.
+* Recurring events, just specify the days to recur.
+* A fraud-proof check-in system for large-scale events.
+* Simple sign-in system
+
+However, Parfait is in its infancy, and has a majority of Connect To Care specific features. 
+
+## Why make this?
+
+To put it simply, there is nothing out there like Parfait. We needed something that we could build-off and make highly customizable. 
+Parfait remains one of Connect To Care's flagship projects and development will be continuous.
+
+## Behind the scenes
+
+The Parfait client uses Angular and Material for the front-end. This lets us keep a rapid development pace and make a ***buttery smooth*** app. 
+
+## Using this yourself
+
+Clone the Github repo and install the Angular CLI using `npm i @angular/cli -g`. You can build the app using `ng build --prod` (production) and host a live development server using `ng serve`.
+
+Keep in mind that you must point the Parfait client to use your custom API instance. Do this by editing the `config.service.prod.ts` file with your own API endpoint URL. It's pretty simple.
