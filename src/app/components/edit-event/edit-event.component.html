@@ -64,7 +64,7 @@
                       [removable]="true" [selectable]="false" [class.mat-chip-notattended]="!signUp.attended"
                       [class.mat-chip-attended]="signUp.attended"
                       matTooltip="{{ signUp.attended ? 'This user has attended' : 'This user has not attended' }}">
-              {{signUp.user.fullName}}
+              {{signUp.user.name.fullName}}
               <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
             <input (matChipInputTokenEnd)="addSignedUp($event)"
@@ -76,7 +76,7 @@
           <mat-chip-list #facilitatorsList aria-label="Signed up">
             <mat-chip (removed)="removeFacilitator(person)" *ngFor="let person of eventForm.get('facilitators').value"
                       [removable]="true" [selectable]="false">
-              {{person.fullName}}
+              {{person.name.fullName}}
               <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
             <input (matChipInputTokenEnd)="addFacilitator($event)"
