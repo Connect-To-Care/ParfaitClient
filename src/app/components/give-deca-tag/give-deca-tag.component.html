@@ -7,7 +7,8 @@
       <mat-card-title>Please wait...</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>Applying your DECA tag</p>
+      <p *ngIf="!bigError">Applying your DECA tag</p>
+      <p *ngIf="bigError" class="error"><b>{{ bigError }}</b></p>
     </mat-card-content>
   </mat-card>
 </app-navbar>

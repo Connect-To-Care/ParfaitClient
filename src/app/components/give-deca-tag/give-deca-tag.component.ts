@@ -10,7 +10,7 @@ import {MatSnackBar} from '@angular/material';
 })
 export class GiveDecaTagComponent implements OnInit {
 
-  returnUrl: string;
+  bigError: string;
 
   constructor(
     private readonly apiService: APIService,
@@ -34,11 +34,12 @@ export class GiveDecaTagComponent implements OnInit {
       try {
         await this.apiService.signUp(decaEvent._id);
       } catch (e) {
-        this.snackbar.open('Failed to join DECA event (' + e + ')')._dismissAfter(4000);
+        this.bigError = e;
+        this.snackbar.open('Failed to join DECA event (' + e + ')')._dismissAfter(6000);
         await new Promise(resolve => {
           setTimeout(() => {
             return resolve();
-          }, 4000);
+          }, 6000);
         });
       }
     }
