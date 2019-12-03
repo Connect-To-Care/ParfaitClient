@@ -42,10 +42,73 @@
   <meta content="/assets/icons/mstile-150x150.png" name="msapplication-square150x150logo"/>
   <meta content="/assets/icons/mstile-310x150.png" name="msapplication-wide310x150logo"/>
   <meta content="/assets/icons/mstile-310x310.png" name="msapplication-square310x310logo"/>
+
+  <!-- APP LOADER STYLES -->
+  <style>
+    .loader {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    .loader .logo {
+      width: 75px;
+      height: 75px;
+      background: url("/assets/logo.png") center center no-repeat;
+      background-size: cover;
+    }
+    .loader .spinner {
+      height: 200px;
+      width: 200px;
+      animation: rotate 2s linear infinite;
+      transform-origin: center center;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    .loader .spinner .path {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+      animation: dash 1.5s ease-in-out infinite;
+      stroke-linecap: round;
+      stroke: #ddd;
+    }
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    @keyframes dash {
+      0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+      }
+      50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+      }
+      100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+      }
+    }
+  </style>
 </head>
 <body>
 <!-- ANGULAR ROOT -->
-<app-root></app-root>
+<app-root>
+  <div class="loader">
+    <div class="logo"></div>
+    <svg class="spinner" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+  </div>
+</app-root>
 <!-- IN CASE JS ISN'T AVAILABLE -->
 <noscript>
   <p>
@@ -55,5 +118,5 @@
 </noscript>
 </body>
 </html>
-<!-- GOOD MORNING AMERICA! HUH, CAME SO FAR... -->
+<!-- GOOD MORNING AMERICA! -->
 <!-- This is a simplyalec website. alec@simplyalec.com -->
