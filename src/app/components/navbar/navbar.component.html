@@ -5,7 +5,7 @@
         <mat-icon>menu</mat-icon>
       </button>
     </div>
-    <img routerLink="/" src="assets/logoFull.png" alt="Connect To Care">
+    <img routerLink="/" src="/assets/logoFull.png" alt="Connect To Care">
     <span class="spacer"></span>
     <div *ngIf="apiService.userSession && apiService.userSession.data.user.isAdmin && !hideLinks" fxHide.lt-md="true" fxShow="true" id="adminNav">
       <a *ngFor="let link of navBarAdmin" mat-button routerLink="{{ link.url }}"> {{ link.title }} <mat-icon>{{ link.icon }}</mat-icon></a>
