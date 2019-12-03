@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {APIService} from '../../services/api.service';
 import {ErrorStateMatcher, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
@@ -16,7 +16,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './phone-nag.component.html',
   styleUrls: ['./phone-nag.component.scss']
 })
-export class PhoneNagComponent {
+export class PhoneNagComponent implements OnInit {
 
   // https://stackblitz.com/edit/angular-2m1vdq-7vzaq8?file=app%2Finput-error-state-matcher-example.html
   phoneForm = new FormGroup({
@@ -25,19 +25,26 @@ export class PhoneNagComponent {
   phoneFormLoading = false;
   matcher = new MyErrorStateMatcher();
 
+  returnUrl: string;
+
   constructor(
     private readonly router: Router,
     private readonly apiService: APIService,
     private readonly dialog: MatDialog,
     private readonly snackbar: MatSnackBar,
+    private readonly activatedRoute: ActivatedRoute,
   ) {
+  }
+
+  ngOnInit() {
+    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/dash';
   }
 
   public openDialog = () => {
     if (!this.apiService.userSession.data.user.phone && !localStorage.getItem('phone-nag')) {
       this.dialog.open(PhoneNagDialogComponent);
     } else {
-      this.router.navigateByUrl('/dash');
+      this.router.navigateByUrl(this.returnUrl);
     }
   };
 

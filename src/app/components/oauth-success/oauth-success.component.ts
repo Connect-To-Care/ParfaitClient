@@ -21,14 +21,27 @@ export class OAuthSuccessComponent implements OnInit {
     if (jwt) {
       this.apiService.saveJwt(jwt);
 
+      let deca = false;
       if (localStorage.getItem('deca-login')) {
         localStorage.removeItem('deca-login');
-        await this.router.navigateByUrl('/deca');
-      } else {
-        if (!this.apiService.userSession.data.user.name.checked) {
+        deca = true;
+      }
+
+      if (!this.apiService.userSession.data.user.name.checked) {
+        if (deca) {
+          await this.router.navigateByUrl('/nag/name?returnUrl=/deca');
+        } else {
           await this.router.navigateByUrl('/nag/name');
-        } else if (!this.apiService.userSession.data.user.phone && !localStorage.getItem('phone-nag')) {
+        }
+      } else if (!this.apiService.userSession.data.user.phone && !localStorage.getItem('phone-nag')) {
+        if (deca) {
+          await this.router.navigateByUrl('/nag/phone?returnUrl=/deca');
+        } else {
           await this.router.navigateByUrl('/nag/phone');
+        }
+      } else {
+        if (deca) {
+          await this.router.navigateByUrl('/deca');
         } else {
           await this.router.navigateByUrl('/dash');
         }

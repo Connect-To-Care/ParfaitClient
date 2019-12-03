@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {APIService} from '../../services/api.service';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -15,15 +15,19 @@ export class NameNagComponent implements OnInit {
   });
   nameFormLoading = false;
 
+  returnUrl: string;
+
   constructor(
     private readonly router: Router,
     private readonly apiService: APIService,
     private readonly dialog: MatDialog,
     private readonly snackbar: MatSnackBar,
+    private readonly activatedRoute: ActivatedRoute,
   ) {
   }
 
   ngOnInit() {
+    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/dash';
     this.getName();
   }
 
@@ -43,7 +47,7 @@ export class NameNagComponent implements OnInit {
     this.nameFormLoading = true;
     try {
       await this.apiService.changeName(this.nameForm.get('name').value);
-      this.router.navigateByUrl('/dash');
+      this.router.navigateByUrl(this.returnUrl);
     } catch (e) {
       this.snackbar.open('Failed to change name (' + e + ')')._dismissAfter(2000);
     }
