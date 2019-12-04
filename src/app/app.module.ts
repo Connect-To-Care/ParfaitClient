@@ -56,6 +56,8 @@ import {HomeComponent} from './components/home/home.component';
 import {EventSigninComponent} from './components/event-signin/event-signin.component';
 import {AboutComponent} from './components/about/about.component';
 import { NameNagComponent } from './components/name-nag/name-nag.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 Sentry.init({
   dsn: 'https://0c84ea0d000c41958b0be30eccc3fa81@sentry.connect-tocare.org/2'
@@ -131,7 +133,8 @@ export class SentryErrorHandler implements ErrorHandler {
     MatDatepickerModule,
     MatMomentDateModule,
     MatProgressBarModule,
-    MatMenuModule
+    MatMenuModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     {
