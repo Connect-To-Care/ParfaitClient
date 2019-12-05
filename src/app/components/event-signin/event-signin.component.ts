@@ -112,7 +112,7 @@ export class EventSigninComponent implements OnInit, AfterViewInit {
     try {
       await this.apiService.attend(this.event._id, user._id);
     } catch (e) {
-      this.snackbar.open('Failed to signin (' + e + ')')._dismissAfter(2000);
+      this.snackbar.open(e)._dismissAfter(2000);
     }
   };
 

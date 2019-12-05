@@ -78,7 +78,7 @@ export class EditEventComponent implements OnInit {
           await this.router.navigateByUrl('/');
         }
 
-        this.snackbar.open('Failed to get event (' + e + ')')._dismissAfter(2000);
+        this.snackbar.open(e)._dismissAfter(2000);
       }
     }
 
@@ -170,7 +170,7 @@ export class EditEventComponent implements OnInit {
         await this.apiService.deleteEvent(this.event._id);
         await this.router.navigateByUrl('/admin/events');
       } catch (e) {
-        this.snackbar.open('Failed to delete event (' + e + ')')._dismissAfter(2000);
+        this.snackbar.open(e)._dismissAfter(2000);
       }
     });
   };
@@ -213,14 +213,14 @@ export class EditEventComponent implements OnInit {
         await this.apiService.editEvent(this.event._id, eventData);
         await this.router.navigateByUrl('/admin/events');
       } catch (e) {
-        this.snackbar.open('Failed to edit event (' + e + ')')._dismissAfter(2000);
+        this.snackbar.open(e)._dismissAfter(2000);
       }
     } else {
       try {
         await this.apiService.addEvent(eventData);
         await this.router.navigateByUrl('/admin/events');
       } catch (e) {
-        this.snackbar.open('Failed to add event (' + e + ')')._dismissAfter(2000);
+        this.snackbar.open(e)._dismissAfter(2000);
       }
     }
 

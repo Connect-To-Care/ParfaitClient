@@ -68,7 +68,7 @@ export class PhoneNagComponent implements OnInit {
       localStorage.setItem('phone-nag', 'shown');
       this.router.navigateByUrl(this.returnUrl);
     } catch (e) {
-      this.snackbar.open('Failed to change phone number (' + e + ')')._dismissAfter(2000);
+      this.snackbar.open(e)._dismissAfter(2000);
     }
 
     this.phoneFormLoading = false;

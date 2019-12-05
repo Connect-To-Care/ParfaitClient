@@ -34,7 +34,7 @@ export class GiveDecaTagComponent implements OnInit {
         await this.apiService.signUp(decaEvent._id);
       } catch (e) {
         this.bigError = e;
-        this.snackbar.open('Failed to join DECA event (' + e + ')')._dismissAfter(6000);
+        this.snackbar.open(e)._dismissAfter(2000);
         return;
       }
     }

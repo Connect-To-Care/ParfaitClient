@@ -49,7 +49,7 @@ export class NameNagComponent implements OnInit {
       await this.apiService.changeName(this.nameForm.get('name').value);
       this.router.navigateByUrl(this.returnUrl);
     } catch (e) {
-      this.snackbar.open('Failed to change name (' + e + ')')._dismissAfter(2000);
+      this.snackbar.open(e)._dismissAfter(2000);
     }
 
     this.nameFormLoading = false;

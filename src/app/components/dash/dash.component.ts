@@ -50,7 +50,7 @@ export class DashComponent implements OnInit {
       this.refreshEvents();
       this.refreshMyEvents();
     } catch (e) {
-      this.snackbar.open('Failed to drop event (' + e + ')')._dismissAfter(2000);
+      this.snackbar.open(e)._dismissAfter(2000);
     }
   };
 
@@ -59,7 +59,7 @@ export class DashComponent implements OnInit {
       this.availableEvents = await this.apiService.getMyAvailableEvents();
       this.applyQualifiedFilter();
     } catch (e) {
-      this.snackbar.open('Failed to refresh events (' + e + ')')._dismissAfter(2000);
+      this.snackbar.open(e)._dismissAfter(2000);
     }
   };
 
@@ -67,7 +67,7 @@ export class DashComponent implements OnInit {
     try {
       this.myEvents = await this.apiService.getMyEvents();
     } catch (e) {
-      this.snackbar.open('Failed to refresh your events (' + e + ')')._dismissAfter(2000);
+      this.snackbar.open(e)._dismissAfter(2000);
     }
   };
 
@@ -77,7 +77,7 @@ export class DashComponent implements OnInit {
       this.refreshEvents();
       this.refreshMyEvents();
     } catch (e) {
-      this.snackbar.open('Failed to sign up for event (' + e + ')')._dismissAfter(2000);
+      this.snackbar.open(e)._dismissAfter(2000);
     }
   };
 
@@ -103,7 +103,7 @@ export class DashComponent implements OnInit {
       this.refreshMyEvents();
       this.refreshEvents();
     } catch (e) {
-      this.snackbar.open('Failed to become facilitator (' + e + ')')._dismissAfter(2000);
+      this.snackbar.open(e)._dismissAfter(2000);
     }
   };
 

@@ -30,7 +30,7 @@ export class EditUserComponent implements OnInit {
     try {
       this.user = await this.apiService.getUser(userId);
     } catch (e) {
-      this.snackbar.open('Failed to get user (' + e + ')')._dismissAfter(2000);
+      this.snackbar.open(e)._dismissAfter(2000);
     }
   };
 
@@ -40,7 +40,7 @@ export class EditUserComponent implements OnInit {
       await this.apiService.addTag(this.user._id, event.value);
       await this.getUser();
     } catch (e) {
-      this.snackbar.open('Failed to add tag (' + e + ')')._dismissAfter(2000);
+      this.snackbar.open(e)._dismissAfter(2000);
     }
     this.userLoading = false;
     event.input.value = '';
@@ -53,7 +53,7 @@ export class EditUserComponent implements OnInit {
       await this.getUser();
       this.userLoading = true;
     } catch (e) {
-      this.snackbar.open('Failed to give admin (' + e + ')')._dismissAfter(2000);
+      this.snackbar.open(e)._dismissAfter(2000);
       this.userLoading = false;
     }
   };
@@ -65,7 +65,7 @@ export class EditUserComponent implements OnInit {
       await this.getUser();
       this.userLoading = true;
     } catch (e) {
-      this.snackbar.open('Failed to remove admin (' + e + ')')._dismissAfter(2000);
+      this.snackbar.open(e)._dismissAfter(2000);
       this.userLoading = false;
     }
   };
@@ -76,7 +76,7 @@ export class EditUserComponent implements OnInit {
       await this.apiService.removeTag(this.user._id, tag);
       await this.getUser();
     } catch (e) {
-      this.snackbar.open('Failed to remove tag (' + e + ')')._dismissAfter(2000);
+      this.snackbar.open(e)._dismissAfter(2000);
     }
     this.userLoading = false;
   };
