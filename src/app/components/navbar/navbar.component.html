@@ -31,7 +31,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container fxFlexFill>
-  <mat-sidenav #sidenav class="mat-primary" fxHide.gt-sm="true" fxLayout="column" mode="over" opened="false">
+  <mat-sidenav #sidenav class="mat-primary" fxHide.gt-sm="true" fxLayout="column" mode="over" opened="false" [autoFocus]="false">
     <div fxLayout="column" *ngIf="!hideLinks">
       <div *ngIf="apiService.userSession && apiService.userSession.data.user.isAdmin">
         <a *ngFor="let link of navBarAdmin" class="sidenav-btn" mat-button
