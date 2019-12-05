@@ -27,7 +27,8 @@ export class EditEventComponent implements OnInit {
     isRecurring: new FormControl(false, Validators.required),
     facilitators: new FormControl([], Validators.required),
     signedUp: new FormControl([], Validators.required),
-    requiredTags: new FormControl([], Validators.required)
+    requiredTags: new FormControl([], Validators.required),
+    signinCodes: new FormControl([], Validators.required)
   });
   eventFormLoading = false;
 
@@ -69,7 +70,8 @@ export class EditEventComponent implements OnInit {
           recurringDays,
           facilitators: this.event.facilitators,
           signedUp: this.event.signedUp,
-          requiredTags: this.event.requiredTags
+          requiredTags: this.event.requiredTags,
+          signinCodes: this.event.signinCodes,
         });
       } catch (e) {
         if (e === 'Forbidden resource') { // The user lied! This don't have access to this
@@ -198,7 +200,8 @@ export class EditEventComponent implements OnInit {
       facilitatorCode: this.eventForm.get('facilitatorCode').value,
       maxSignups: this.eventForm.get('maxSignups').value,
       description: this.eventForm.get('description').value,
-      requiredTags: this.eventForm.get('requiredTags').value
+      requiredTags: this.eventForm.get('requiredTags').value,
+      signinCodes: this.eventForm.get('signinCodes').value,
     };
 
     if (this.eventForm.get('isRecurring').value) {

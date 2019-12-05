@@ -28,14 +28,20 @@ export interface UserModel {
 
 export interface UserSession {
   data: {
-    user: UserModel
+    user: UserModel;
   };
   token: string;
 }
 
 export interface SignupModel {
-  attended: boolean,
-  user: UserModel
+  attended: boolean;
+  user: UserModel;
+}
+
+export interface SigninCodeModel {
+  code: string;
+  status: string;
+  createdDate: string;
 }
 
 export interface EventModel {
@@ -53,6 +59,7 @@ export interface EventModel {
     days: number;
     hasRecurred: boolean;
   }
+  signinCodes: Array<SigninCodeModel>;
 }
 
 export interface MyEventsResponse {

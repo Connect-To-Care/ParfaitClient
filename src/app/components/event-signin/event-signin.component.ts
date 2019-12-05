@@ -49,7 +49,7 @@ export class EventSigninComponent implements OnInit, AfterViewInit {
     @Inject(DOCUMENT) private document: any
   ) {
     console.log(configService.config.apiRoot);
-    this.socket = io.connect(configService.config.apiRoot);
+    this.socket = io.connect(configService.config.apiRoot + 'events');
     this.elem = document.documentElement;
   }
 

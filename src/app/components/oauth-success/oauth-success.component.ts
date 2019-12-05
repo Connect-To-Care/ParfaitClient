@@ -21,30 +21,25 @@ export class OAuthSuccessComponent implements OnInit {
     if (jwt) {
       this.apiService.saveJwt(jwt);
 
-      let deca = false;
-      if (localStorage.getItem('deca-login')) {
-        localStorage.removeItem('deca-login');
-        deca = true;
+      const returnUrl  = localStorage.getItem('login-returnUrl');
+      if (returnUrl) {
+        localStorage.removeItem('login-returnUrl');
       }
 
       if (!this.apiService.userSession.data.user.name.checked) {
-        if (deca) {
-          await this.router.navigateByUrl('/nag/name?returnUrl=/deca');
+        if (returnUrl) {
+          await this.router.navigateByUrl('/nag/name?returnUrl=' + returnUrl);
         } else {
           await this.router.navigateByUrl('/nag/name');
         }
       } else if (!this.apiService.userSession.data.user.phone && !localStorage.getItem('phone-nag')) {
-        if (deca) {
-          await this.router.navigateByUrl('/nag/phone?returnUrl=/deca');
+        if (returnUrl) {
+          await this.router.navigateByUrl('/nag/phone?returnUrl=' + returnUrl);
         } else {
           await this.router.navigateByUrl('/nag/phone');
         }
       } else {
-        if (deca) {
-          await this.router.navigateByUrl('/deca');
-        } else {
-          await this.router.navigateByUrl('/dash');
-        }
+        await this.router.navigateByUrl(returnUrl || 'dash');
       }
     } else {
       await this.router.navigateByUrl('/login');

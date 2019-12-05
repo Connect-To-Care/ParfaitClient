@@ -36,14 +36,10 @@ export class GiveDecaTagComponent implements OnInit {
       } catch (e) {
         this.bigError = e;
         this.snackbar.open('Failed to join DECA event (' + e + ')')._dismissAfter(6000);
-        await new Promise(resolve => {
-          setTimeout(() => {
-            return resolve();
-          }, 6000);
-        });
       }
+    } else {
+      await this.router.navigateByUrl('/dash');
     }
-    await this.router.navigateByUrl('/dash');
   }
 
 }

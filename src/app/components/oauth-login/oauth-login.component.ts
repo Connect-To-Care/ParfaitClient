@@ -19,11 +19,14 @@ export class OAuthLoginComponent implements OnInit {
 
   ngOnInit() {
     const decaLogin = this.activatedRoute.snapshot.queryParams.deca;
-    console.log(decaLogin);
+    const returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl;
+
     if (decaLogin !== undefined) {
-      localStorage.setItem('deca-login', 'true');
+      localStorage.setItem('login-returnUrl', '/deca');
+    } else if (returnUrl !== undefined) {
+      localStorage.setItem('login-returnUrl', returnUrl);
     } else {
-      localStorage.removeItem('deca-login');
+      localStorage.removeItem('login-returnUrl');
     }
   }
 
