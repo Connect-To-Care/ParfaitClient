@@ -9,11 +9,11 @@ import {DateUtil} from '../../../DateUtil';
 })
 export class EventDetailsComponent implements OnInit {
 
+  @Input() event: EventModel;
+  public formatDate = DateUtil.formatDate; // Make this accessible in the component
+
   constructor() {
   }
-  @Input() event: EventModel;
-
-  public formatDate = DateUtil.formatDate; // Make this accessible in the component
 
   ngOnInit() {
   }

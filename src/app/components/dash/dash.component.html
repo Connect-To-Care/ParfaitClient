@@ -2,7 +2,8 @@
   <app-page-title title="Browse events"></app-page-title>
   <mat-progress-bar *ngIf="!availableEvents || !myEvents" mode="indeterminate"></mat-progress-bar>
 
-  <div *ngIf="availableEventsSource && myEvents" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px" id="eventManager">
+  <div *ngIf="availableEventsSource && myEvents" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px"
+       id="eventManager">
     <div [@listStagger]="availableEventsSource" class="cards" fxFlex="60%" fxFlex.lt-sm="0 1" fxFlexOrder.lt-sm="2">
       <mat-toolbar class="mat-primary rounded-bar">
         Available Events
@@ -28,10 +29,11 @@
         </mat-card-header>
         <mat-card-content>
           <app-event-details [event]="event"></app-event-details>
-          <p class="notQualified" *ngIf="!checkQualified(event)">You are missing a required qualification for this event</p>
+          <p *ngIf="!checkQualified(event)" class="notQualified">You are missing a required qualification for this
+            event</p>
         </mat-card-content>
         <mat-card-actions>
-          <button [disabled]="!checkQualified(event)" (click)="signUp(event)" mat-button
+          <button (click)="signUp(event)" [disabled]="!checkQualified(event)" mat-button
                   matTooltip="Sign up for this event">SIGN UP
           </button>
           <div fxFlex></div>

@@ -59,10 +59,10 @@
         </mat-form-field>
         <mat-form-field>
           <mat-chip-list #signedUpList aria-label="Signed up">
-            <mat-chip (removed)="removeSignedUp(signUp.user)" *ngFor="let signUp of eventForm.get('signedUp').value"
-                      (click)="toggleAttend(signUp)"
-                      [removable]="true" [selectable]="false" [class.mat-chip-notattended]="!signUp.attended"
-                      [class.mat-chip-attended]="signUp.attended"
+            <mat-chip (click)="toggleAttend(signUp)" (removed)="removeSignedUp(signUp.user)"
+                      *ngFor="let signUp of eventForm.get('signedUp').value"
+                      [class.mat-chip-attended]="signUp.attended" [class.mat-chip-notattended]="!signUp.attended" [removable]="true"
+                      [selectable]="false"
                       matTooltip="{{ signUp.attended ? 'This user has attended' : 'This user has not attended' }}">
               {{signUp.user.name.fullName}}
               <mat-icon matChipRemove>cancel</mat-icon>
@@ -100,10 +100,13 @@
     <mat-card-actions>
       <button color="primary" mat-raised-button routerLink="/admin/events">Back</button>
       <div fxFlex></div>
-      <button *ngIf="event" [disabled]="eventLoading" color="warn" mat-raised-button (click)="delete()">Delete</button>
-      <button *ngIf="event" [disabled]="eventLoading" color="primary" mat-raised-button (click)="exportCsv()">Export</button>
-      <button *ngIf="event" [disabled]="eventLoading" color="primary" mat-raised-button (click)="onSubmit()">Update</button>
-      <button *ngIf="!event" [disabled]="eventLoading" color="primary" mat-raised-button (click)="onSubmit()">Create</button>
+      <button (click)="delete()" *ngIf="event" [disabled]="eventLoading" color="warn" mat-raised-button>Delete</button>
+      <button (click)="exportCsv()" *ngIf="event" [disabled]="eventLoading" color="primary" mat-raised-button>Export
+      </button>
+      <button (click)="onSubmit()" *ngIf="event" [disabled]="eventLoading" color="primary" mat-raised-button>Update
+      </button>
+      <button (click)="onSubmit()" *ngIf="!event" [disabled]="eventLoading" color="primary" mat-raised-button>Create
+      </button>
     </mat-card-actions>
   </mat-card>
 </app-navbar>

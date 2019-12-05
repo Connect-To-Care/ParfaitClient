@@ -21,7 +21,7 @@ export class OAuthSuccessComponent implements OnInit {
     if (jwt) {
       this.apiService.saveJwt(jwt);
 
-      const returnUrl  = localStorage.getItem('login-returnUrl');
+      const returnUrl = localStorage.getItem('login-returnUrl');
       if (returnUrl) {
         localStorage.removeItem('login-returnUrl');
       }

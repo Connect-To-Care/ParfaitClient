@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MAT_DIALOG_DATA, MatChipInputEvent, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {saveAs} from 'file-saver';
-import {FacilitatorAddDialogComponent, FacilitatorAddDialogData} from '../dash/dash.component';
+import {FacilitatorAddDialogData} from '../dash/dash.component';
 
 @Component({
   selector: 'app-edit-event',

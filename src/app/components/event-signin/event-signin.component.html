@@ -1,6 +1,6 @@
 <app-navbar [hideLinks]="true">
   <app-page-title title="Event signin">
-    <button color="primary" (click)="exit()" mat-raised-button>Back</button>
+    <button (click)="exit()" color="primary" mat-raised-button>Back</button>
   </app-page-title>
   <div *ngIf="event" class="center" id="countdown">
     <h1>{{ time }}</h1>
@@ -18,7 +18,7 @@
           </p>
         </mat-card-content>
       </mat-card>
-      <mat-card *ngFor="let signUp of signedUp" (click)="attend(signUp.user)">
+      <mat-card (click)="attend(signUp.user)" *ngFor="let signUp of signedUp">
         <mat-card-header>
           <mat-card-title>{{ signUp.user.name.fullName }}</mat-card-title>
         </mat-card-header>

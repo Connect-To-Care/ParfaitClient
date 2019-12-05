@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConfigService} from '../../services/config.service';
 
 @Component({
@@ -10,7 +10,8 @@ export class AboutComponent implements OnInit {
 
   constructor(
     public readonly configService: ConfigService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
   }

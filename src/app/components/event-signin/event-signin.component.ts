@@ -31,14 +31,12 @@ import {DateUtil} from '../../../DateUtil';
 export class EventSigninComponent implements OnInit, AfterViewInit {
 
   socket: SocketIOClient.Socket;
-  private elem: any;
-
   event: EventModel;
   signedUp: Array<SignupModel>;
-
   public timeSubscription: Subscription;
   public time: string;
   public minsLeft: number;
+  private elem: any;
 
   constructor(
     private readonly configService: ConfigService,
