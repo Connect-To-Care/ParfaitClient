@@ -177,13 +177,13 @@ export class EditEventComponent implements OnInit {
 
   public toggleAttend = async (oldSignUp: SignupModel) => {
     const signedUp = this.eventForm.get('signedUp').value;
-    const signUp = signedUp.find(signUpCanidate => signUpCanidate.user._id === oldSignUp.user._id);
+    const signUp = signedUp.find(signUpCandidate => signUpCandidate.user._id === oldSignUp.user._id);
     signUp.attended = !oldSignUp.attended;
     this.eventForm.get('signedUp').setValue(signedUp);
   };
 
   public onSubmit = async () => {
-    if (this.eventForm.errors) {
+    if (this.eventForm.invalid) {
       return;
     }
 
