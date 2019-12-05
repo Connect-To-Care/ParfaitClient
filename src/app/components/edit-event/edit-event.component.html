@@ -16,7 +16,7 @@
         </mat-form-field>
         <mat-form-field>
           <input formControlName="description" matInput
-                 maxlength="100" minlength="1" placeholder="Description" type="text">
+                 maxlength="2000" minlength="1" placeholder="Description" type="text">
           <mat-error *ngIf="eventForm.get('description').hasError('required')">
             Description is <strong>required</strong>
           </mat-error>

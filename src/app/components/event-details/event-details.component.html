@@ -1,5 +1,5 @@
 <p><b>Time:</b> {{ formatDate(event.startTime) }} - {{ formatDate(event.endTime) }}</p>
-<p><b>About:</b> {{ event.description }}</p>
+<p><b>About: </b><span [innerHTML]="event.description"></span></p>
 <p><b>Signed up ({{ event.signedUp.length }}/{{ event.maxSignups }}):</b> {{ formatMembers(getSignUps(event))}}
 </p>
 <p *ngIf="event.facilitators.length > 0"><b>Facilitators:</b> {{ formatMembers(event.facilitators)}}</p>
