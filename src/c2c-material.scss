@@ -237,3 +237,13 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
   padding: .5em .85em;
   min-height: 2.5em;
 }
+
+// CONNECT TO CARE STYLE OVERRIDES
+
+.mat-card-header-text {
+  margin: 0 0 !important;
+}
+
+.mat-card-actions .mat-button {
+  margin: 0 !important;
+}
