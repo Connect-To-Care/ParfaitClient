@@ -1,6 +1,6 @@
 <app-navbar>
   <app-page-title title="DECA"></app-page-title>
-  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  <mat-progress-bar mode="indeterminate" *ngIf="!bigError"></mat-progress-bar>
 
   <mat-card class="z-depth center">
     <mat-card-header>

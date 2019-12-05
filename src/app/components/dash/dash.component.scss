@@ -10,12 +10,12 @@ mat-card {
   margin-bottom: 10px;
 }
 
-.refresh {
+.refresh, .updateUnqualified {
   cursor: pointer;
 }
 
-.gavel {
-  padding-left: 5px;
+.updateUnqualified {
+  padding-right: 5px;
 }
 
 .mat-button-wrapper {

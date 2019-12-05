@@ -24,7 +24,11 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/ma
 export class DashComponent implements OnInit {
 
   availableEvents: Array<EventModel>;
+  availableEventsSource: Array<EventModel>;
+
   myEvents: MyEventsResponse;
+
+  showUnqualified: boolean;
 
   constructor(
     private readonly apiService: APIService,
@@ -34,6 +38,8 @@ export class DashComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.showUnqualified = false;
+
     this.refreshEvents();
     this.refreshMyEvents();
   }
@@ -51,6 +57,7 @@ export class DashComponent implements OnInit {
   refreshEvents = async () => {
     try {
       this.availableEvents = await this.apiService.getMyAvailableEvents();
+      this.applyQualifiedFilter();
     } catch (e) {
       this.snackbar.open('Failed to refresh events (' + e + ')')._dismissAfter(2000);
     }
@@ -110,6 +117,17 @@ export class DashComponent implements OnInit {
     }
 
     return event.requiredTags.every(requiredTag => this.apiService.userSession.data.user.userTags.includes(requiredTag));
+  };
+
+  updateUnqualified = () => {
+    this.showUnqualified = !this.showUnqualified;
+    this.applyQualifiedFilter();
+  };
+
+  applyQualifiedFilter = () => {
+    this.availableEventsSource = (this.showUnqualified ?
+      this.availableEvents :
+      this.availableEvents.filter(event => this.checkQualified(event)));
   };
 }
 

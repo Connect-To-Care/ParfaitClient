@@ -28,11 +28,7 @@ export class EventDetailsComponent implements OnInit {
       members += member.name.fullName + ', ';
     });
 
-    if (members === '') {
-      members = 'No one';
-    } else {
-      members = members.substring(0, members.length - 2);
-    }
+    members = members === '' ? 'No one' : members.substring(0, members.length - 2);
     return members;
   };
 }

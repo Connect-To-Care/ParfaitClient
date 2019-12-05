@@ -25,7 +25,10 @@
       <div class="shifted">
         <p><b>Phone Number:</b> {{ user.phone || 'Not provided'}}</p>
       </div>
-
     </mat-card-content>
+    <mat-card-actions>
+      <button routerLink="/nag/name" mat-button>CHANGE NAME</button>
+      <button routerLink="/nag/phone" mat-button>CHANGE PHONE NUMBER</button>
+    </mat-card-actions>
   </mat-card>
 </app-navbar>

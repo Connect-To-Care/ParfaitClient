@@ -142,11 +142,7 @@ export class EditEventComponent implements OnInit {
   };
 
   public addTag = (event: MatChipInputEvent) => {
-    if (!event.value) {
-      return;
-    }
-
-    if (this.eventForm.get('requiredTags').value.find(tag => tag === event.value)) {
+    if (!event.value && this.eventForm.get('requiredTags').value.find(tag => tag === event.value)) {
       return;
     }
 
