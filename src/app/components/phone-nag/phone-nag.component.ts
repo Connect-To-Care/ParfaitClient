@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {APIService} from '../../services/api.service';
-import {ErrorStateMatcher, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
+import {ErrorStateMatcher, MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -10,6 +10,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return !!(control && control.invalid);
   }
 }
+
+export interface PhoneNagData {
+  returnUrl: string;
+}
+
 
 @Component({
   selector: 'app-phone-nag',
@@ -42,7 +47,11 @@ export class PhoneNagComponent implements OnInit {
 
   public openDialog = () => {
     if (!this.apiService.userSession.data.user.phone && !localStorage.getItem('phone-nag')) {
-      this.dialog.open(PhoneNagDialogComponent);
+      this.dialog.open(PhoneNagDialogComponent, {
+        data: {
+          returnUrl: this.returnUrl,
+        }
+      });
     } else {
       this.router.navigateByUrl(this.returnUrl);
     }
@@ -57,7 +66,7 @@ export class PhoneNagComponent implements OnInit {
     try {
       await this.apiService.changePhoneNumber(this.phoneForm.get('phoneNumber').value);
       localStorage.setItem('phone-nag', 'shown');
-      this.router.navigateByUrl('/dash');
+      this.router.navigateByUrl(this.returnUrl);
     } catch (e) {
       this.snackbar.open('Failed to change phone number (' + e + ')')._dismissAfter(2000);
     }
@@ -74,7 +83,8 @@ export class PhoneNagComponent implements OnInit {
 export class PhoneNagDialogComponent {
   constructor(
     private readonly router: Router,
-    public dialogRef: MatDialogRef<PhoneNagDialogComponent>
+    public dialogRef: MatDialogRef<PhoneNagDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: PhoneNagData
   ) {
   }
 
@@ -82,7 +92,7 @@ export class PhoneNagDialogComponent {
     if (noshow) {
       localStorage.setItem('phone-nag', 'shown');
     }
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl(this.data.returnUrl);
     this.dialogRef.close();
   };
 }
