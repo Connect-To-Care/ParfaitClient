@@ -31,13 +31,13 @@ export class NavbarComponent implements OnInit {
       url: '/account'
     },
     {
+      title: 'About',
+      url: '/about'
+    },
+    {
       title: 'Logout',
       url: '/logout'
     },
-    {
-      title: 'About',
-      url: '/about'
-    }
   ];
 
   readonly accountLoggedOut = [
