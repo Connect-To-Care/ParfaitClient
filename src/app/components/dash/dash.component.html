@@ -3,7 +3,7 @@
   <mat-progress-bar *ngIf="!availableEvents || !myEvents" mode="indeterminate"></mat-progress-bar>
 
   <div *ngIf="availableEvents && myEvents" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px" id="eventManager">
-    <div [@listStagger]="availableEvents" class="cards" fxFlex.lt-md="1 1 60%" fxFlex.lt-sm="0 1">
+    <div [@listStagger]="availableEvents" class="cards" fxFlex="60%" fxFlex.lt-sm="0 1" fxFlexOrder.lt-sm="2">
       <mat-toolbar class="mat-primary rounded-bar">
         Available Events
         <div class="spacer"></div>
@@ -41,7 +41,7 @@
         </mat-card-actions>
       </mat-card>
     </div>
-    <div fxFlex.lt-md="1 1 40%" fxFlex.lt-sm="0 1">
+    <div fxFlex="40%" fxFlex.lt-sm="0 1" fxFlexOrder.lt-sm="1">
       <mat-toolbar class="mat-primary rounded-bar">
         Your Events
         <div class="spacer"></div>
