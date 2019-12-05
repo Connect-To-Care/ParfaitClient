@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {APIService} from '../../services/api.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 
 @Component({
@@ -16,7 +16,6 @@ export class GiveDecaTagComponent implements OnInit {
     private readonly apiService: APIService,
     private readonly router: Router,
     private readonly snackbar: MatSnackBar,
-    private route: ActivatedRoute,
   ) {
   }
 
@@ -36,10 +35,11 @@ export class GiveDecaTagComponent implements OnInit {
       } catch (e) {
         this.bigError = e;
         this.snackbar.open('Failed to join DECA event (' + e + ')')._dismissAfter(6000);
+        return;
       }
-    } else {
-      await this.router.navigateByUrl('/dash');
     }
+
+    await this.router.navigateByUrl('/dash');
   }
 
 }
