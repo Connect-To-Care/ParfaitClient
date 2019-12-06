@@ -22,13 +22,13 @@ export class EditEventComponent implements OnInit {
     facilitatorCode: new FormControl('', [Validators.minLength(1), Validators.maxLength(100), Validators.required]),
     startTime: new FormControl(new Date(), [Validators.required]),
     endTime: new FormControl(new Date(), [Validators.required]),
-    description: new FormControl('', [Validators.minLength(1), Validators.maxLength(100), Validators.required]),
+    description: new FormControl('', [Validators.minLength(1), Validators.maxLength(2000), Validators.required]),
     recurringDays: new FormControl(7, [Validators.min(1), Validators.max(60), Validators.required]),
-    isRecurring: new FormControl(false, Validators.required),
-    facilitators: new FormControl([], Validators.required),
-    signedUp: new FormControl([], Validators.required),
-    requiredTags: new FormControl([], Validators.required),
-    signinCodes: new FormControl([], Validators.required)
+    isRecurring: new FormControl(false, [Validators.required]),
+    facilitators: new FormControl([]),
+    signedUp: new FormControl([]),
+    requiredTags: new FormControl([]),
+    signinCodes: new FormControl([])
   });
   eventFormLoading = false;
 
@@ -184,6 +184,8 @@ export class EditEventComponent implements OnInit {
 
   public onSubmit = async () => {
     if (this.eventForm.invalid) {
+      console.log(this.eventForm.errors);
+      console.log('ds')
       return;
     }
 

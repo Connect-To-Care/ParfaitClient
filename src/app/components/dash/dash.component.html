@@ -41,7 +41,10 @@
                   matTooltip="Become an event facilitator">ENTER CODE
           </button>
           <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Edit event details"
-                  routerLink="/admin/events/{{ event._id }}">FACILITATOR EDIT
+                  routerLink="/admin/events/{{ event._id }}">EDIT
+          </button>
+          <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Enter event kiosk mode"
+                  routerLink="/admin/events/{{ event._id }}/signin">SIGNIN
           </button>
         </mat-card-actions>
       </mat-card>
@@ -68,6 +71,9 @@
               <mat-action-row>
                 <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Edit event details"
                         routerLink="/admin/events/{{ event._id }}">EDIT
+                </button>
+                <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Enter event kiosk mode"
+                        routerLink="/admin/events/{{ event._id }}/signin">SIGNIN
                 </button>
                 <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
                         matTooltip="Become an event facilitator">CODE
