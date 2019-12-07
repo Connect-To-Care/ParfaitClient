@@ -28,13 +28,13 @@ export class OAuthSuccessComponent implements OnInit {
 
       if (!this.apiService.userSession.data.user.name.checked) {
         if (returnUrl) {
-          await this.router.navigateByUrl('/nag/name?returnUrl=' + returnUrl);
+          await this.router.navigate(['/nag/name'], { queryParams: { returnUrl }});
         } else {
           await this.router.navigateByUrl('/nag/name');
         }
       } else if (!this.apiService.userSession.data.user.phone && !localStorage.getItem('phone-nag')) {
         if (returnUrl) {
-          await this.router.navigateByUrl('/nag/phone?returnUrl=' + returnUrl);
+          await this.router.navigate(['/nag/phone'], { queryParams: { returnUrl }});
         } else {
           await this.router.navigateByUrl('/nag/phone');
         }
