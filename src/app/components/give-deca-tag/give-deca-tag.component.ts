@@ -32,6 +32,7 @@ export class GiveDecaTagComponent implements OnInit {
     if (decaEvent) {
       try {
         await this.apiService.signUp(decaEvent._id);
+        this.snackbar.open('Successfully signed up for a CTC x DECA event!')._dismissAfter(5000);
       } catch (e) {
         this.bigError = e;
         this.snackbar.open(e)._dismissAfter(2000);
