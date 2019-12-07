@@ -98,14 +98,14 @@
       </form>
     </mat-card-content>
     <mat-card-actions>
-      <button color="primary" mat-raised-button routerLink="/admin/events">Back</button>
+      <button color="primary" mat-raised-button routerLink="/admin/events">BACK</button>
       <div fxFlex></div>
-      <button (click)="delete()" *ngIf="event" [disabled]="eventLoading" color="warn" mat-raised-button>Delete</button>
-      <button (click)="exportCsv()" *ngIf="event" [disabled]="eventLoading" color="primary" mat-raised-button>Export
+      <button (click)="delete()" *ngIf="event" [disabled]="eventLoading" color="warn" mat-raised-button>DELETE</button>
+      <button (click)="exportCsv()" *ngIf="event" [disabled]="eventLoading" color="primary" mat-raised-button>EXPORT
       </button>
-      <button (click)="onSubmit()" *ngIf="event" [disabled]="eventLoading" color="primary" mat-raised-button>Update
+      <button (click)="onSubmit()" *ngIf="event" [disabled]="eventLoading" color="primary" mat-raised-button>UPDATE
       </button>
-      <button (click)="onSubmit()" *ngIf="!event" [disabled]="eventLoading" color="primary" mat-raised-button>Create
+      <button (click)="onSubmit()" *ngIf="!event" [disabled]="eventLoading" color="primary" mat-raised-button>CREATE
       </button>
     </mat-card-actions>
   </mat-card>

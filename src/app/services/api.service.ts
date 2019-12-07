@@ -100,6 +100,14 @@ export class APIService {
     };
   }
 
+  public sendInvalidEmail = async (userId: string): Promise<void> => {
+    return (
+      (await this.httpClient.get<any>(
+        this.configService.config.apiRoot + 'users/' + userId.replace('/', '') + '/sendInvalid'
+      ).toPromise())
+    );
+  };
+
   public downloadCsv = async (eventId: string): Promise<Blob> => {
     return (
       (await this.httpClient.get<Blob>(

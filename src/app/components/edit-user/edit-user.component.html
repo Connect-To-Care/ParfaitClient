@@ -24,10 +24,11 @@
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
-      <button color="primary" mat-raised-button routerLink="/admin/users">Back</button>
+      <button color="primary" mat-raised-button routerLink="/admin/users">BACK</button>
       <div fxFlex></div>
-      <button (click)="giveAdmin()" *ngIf="!user.isAdmin" color="warn" mat-raised-button>Give admin</button>
-      <button (click)="removeAdmin()" *ngIf="user.isAdmin" color="warn" mat-raised-button>Remove admin</button>
+      <button (click)="invalidName()" color="primary" mat-raised-button matTooltip="Send an email informing the user they have an invalid name">FLAG NAME</button>
+      <button (click)="giveAdmin()" *ngIf="!user.isAdmin" color="warn" mat-raised-button>GIVE ADMIN</button>
+      <button (click)="removeAdmin()" *ngIf="user.isAdmin" color="warn" mat-raised-button>REMOVE ADMIN</button>
 
     </mat-card-actions>
   </mat-card>

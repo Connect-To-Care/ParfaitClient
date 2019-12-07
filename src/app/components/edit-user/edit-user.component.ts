@@ -80,4 +80,13 @@ export class EditUserComponent implements OnInit {
     }
     this.userLoading = false;
   };
+
+  public invalidName = async () => {
+    try {
+      await this.apiService.sendInvalidEmail(this.user._id);
+      this.snackbar.open('Email sent!')._dismissAfter(2000);
+    } catch (e) {
+      this.snackbar.open(e)._dismissAfter(2000);
+    }
+  };
 }
