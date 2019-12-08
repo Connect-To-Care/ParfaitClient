@@ -30,5 +30,5 @@ Keep in mind that you must point the Parfait client to use your custom API insta
 
 ## UPDATE: Where is the API code?
 
-We've decided to exclude the API source code from Github. If you'd like to use the Parfait API, <a href="mailto:contact@connect-tocare.org">contact us</a> to for access to the repo.
+We've decided to exclude the API source code from Github. If you'd like to use the Parfait API, <a href="mailto:contact@connect-tocare.org">contact us</a> to access the repo.
 
