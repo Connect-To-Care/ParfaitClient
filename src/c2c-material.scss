@@ -253,3 +253,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 .mat-card-actions .mat-button {
   margin: 0 !important;
 }
+
+.mat-button-base {
+  margin-left: 0 !important;
+}
