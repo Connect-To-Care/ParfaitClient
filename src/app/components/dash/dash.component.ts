@@ -1,29 +1,51 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {APIService, EventModel, MyEventsResponse} from '../../services/api.service';
-import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
-import {FacilitatorActionsDialogComponent} from '../facilitator-actions/facilitator-actions.component';
+import { Component, Inject, OnInit } from "@angular/core";
+import {
+  APIService,
+  EventModel,
+  MyEventsResponse
+} from "../../services/api.service";
+import {
+  animate,
+  query,
+  stagger,
+  style,
+  transition,
+  trigger
+} from "@angular/animations";
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+  MatSnackBar
+} from "@angular/material";
+import { FacilitatorActionsDialogComponent } from "../facilitator-actions/facilitator-actions.component";
 
 @Component({
-  selector: 'app-dash',
-  templateUrl: './dash.component.html',
-  styleUrls: ['./dash.component.scss'],
+  selector: "app-dash",
+  templateUrl: "./dash.component.html",
+  styleUrls: ["./dash.component.scss"],
   animations: [
-    trigger('listStagger', [
-      transition('* <=> *',
-        [
-          query(':enter', [
-            style({opacity: 0, transform: 'translateY(-15px)'}),
-            stagger('50ms',
-              animate('550ms ease-out',
-                style({opacity: .7, transform: 'translateY(0px)'})))
-          ], {optional: true})
-        ])
+    trigger("listStagger", [
+      transition("* <=> *", [
+        query(
+          ":enter",
+          [
+            style({ opacity: 0, transform: "translateY(-15px)" }),
+            stagger(
+              "50ms",
+              animate(
+                "550ms ease-out",
+                style({ opacity: 0.7, transform: "translateY(0px)" })
+              )
+            )
+          ],
+          { optional: true }
+        )
+      ])
     ])
   ]
 })
 export class DashComponent implements OnInit {
-
   availableEvents: Array<EventModel>;
   availableEventsSource: Array<EventModel>;
 
@@ -35,8 +57,7 @@ export class DashComponent implements OnInit {
     private readonly apiService: APIService,
     private readonly snackbar: MatSnackBar,
     private readonly dialog: MatDialog
-  ) {
-  }
+  ) {}
 
   async ngOnInit() {
     this.showUnqualified = false;
@@ -85,7 +106,7 @@ export class DashComponent implements OnInit {
   enterCode = async (event: EventModel): Promise<void> => {
     const dialogRef = this.dialog.open(FacilitatorAddDialogComponent, {
       data: {
-        code: ''
+        code: ""
       }
     });
 
@@ -109,7 +130,12 @@ export class DashComponent implements OnInit {
   };
 
   checkEventFacilitator = (event: EventModel): boolean => {
-    return event.facilitators.find(facilitator => facilitator._id === this.apiService.userSession.data.user._id) !== undefined;
+    return (
+      event.facilitators.find(
+        facilitator =>
+          facilitator._id === this.apiService.userSession.data.user._id
+      ) !== undefined
+    );
   };
 
   checkQualified = (event: EventModel): boolean => {
@@ -117,7 +143,9 @@ export class DashComponent implements OnInit {
       return true;
     }
 
-    return event.requiredTags.every(requiredTag => this.apiService.userSession.data.user.userTags.includes(requiredTag));
+    return event.requiredTags.every(requiredTag =>
+      this.apiService.userSession.data.user.userTags.includes(requiredTag)
+    );
   };
 
   updateUnqualified = () => {
@@ -126,9 +154,9 @@ export class DashComponent implements OnInit {
   };
 
   applyQualifiedFilter = () => {
-    this.availableEventsSource = (this.showUnqualified ?
-      this.availableEvents :
-      this.availableEvents.filter(event => this.checkQualified(event)));
+    this.availableEventsSource = this.showUnqualified
+      ? this.availableEvents
+      : this.availableEvents.filter(event => this.checkQualified(event));
   };
 
   openFacilitatorActions = (event: EventModel) => {
@@ -145,15 +173,14 @@ export interface FacilitatorAddDialogData {
 }
 
 @Component({
-  selector: 'app-facilitator-add',
-  templateUrl: 'facilitatorAdd.dialog.component.html',
+  selector: "app-facilitator-add",
+  templateUrl: "facilitatorAdd.dialog.component.html"
 })
 export class FacilitatorAddDialogComponent {
-
   constructor(
     public dialogRef: MatDialogRef<FacilitatorAddDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: FacilitatorAddDialogData) {
-  }
+    @Inject(MAT_DIALOG_DATA) public data: FacilitatorAddDialogData
+  ) {}
 
   onNoClick(): void {
     this.dialogRef.close();

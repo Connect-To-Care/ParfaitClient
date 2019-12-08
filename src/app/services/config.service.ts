@@ -1,6 +1,5 @@
-import {Injectable} from '@angular/core';
-import * as git from '../../../git.json';
-
+import { Injectable } from "@angular/core";
+import * as git from "../../../git.json";
 
 export interface Config {
   apiRoot: string;
@@ -11,21 +10,18 @@ export interface Config {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
-
 export class ConfigService {
-
-  constructor() {
-  }
+  constructor() {}
 
   get config(): Config {
     return {
-      apiRoot: 'http://localhost:3000/',
-      googleOAuthURL: 'http://localhost:3000/auth/google',
-      rootUrl: 'http://localhost:4200/',
+      apiRoot: "http://localhost:3000/",
+      googleOAuthURL: "http://localhost:3000/auth/google",
+      rootUrl: "http://localhost:4200/",
       debug: true,
-      hash: git.raw || 'Unknown'
+      hash: git.raw || "Unknown"
     };
   }
 }

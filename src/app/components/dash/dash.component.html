@@ -40,8 +40,8 @@
           <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
                   matTooltip="Become an event facilitator">ENTER CODE
           </button>
-          <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Facilitator actions"
-                  (click)="openFacilitatorActions(event)">ACTIONS
+          <button (click)="openFacilitatorActions(event)" *ngIf="checkEventFacilitator(event)" mat-button
+                  matTooltip="Facilitator actions">ACTIONS
           </button>
         </mat-card-actions>
       </mat-card>
@@ -66,8 +66,8 @@
               </mat-expansion-panel-header>
               <app-event-details [event]="event"></app-event-details>
               <mat-action-row>
-                <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Facilitator actions"
-                        (click)="openFacilitatorActions(event)">ACTIONS
+                <button (click)="openFacilitatorActions(event)" *ngIf="checkEventFacilitator(event)" mat-button
+                        matTooltip="Facilitator actions">ACTIONS
                 </button>
                 <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
                         matTooltip="Become an event facilitator">CODE
@@ -95,8 +95,8 @@
               <app-event-details [event]="event"></app-event-details>
               <mat-action-row>
                 <button (click)="drop(event)" mat-button>DROP</button>
-                <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Facilitator actions"
-                        (click)="openFacilitatorActions(event)">ACTIONS
+                <button (click)="openFacilitatorActions(event)" *ngIf="checkEventFacilitator(event)" mat-button
+                        matTooltip="Facilitator actions">ACTIONS
                 </button>
                 <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
                         matTooltip="Become an event facilitator">CODE
@@ -123,8 +123,8 @@
               </mat-expansion-panel-header>
               <app-event-details [event]="event"></app-event-details>
               <mat-action-row>
-                <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Facilitator actions"
-                        (click)="openFacilitatorActions(event)">ACTIONS
+                <button (click)="openFacilitatorActions(event)" *ngIf="checkEventFacilitator(event)" mat-button
+                        matTooltip="Facilitator actions">ACTIONS
                 </button>
                 <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
                         matTooltip="Become an event facilitator">CODE

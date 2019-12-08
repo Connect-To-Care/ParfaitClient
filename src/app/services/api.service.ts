@@ -1,9 +1,11 @@
-import {Injectable} from '@angular/core';
-import {ConfigService} from './config.service';
-import {HttpClient} from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { ConfigService } from "./config.service";
+import { HttpClient } from "@angular/common/http";
 
 export enum SigninCodeStatus {
-  NOT_CLAIMED = 'NOT_CLAIMED', PENDING = 'PENDING', CLAIMED = 'CLAIMED',
+  NOT_CLAIMED = "NOT_CLAIMED",
+  PENDING = "PENDING",
+  CLAIMED = "CLAIMED"
 }
 
 export interface SigninCodeModel {
@@ -13,7 +15,7 @@ export interface SigninCodeModel {
 }
 
 export enum AuthStrategy {
-  GOOGLE = 'google',
+  GOOGLE = "google"
 }
 
 export interface OAuthProviderIdentity {
@@ -62,7 +64,7 @@ export interface EventModel {
   recurring?: {
     days: number;
     hasRecurred: boolean;
-  }
+  };
   signinCodes: Array<SigninCodeModel>;
 }
 
@@ -73,19 +75,16 @@ export interface MyEventsResponse {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
-
 export class APIService {
-
   constructor(
     private readonly configService: ConfigService,
-    private readonly httpClient: HttpClient,
-  ) {
-  }
+    private readonly httpClient: HttpClient
+  ) {}
 
   get userSession(): UserSession {
-    const sessionJwt = localStorage.getItem('session');
+    const sessionJwt = localStorage.getItem("session");
 
     if (!sessionJwt) {
       return undefined;
@@ -93,7 +92,7 @@ export class APIService {
 
     let sessionJson;
     try {
-      sessionJson = JSON.parse(atob(sessionJwt.split('.')[1]));
+      sessionJson = JSON.parse(atob(sessionJwt.split(".")[1]));
     } catch (e) {
       return undefined;
     }
@@ -105,226 +104,245 @@ export class APIService {
   }
 
   public sendInvalidEmail = async (userId: string): Promise<void> => {
-    return (
-      (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'users/' + userId.replace('/', '') + '/sendInvalid'
-      ).toPromise())
-    );
+    return await this.httpClient
+      .get<any>(
+        this.configService.config.apiRoot +
+          "users/" +
+          userId.replace("/", "") +
+          "/sendInvalid"
+      )
+      .toPromise();
   };
 
   public downloadCsv = async (eventId: string): Promise<Blob> => {
-    return (
-      (await this.httpClient.get<Blob>(
-        this.configService.config.apiRoot + 'events/' + eventId.replace('/', '') + '/export', {responseType: 'blob' as 'json'}
-      ).toPromise())
-    );
+    return await this.httpClient
+      .get<Blob>(
+        this.configService.config.apiRoot +
+          "events/" +
+          eventId.replace("/", "") +
+          "/export",
+        { responseType: "blob" as "json" }
+      )
+      .toPromise();
   };
 
   public attend = async (eventId: string, userId: string): Promise<void> => {
-    return (
-      (await this.httpClient.post<any>(
-        this.configService.config.apiRoot + 'events/' + eventId.replace('/', '') + '/attend',
+    return await this.httpClient
+      .post<any>(
+        this.configService.config.apiRoot +
+          "events/" +
+          eventId.replace("/", "") +
+          "/attend",
         {
           userId
         }
-      ).toPromise())
-    );
+      )
+      .toPromise();
   };
 
   public unattend = async (eventId: string, userId: string): Promise<void> => {
-    return (
-      (await this.httpClient.post<any>(
-        this.configService.config.apiRoot + 'events/' + eventId.replace('/', '') + '/unattend',
+    return await this.httpClient
+      .post<any>(
+        this.configService.config.apiRoot +
+          "events/" +
+          eventId.replace("/", "") +
+          "/unattend",
         {
           userId
         }
-      ).toPromise())
-    );
+      )
+      .toPromise();
   };
 
   public giveDecaTag = async (): Promise<void> => {
-    const data = (
-      (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'extra/deca'
-      ).toPromise())
-    );
+    const data = await this.httpClient
+      .get<any>(this.configService.config.apiRoot + "extra/deca")
+      .toPromise();
     this.saveJwt(data.newToken);
   };
 
-  public editEvent = async (eventId: string, data: EventModel): Promise<EventModel> => {
-    return (
-      (await this.httpClient.post<any>(
-        this.configService.config.apiRoot + 'events/' + eventId.replace('/', ''),
-        {...data}
-      ).toPromise()) as EventModel
-    );
+  public editEvent = async (
+    eventId: string,
+    data: EventModel
+  ): Promise<EventModel> => {
+    return (await this.httpClient
+      .post<any>(
+        this.configService.config.apiRoot +
+          "events/" +
+          eventId.replace("/", ""),
+        { ...data }
+      )
+      .toPromise()) as EventModel;
   };
 
   public deleteEvent = async (eventId: string): Promise<EventModel> => {
-    return (
-      (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'events/' + eventId.replace('/', '') + '/delete'
-      ).toPromise()) as EventModel
-    );
+    return (await this.httpClient
+      .get<any>(
+        this.configService.config.apiRoot +
+          "events/" +
+          eventId.replace("/", "") +
+          "/delete"
+      )
+      .toPromise()) as EventModel;
   };
 
   public addEvent = async (data: EventModel): Promise<EventModel> => {
-    return (
-      (await this.httpClient.post<any>(
-        this.configService.config.apiRoot + 'events/',
-        {...data}
-      ).toPromise()) as EventModel
-    );
+    return (await this.httpClient
+      .post<any>(this.configService.config.apiRoot + "events/", { ...data })
+      .toPromise()) as EventModel;
   };
 
   public getEvent = async (eventId: string): Promise<EventModel> => {
-    return (
-      (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'events/' + eventId.replace('/', '') // Prevent //'s from escaping the url
-      ).toPromise()) as EventModel
-    );
+    return (await this.httpClient
+      .get<any>(
+        this.configService.config.apiRoot + "events/" + eventId.replace("/", "") // Prevent //'s from escaping the url
+      )
+      .toPromise()) as EventModel;
   };
 
   public getEvents = async (): Promise<EventModel[]> => {
-    return (
-      (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'events/'
-      ).toPromise())
-    );
+    return await this.httpClient
+      .get<any>(this.configService.config.apiRoot + "events/")
+      .toPromise();
   };
 
   public addTag = async (userId: string, tag: string): Promise<void> => {
-    return (
-      (await this.httpClient.post<any>(
-        this.configService.config.apiRoot + 'users/' + userId.replace('/', '') + '/addTag', {
+    return await this.httpClient
+      .post<any>(
+        this.configService.config.apiRoot +
+          "users/" +
+          userId.replace("/", "") +
+          "/addTag",
+        {
           tag
         }
-      ).toPromise())
-    );
+      )
+      .toPromise();
   };
 
   public removeTag = async (userId: string, tag: string): Promise<void> => {
-    return (
-      (await this.httpClient.post<any>(
-        this.configService.config.apiRoot + 'users/' + userId.replace('/', '') + '/removeTag', {
+    return await this.httpClient
+      .post<any>(
+        this.configService.config.apiRoot +
+          "users/" +
+          userId.replace("/", "") +
+          "/removeTag",
+        {
           tag
         }
-      ).toPromise())
-    );
+      )
+      .toPromise();
   };
 
   public giveAdmin = async (userId: string): Promise<void> => {
-    return (
-      (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'users/' + userId.replace('/', '') + '/makeAdmin'
-      ).toPromise())
-    );
+    return await this.httpClient
+      .get<any>(
+        this.configService.config.apiRoot +
+          "users/" +
+          userId.replace("/", "") +
+          "/makeAdmin"
+      )
+      .toPromise();
   };
 
   public removeAdmin = async (userId: string): Promise<void> => {
-    return (
-      (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'users/' + userId.replace('/', '') + '/removeAdmin'
-      ).toPromise())
-    );
+    return await this.httpClient
+      .get<any>(
+        this.configService.config.apiRoot +
+          "users/" +
+          userId.replace("/", "") +
+          "/removeAdmin"
+      )
+      .toPromise();
   };
 
   public getUserByEmail = async (email: string): Promise<UserModel> => {
-    return (
-      (await this.httpClient.post<any>(
-        this.configService.config.apiRoot + 'users/checkEmail', {
-          email
-        }
-      ).toPromise()) as UserModel
-    );
+    return (await this.httpClient
+      .post<any>(this.configService.config.apiRoot + "users/checkEmail", {
+        email
+      })
+      .toPromise()) as UserModel;
   };
 
   public getUser = async (userId: string): Promise<UserModel> => {
-    return (
-      (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'users/' + userId.replace('/', '') // Prevent //'s from escaping the url
-      ).toPromise()) as UserModel
-    );
+    return (await this.httpClient
+      .get<any>(
+        this.configService.config.apiRoot + "users/" + userId.replace("/", "") // Prevent //'s from escaping the url
+      )
+      .toPromise()) as UserModel;
   };
 
   public getUsers = async (): Promise<Array<UserModel>> => {
-    return (
-      (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'users'
-      ).toPromise()) as Array<UserModel>
-    );
+    return (await this.httpClient
+      .get<any>(this.configService.config.apiRoot + "users")
+      .toPromise()) as Array<UserModel>;
   };
 
   public signUp = async (eventId: string): Promise<void> => {
-    return (
-      (await this.httpClient.post<any>(
-        this.configService.config.apiRoot + 'events/me/signUp/', {
-          eventId
-        }
-      ).toPromise())
-    );
+    return await this.httpClient
+      .post<any>(this.configService.config.apiRoot + "events/me/signUp/", {
+        eventId
+      })
+      .toPromise();
   };
 
   public changeName = async (name: string): Promise<void> => {
-    const data = (await this.httpClient.post<any>(
-      this.configService.config.apiRoot + 'users/me/updateName/', {
+    const data = (await this.httpClient
+      .post<any>(this.configService.config.apiRoot + "users/me/updateName/", {
         name
-      }
-    ).toPromise()) as {
-      newToken: string
+      })
+      .toPromise()) as {
+      newToken: string;
     };
     this.saveJwt(data.newToken);
   };
 
   public changePhoneNumber = async (phoneNumber: string): Promise<void> => {
-    const data = (await this.httpClient.post<any>(
-      this.configService.config.apiRoot + 'users/me/updatePhone/', {
+    const data = (await this.httpClient
+      .post<any>(this.configService.config.apiRoot + "users/me/updatePhone/", {
         phoneNumber
-      }
-    ).toPromise()) as {
-      newToken: string
+      })
+      .toPromise()) as {
+      newToken: string;
     };
     this.saveJwt(data.newToken);
   };
 
   public drop = async (eventId: string): Promise<void> => {
-    return (
-      (await this.httpClient.post<any>(
-        this.configService.config.apiRoot + 'events/me/drop/', {
-          eventId
-        }
-      ).toPromise())
-    );
+    return await this.httpClient
+      .post<any>(this.configService.config.apiRoot + "events/me/drop/", {
+        eventId
+      })
+      .toPromise();
   };
 
   public getMyEvents = async (): Promise<MyEventsResponse> => {
-    return (
-      (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'events/me/events/'
-      ).toPromise()) as MyEventsResponse
-    );
+    return (await this.httpClient
+      .get<any>(this.configService.config.apiRoot + "events/me/events/")
+      .toPromise()) as MyEventsResponse;
   };
 
   public enterCode = async (eventId: string, code: string): Promise<void> => {
-    return (
-      (await this.httpClient.post<any>(
-        this.configService.config.apiRoot + 'events/' + eventId.replace('/', '') + '/enterCode',
+    return await this.httpClient
+      .post<any>(
+        this.configService.config.apiRoot +
+          "events/" +
+          eventId.replace("/", "") +
+          "/enterCode",
         {
           code
         }
-      ).toPromise())
-    );
+      )
+      .toPromise();
   };
 
   public getMyAvailableEvents = async (): Promise<Array<EventModel>> => {
-    return (
-      (await this.httpClient.get<any>(
-        this.configService.config.apiRoot + 'events/me/available/'
-      ).toPromise()) as Array<EventModel>
-    );
+    return (await this.httpClient
+      .get<any>(this.configService.config.apiRoot + "events/me/available/")
+      .toPromise()) as Array<EventModel>;
   };
 
-  public logOut = () => localStorage.removeItem('session');
+  public logOut = () => localStorage.removeItem("session");
 
-  public saveJwt = (jwt: string) => localStorage.setItem('session', jwt);
+  public saveJwt = (jwt: string) => localStorage.setItem("session", jwt);
 }

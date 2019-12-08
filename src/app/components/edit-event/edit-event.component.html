@@ -61,7 +61,8 @@
           <mat-chip-list #signedUpList aria-label="Signed up">
             <mat-chip (click)="toggleAttend(signUp)" (removed)="removeSignedUp(signUp.user)"
                       *ngFor="let signUp of eventForm.get('signedUp').value"
-                      [class.mat-chip-attended]="signUp.attended" [class.mat-chip-notattended]="!signUp.attended" [removable]="true"
+                      [class.mat-chip-attended]="signUp.attended" [class.mat-chip-notattended]="!signUp.attended"
+                      [removable]="true"
                       [selectable]="false"
                       matTooltip="{{ signUp.attended ? 'This user has attended' : 'This user has not attended' }}">
               {{signUp.user.name.fullName}}

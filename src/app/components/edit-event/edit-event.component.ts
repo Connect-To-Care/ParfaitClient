@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {APIService, EventModel, SignupModel, UserModel} from '../../services/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MAT_DIALOG_DATA, MatChipInputEvent, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
@@ -77,7 +77,7 @@ export class EditEventComponent implements OnInit {
         const now = new Date();
         now.setMinutes(now.getMinutes() + 10); // 10 minute gap before start
         if (new Date(this.event.startTime).getTime() < now.getTime() && new Date(this.event.endTime).getTime() > now.getTime()) {
-          console.log('ree')
+          console.log('ree');
           // This event is currently occurring
           this.dialog.open(EditWarningDialogComponent);
         }

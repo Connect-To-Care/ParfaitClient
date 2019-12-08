@@ -1,19 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {APIService, UserModel} from '../../services/api.service';
+import { Component, OnInit } from "@angular/core";
+import { APIService, UserModel } from "../../services/api.service";
 
 @Component({
-  selector: 'app-manage-users',
-  templateUrl: './manage-users.component.html',
-  styleUrls: ['./manage-users.component.scss'],
+  selector: "app-manage-users",
+  templateUrl: "./manage-users.component.html",
+  styleUrls: ["./manage-users.component.scss"]
 })
 export class ManageUsersComponent implements OnInit {
   users: Array<UserModel>;
   usersSource: Array<UserModel>;
 
-  constructor(
-    private readonly apiService: APIService
-  ) {
-  }
+  constructor(private readonly apiService: APIService) {}
 
   async ngOnInit() {
     await this.getUsers();
@@ -28,8 +25,10 @@ export class ManageUsersComponent implements OnInit {
   public applyFilter = (filter: string) => {
     if (filter) {
       this.usersSource = this.users.filter(
-        candidate => candidate.name.fullName.toLowerCase().includes(filter.toLowerCase()) ||
-          candidate._id.includes(filter)
+        candidate =>
+          candidate.name.fullName
+            .toLowerCase()
+            .includes(filter.toLowerCase()) || candidate._id.includes(filter)
       );
     } else {
       this.usersSource = this.users;

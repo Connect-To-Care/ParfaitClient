@@ -5,28 +5,45 @@
       <mat-card-title>Update your name</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>Connect To Care uses your name to verify your identity and issue you volunteer credit. Please verify your name
-        is up-to-date.</p>
+      <p>
+        Connect To Care uses your name to verify your identity and issue you
+        volunteer credit. Please verify your name is up-to-date.
+      </p>
       <form [formGroup]="nameForm">
         <mat-form-field>
-          <input formControlName="name" matInput
-                 maxlength="50" minlength="2" placeholder="Name">
+          <input
+            formControlName="name"
+            matInput
+            maxlength="50"
+            minlength="2"
+            placeholder="Name"
+          />
           <mat-error *ngIf="nameForm.get('name').hasError('required')">
             Name is <strong>required</strong>
           </mat-error>
           <mat-error
-            *ngIf="!nameForm.get('name').hasError('required') && nameForm.get('name').hasError('minlength')">
+            *ngIf="
+              !nameForm.get('name').hasError('required') &&
+              nameForm.get('name').hasError('minlength')
+            "
+          >
             Please a longer name
           </mat-error>
           <mat-error
-            *ngIf="!nameForm.get('name').hasError('required') && nameForm.get('name').hasError('maxlength')">
+            *ngIf="
+              !nameForm.get('name').hasError('required') &&
+              nameForm.get('name').hasError('maxlength')
+            "
+          >
             Please a shorter name
           </mat-error>
         </mat-form-field>
       </form>
     </mat-card-content>
     <mat-card-actions>
-      <button (click)="onSubmit()" [disabled]="nameFormLoading" mat-button>Update</button>
+      <button (click)="onSubmit()" [disabled]="nameFormLoading" mat-button>
+        Update
+      </button>
     </mat-card-actions>
   </mat-card>
 </app-navbar>

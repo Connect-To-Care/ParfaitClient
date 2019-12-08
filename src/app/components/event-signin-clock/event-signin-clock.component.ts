@@ -17,7 +17,8 @@ export class EventSigninClockComponent implements OnInit {
   @Input() event: EventModel;
 
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.updateTime();

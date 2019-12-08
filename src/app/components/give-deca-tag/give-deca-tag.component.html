@@ -7,7 +7,7 @@
       <mat-card-title>Please wait...</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <img src="/assets/deca2019.png" alt="DECA Logo">
+      <img alt="DECA Logo" src="/assets/deca2019.png">
       <p *ngIf="!bigError">Please wait, checking for CTC x DECA events...</p>
       <p *ngIf="bigError" class="error"><b>Sorry, failed to sign up:</b> {{ bigError }}</p>
     </mat-card-content>

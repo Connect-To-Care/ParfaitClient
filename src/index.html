@@ -1,121 +1,187 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- META TAGS -->
-  <meta charset="utf-8">
-  <title>Connect To Care</title>
-  <base href="/">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <meta content="Connect To Care online volunteer platform. Volunteer with us!" name="description">
-  <meta content="volunteer opportunities near me, connect to care volunteering" name="keywords">
-  <meta content="Alec Dusheck, Connect To Care" name="author">
-  <meta content="#4275ff" name="theme-color"/>
-  <meta content="Connect To Care" name="application-name"/>
-  <meta content="#4275ff" name="msapplication-TileColor"/>
-  <meta content="CScIG-i2eJavFUT-vmURiQq5GthnexhHzHZggajcxVU" name="google-site-verification"/>
+  <head>
+    <!-- META TAGS -->
+    <meta charset="utf-8" />
+    <title>Connect To Care</title>
+    <base href="/" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta
+      content="Connect To Care online volunteer platform. Volunteer with us!"
+      name="description"
+    />
+    <meta
+      content="volunteer opportunities near me, connect to care volunteering"
+      name="keywords"
+    />
+    <meta content="Alec Dusheck, Connect To Care" name="author" />
+    <meta content="#4275ff" name="theme-color" />
+    <meta content="Connect To Care" name="application-name" />
+    <meta content="#4275ff" name="msapplication-TileColor" />
+    <meta
+      content="CScIG-i2eJavFUT-vmURiQq5GthnexhHzHZggajcxVU"
+      name="google-site-verification"
+    />
 
-  <!-- SERVICE WORKERS -->
-  <link href="manifest.webmanifest" rel="manifest">
+    <!-- SERVICE WORKERS -->
+    <link href="manifest.webmanifest" rel="manifest" />
 
-  <!-- PREFETCH DNS FOR API AND MAIN SITE -->
-  <link href="//api.connect-tocare.org" rel="dns-prefetch">
-  <link href="//connect-tocare.org" rel="dns-prefetch">
+    <!-- PREFETCH DNS FOR API AND MAIN SITE -->
+    <link href="//api.connect-tocare.org" rel="dns-prefetch" />
+    <link href="//connect-tocare.org" rel="dns-prefetch" />
 
-  <!-- 3RD PARTY STYLES -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- 3RD PARTY STYLES -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
 
-  <!-- ICONS -->
-  <link href="/assets/icons/favicon.ico" rel="icon" type="image/x-icon">
-  <link href="/assets/icons/icon-72x72.png" rel="icon" sizes="72x72" type="image/png"/>
-  <link href="/assets/icons/icon-96x96.png" rel="icon" sizes="96x96" type="image/png"/>
-  <link href="/assets/icons/icon-128x128.png" rel="icon" sizes="128x128" type="image/png"/>
-  <link href="/assets/icons/icon-144x144.png" rel="icon" sizes="144x144" type="image/png"/>
-  <link href="/assets/icons/icon-152x152.png" rel="icon" sizes="152x152" type="image/png"/>
-  <link href="/assets/icons/icon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
-  <link href="/assets/icons/icon-384x384.png" rel="icon" sizes="384x384" type="image/png"/>
-  <link href="/assets/icons/icon-512x512.png" rel="icon" sizes="512x512" type="image/png"/>
+    <!-- ICONS -->
+    <link href="/assets/icons/favicon.ico" rel="icon" type="image/x-icon" />
+    <link
+      href="/assets/icons/icon-72x72.png"
+      rel="icon"
+      sizes="72x72"
+      type="image/png"
+    />
+    <link
+      href="/assets/icons/icon-96x96.png"
+      rel="icon"
+      sizes="96x96"
+      type="image/png"
+    />
+    <link
+      href="/assets/icons/icon-128x128.png"
+      rel="icon"
+      sizes="128x128"
+      type="image/png"
+    />
+    <link
+      href="/assets/icons/icon-144x144.png"
+      rel="icon"
+      sizes="144x144"
+      type="image/png"
+    />
+    <link
+      href="/assets/icons/icon-152x152.png"
+      rel="icon"
+      sizes="152x152"
+      type="image/png"
+    />
+    <link
+      href="/assets/icons/icon-192x192.png"
+      rel="icon"
+      sizes="192x192"
+      type="image/png"
+    />
+    <link
+      href="/assets/icons/icon-384x384.png"
+      rel="icon"
+      sizes="384x384"
+      type="image/png"
+    />
+    <link
+      href="/assets/icons/icon-512x512.png"
+      rel="icon"
+      sizes="512x512"
+      type="image/png"
+    />
 
-
-  <!-- APP LOADER STYLES -->
-  <style>
-    .loader {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-    }
-
-    .loader .logo {
-      width: 75px;
-      height: 75px;
-      background: url("/assets/logo.png") center center no-repeat;
-      background-size: cover;
-    }
-
-    .loader .spinner {
-      height: 200px;
-      width: 200px;
-      animation: rotate 2s linear infinite;
-      transform-origin: center center;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
-    }
-
-    .loader .spinner .path {
-      stroke-dasharray: 1, 200;
-      stroke-dashoffset: 0;
-      animation: dash 1.5s ease-in-out infinite;
-      stroke-linecap: round;
-      stroke: #ddd;
-    }
-
-    @keyframes rotate {
-      100% {
-        transform: rotate(360deg);
+    <!-- APP LOADER STYLES -->
+    <style>
+      .loader {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
       }
-    }
 
-    @keyframes dash {
-      0% {
+      .loader .logo {
+        width: 75px;
+        height: 75px;
+        background: url("/assets/logo.png") center center no-repeat;
+        background-size: cover;
+      }
+
+      .loader .spinner {
+        height: 200px;
+        width: 200px;
+        animation: rotate 2s linear infinite;
+        transform-origin: center center;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+
+      .loader .spinner .path {
         stroke-dasharray: 1, 200;
         stroke-dashoffset: 0;
+        animation: dash 1.5s ease-in-out infinite;
+        stroke-linecap: round;
+        stroke: #ddd;
       }
-      50% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -35px;
+
+      @keyframes rotate {
+        100% {
+          transform: rotate(360deg);
+        }
       }
-      100% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -124px;
+
+      @keyframes dash {
+        0% {
+          stroke-dasharray: 1, 200;
+          stroke-dashoffset: 0;
+        }
+        50% {
+          stroke-dasharray: 89, 200;
+          stroke-dashoffset: -35px;
+        }
+        100% {
+          stroke-dasharray: 89, 200;
+          stroke-dashoffset: -124px;
+        }
       }
-    }
-  </style>
-</head>
-<body>
-<!-- ANGULAR ROOT -->
-<app-root>
-  <div class="loader">
-    <div class="logo"></div>
-    <svg class="spinner" viewBox="25 25 50 50">
-      <circle class="path" cx="50" cy="50" fill="none" r="20" stroke-miterlimit="10" stroke-width="2"/>
-    </svg>
-  </div>
-</app-root>
-<!-- IN CASE JS ISN'T AVAILABLE -->
-<noscript>
-  <p>
-    This website requires Javascript. Please consult your browser settings to enable Javascript.
-  </p>
-  <p><b>Why?</b> Our website is built using Javascript technology and requires it to display content</p>
-</noscript>
-</body>
+    </style>
+  </head>
+  <body>
+    <!-- ANGULAR ROOT -->
+    <app-root>
+      <div class="loader">
+        <div class="logo"></div>
+        <svg class="spinner" viewBox="25 25 50 50">
+          <circle
+            class="path"
+            cx="50"
+            cy="50"
+            fill="none"
+            r="20"
+            stroke-miterlimit="10"
+            stroke-width="2"
+          />
+        </svg>
+      </div>
+    </app-root>
+    <!-- IN CASE JS ISN'T AVAILABLE -->
+    <noscript>
+      <p>
+        This website requires Javascript. Please consult your browser settings
+        to enable Javascript.
+      </p>
+      <p>
+        <b>Why?</b> Our website is built using Javascript technology and
+        requires it to display content
+      </p>
+    </noscript>
+  </body>
 </html>
 <!--
 Connect To Care, an Eden Prairie-based non-profit. For students, by students.
