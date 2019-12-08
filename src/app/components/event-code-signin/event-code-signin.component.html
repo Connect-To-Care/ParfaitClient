@@ -5,5 +5,5 @@
   <mat-progress-bar *ngIf="expireIn" mode="determinate" value="{{ (expireIn/30) * 100 }}"></mat-progress-bar>
   <app-event-signin-clock [event]="event"></app-event-signin-clock>
   <ngx-qrcode *ngIf="currentCode" [qrc-element-type]="'url'" [qrc-value] = "currentCodeUrl"></ngx-qrcode>
-  <p *ngIf="currentCode"><b>Scan the code above to automatically signin</b></p>
+  <h2 *ngIf="currentCode"><b>Scan the code above to automatically signin</b></h2>
 </app-navbar>
