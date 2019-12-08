@@ -26,9 +26,7 @@
           </mat-expansion-panel-header>
           <app-event-details [event]="event"></app-event-details>
           <mat-action-row>
-            <button mat-button routerLink="/admin/events/{{ event._id }}">EDIT</button>
-            <button mat-button routerLink="/admin/events/{{ event._id }}/signin/manual">MANUAL SIGNIN</button>
-            <button mat-button routerLink="/admin/events/{{ event._id }}/signin">KIOSK SIGNIN</button>
+            <button mat-button (click)="openFacilitatorActions(event)">ACTIONS</button>
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>
@@ -56,7 +54,7 @@
           </mat-expansion-panel-header>
           <app-event-details [event]="event"></app-event-details>
           <mat-action-row>
-            <button mat-button routerLink="/admin/events/{{ event._id }}">EDIT</button>
+            <button mat-button (click)="openFacilitatorActions(event)">ACTIONS</button>
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>

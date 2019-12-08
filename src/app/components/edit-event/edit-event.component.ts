@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
 import {APIService, EventModel, SignupModel, UserModel} from '../../services/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MAT_DIALOG_DATA, MatChipInputEvent, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
@@ -73,6 +73,14 @@ export class EditEventComponent implements OnInit {
           requiredTags: this.event.requiredTags,
           signinCodes: this.event.signinCodes,
         });
+
+        const now = new Date();
+        now.setMinutes(now.getMinutes() + 10); // 10 minute gap before start
+        if (new Date(this.event.startTime).getTime() < now.getTime() && new Date(this.event.endTime).getTime() > now.getTime()) {
+          console.log('ree')
+          // This event is currently occurring
+          this.dialog.open(EditWarningDialogComponent);
+        }
       } catch (e) {
         if (e === 'Forbidden resource') { // The user lied! This don't have access to this
           await this.router.navigateByUrl('/');
@@ -185,7 +193,7 @@ export class EditEventComponent implements OnInit {
   public onSubmit = async () => {
     if (this.eventForm.invalid) {
       console.log(this.eventForm.errors);
-      console.log('ds')
+      console.log('ds');
       return;
     }
 
@@ -244,6 +252,22 @@ export class DeleteEventDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DeleteEventDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: FacilitatorAddDialogData) {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'app-edit-warning',
+  templateUrl: 'editWarning.dialog.component.html',
+})
+export class EditWarningDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<DeleteEventDialogComponent>
+  ) {
   }
 
   onNoClick(): void {

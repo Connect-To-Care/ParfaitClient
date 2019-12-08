@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {APIService, EventModel, MyEventsResponse} from '../../services/api.service';
 import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
+import {FacilitatorActionsDialogComponent} from '../facilitator-actions/facilitator-actions.component';
 
 @Component({
   selector: 'app-dash',
@@ -152,26 +153,6 @@ export class FacilitatorAddDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<FacilitatorAddDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: FacilitatorAddDialogData) {
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-export interface FacilitatorActionsDialogData {
-  event: EventModel;
-}
-
-@Component({
-  selector: 'app-facilitator-actions',
-  templateUrl: 'facilitatorActions.dialog.component.html',
-})
-export class FacilitatorActionsDialogComponent {
-
-  constructor(
-    public dialogRef: MatDialogRef<FacilitatorAddDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: FacilitatorActionsDialogData) {
   }
 
   onNoClick(): void {

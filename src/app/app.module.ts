@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './components/app/app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavbarComponent} from './components/navbar/navbar.component';
-import {DashComponent, FacilitatorActionsDialogComponent, FacilitatorAddDialogComponent} from './components/dash/dash.component';
+import {DashComponent, FacilitatorAddDialogComponent} from './components/dash/dash.component';
 import {
   MatBadgeModule,
   MatButtonModule,
@@ -48,7 +48,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import * as Sentry from '@sentry/browser';
 import {ManageEventsComponent} from './components/manage-events/manage-events.component';
-import {DeleteEventDialogComponent, EditEventComponent} from './components/edit-event/edit-event.component';
+import {DeleteEventDialogComponent, EditEventComponent, EditWarningDialogComponent} from './components/edit-event/edit-event.component';
 import {EventDetailsComponent} from './components/event-details/event-details.component';
 import {MatDatepickerModule, MatMomentDateModule} from '@coachcare/datepicker';
 import {GiveDecaTagComponent} from './components/give-deca-tag/give-deca-tag.component';
@@ -61,6 +61,7 @@ import {environment} from '../environments/environment';
 import {EventCodeSigninComponent} from './components/event-code-signin/event-code-signin.component';
 import {EventSigninClockComponent} from './components/event-signin-clock/event-signin-clock.component';
 import {NgxQRCodeModule} from 'ngx-qrcode2';
+import {FacilitatorActionsDialogComponent} from './components/facilitator-actions/facilitator-actions.component';
 
 // Sentry.init({
 //   dsn: 'https://0c84ea0d000c41958b0be30eccc3fa81@sentry.connect-tocare.org/2'
@@ -105,7 +106,8 @@ export class SentryErrorHandler implements ErrorHandler {
     NameNagComponent,
     EventCodeSigninComponent,
     EventSigninClockComponent,
-    FacilitatorActionsDialogComponent
+    FacilitatorActionsDialogComponent,
+    EditWarningDialogComponent
   ],
   imports: [
     HttpClientModule,
@@ -163,6 +165,7 @@ export class SentryErrorHandler implements ErrorHandler {
     FacilitatorAddDialogComponent,
     DeleteEventDialogComponent,
     FacilitatorActionsDialogComponent,
+    EditWarningDialogComponent,
   ],
   bootstrap: [AppComponent]
 })

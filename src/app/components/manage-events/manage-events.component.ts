@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {APIService, EventModel} from '../../services/api.service';
 import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
+import {FacilitatorActionsDialogComponent} from '../facilitator-actions/facilitator-actions.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-manage-events',
@@ -29,6 +31,7 @@ export class ManageEventsComponent implements OnInit {
 
   constructor(
     private readonly apiService: APIService,
+    private readonly dialog: MatDialog
   ) {
   }
 
@@ -58,6 +61,14 @@ export class ManageEventsComponent implements OnInit {
     } else {
       this.pastEventsSource = this.pastEvents;
     }
+  };
+
+  openFacilitatorActions = (event: EventModel) => {
+    this.dialog.open(FacilitatorActionsDialogComponent, {
+      data: {
+        event
+      }
+    });
   };
 
 }
