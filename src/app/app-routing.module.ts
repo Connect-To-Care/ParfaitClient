@@ -17,10 +17,10 @@ import {EditEventComponent} from './components/edit-event/edit-event.component';
 import {ManageEventsComponent} from './components/manage-events/manage-events.component';
 import {GiveDecaTagComponent} from './components/give-deca-tag/give-deca-tag.component';
 import {HomeComponent} from './components/home/home.component';
-import {EventSigninComponent} from './components/event-signin/event-signin.component';
+import {EventKioskManualComponent} from './components/event-kiosk-manual/event-kiosk-manual.component';
 import {AboutComponent} from './components/about/about.component';
 import {NameNagComponent} from './components/name-nag/name-nag.component';
-import {EventCodeSigninComponent} from './components/event-code-signin/event-code-signin.component';
+import {EventKioskCodeComponent} from './components/event-kiosk-code/event-kiosk-code.component';
 
 
 const routes: Routes = [
@@ -105,13 +105,13 @@ const routes: Routes = [
     canActivate: [AuthGuard] // We handle this on the page itself because the user may be a facilitator
   },
   {
-    path: 'admin/events/:event/signin/manual',
-    component: EventSigninComponent,
+    path: 'admin/events/:event/kiosk/manual',
+    component: EventKioskManualComponent,
     canActivate: [AuthGuard] // We handle this on the page itself because the user may be a facilitator
   },
   {
-    path: 'admin/events/:event/signin',
-    component: EventCodeSigninComponent,
+    path: 'admin/events/:event/kiosk/code',
+    component: EventKioskCodeComponent,
     canActivate: [AuthGuard] // We handle this on the page itself because the user may be a facilitator
   },
   {

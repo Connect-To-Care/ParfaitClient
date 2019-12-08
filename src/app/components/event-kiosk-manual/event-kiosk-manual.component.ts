@@ -10,9 +10,9 @@ import {MatSnackBar} from '@angular/material';
 import {DisplayUtil} from '../../../DisplayUtil';
 
 @Component({
-  selector: 'app-event-signin',
-  templateUrl: './event-signin.component.html',
-  styleUrls: ['./event-signin.component.scss'],
+  selector: 'app-event-kiosk-manual',
+  templateUrl: './event-kiosk-manual.component.html',
+  styleUrls: ['./event-kiosk-manual.component.scss'],
   animations: [
     trigger('listStagger', [
       transition('* <=> *',
@@ -27,7 +27,7 @@ import {DisplayUtil} from '../../../DisplayUtil';
     ])
   ]
 })
-export class EventSigninComponent implements OnInit, AfterViewInit {
+export class EventKioskManualComponent implements OnInit, AfterViewInit {
 
   public socket: SocketIOClient.Socket;
   public event: EventModel;

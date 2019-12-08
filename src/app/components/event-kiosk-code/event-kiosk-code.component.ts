@@ -14,11 +14,11 @@ import { DisplayUtil } from "../../../DisplayUtil";
 import { interval, Subscription } from "rxjs";
 
 @Component({
-  selector: "app-event-code-signin",
-  templateUrl: "./event-code-signin.component.html",
-  styleUrls: ["./event-code-signin.component.scss"]
+  selector: "app-event-kiosk-code",
+  templateUrl: "./event-kiosk-code.component.html",
+  styleUrls: ["./event-kiosk-code.component.scss"]
 })
-export class EventCodeSigninComponent implements OnInit, AfterViewInit {
+export class EventKioskCodeComponent implements OnInit, AfterViewInit {
   public expireInSubscription: Subscription;
   public expireIn: number;
 
@@ -71,6 +71,8 @@ export class EventCodeSigninComponent implements OnInit, AfterViewInit {
         this.expireIn = 30;
         this.currentCode = data;
         this.currentCodeUrl = `${this.configService.config.rootUrl}events/${this.event._id}/signin/${this.currentCode.code}`;
+        // tslint:disable-next-line:no-console
+        console.debug('New URL: ' + this.currentCodeUrl);
       }
     );
   };

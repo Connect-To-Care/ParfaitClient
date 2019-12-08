@@ -69,12 +69,12 @@ import {
 } from "@coachcare/datepicker";
 import { GiveDecaTagComponent } from "./components/give-deca-tag/give-deca-tag.component";
 import { HomeComponent } from "./components/home/home.component";
-import { EventSigninComponent } from "./components/event-signin/event-signin.component";
+import { EventKioskManualComponent } from "./components/event-kiosk-manual/event-kiosk-manual.component";
 import { AboutComponent } from "./components/about/about.component";
 import { NameNagComponent } from "./components/name-nag/name-nag.component";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
-import { EventCodeSigninComponent } from "./components/event-code-signin/event-code-signin.component";
+import { EventKioskCodeComponent } from "./components/event-kiosk-code/event-kiosk-code.component";
 import { EventSigninClockComponent } from "./components/event-signin-clock/event-signin-clock.component";
 import { NgxQRCodeModule } from "ngx-qrcode2";
 import { FacilitatorActionsDialogComponent } from "./components/facilitator-actions/facilitator-actions.component";
@@ -85,8 +85,6 @@ import { FacilitatorActionsDialogComponent } from "./components/facilitator-acti
 
 @Injectable()
 export class SentryErrorHandler implements ErrorHandler {
-  constructor() {}
-
   handleError(error) {
     const eventId = Sentry.captureException(error.originalError || error);
     Sentry.showReportDialog({ eventId });
@@ -116,10 +114,10 @@ export class SentryErrorHandler implements ErrorHandler {
     EventDetailsComponent,
     GiveDecaTagComponent,
     HomeComponent,
-    EventSigninComponent,
+    EventKioskManualComponent,
     AboutComponent,
     NameNagComponent,
-    EventCodeSigninComponent,
+    EventKioskCodeComponent,
     EventSigninClockComponent,
     FacilitatorActionsDialogComponent,
     EditWarningDialogComponent
