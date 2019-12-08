@@ -52,10 +52,10 @@ export interface SignupModel {
 
 export interface EventModel {
   displayName: string;
-  signedUp: Array<SignupModel>;
+  signedUp: SignupModel[];
   maxSignups: number;
   facilitatorCode: string;
-  facilitators: Array<UserModel>;
+  facilitators: UserModel[];
   startTime: string;
   endTime: string;
   description: string;
@@ -65,13 +65,13 @@ export interface EventModel {
     days: number;
     hasRecurred: boolean;
   };
-  signinCodes: Array<SigninCodeModel>;
+  signinCodes: SigninCodeModel[];
 }
 
 export interface MyEventsResponse {
-  past: Array<EventModel>;
-  now: Array<EventModel>;
-  future: Array<EventModel>;
+  past: EventModel[];
+  now: EventModel[];
+  future: EventModel[];
 }
 
 @Injectable({
@@ -104,7 +104,7 @@ export class APIService {
   }
 
   public sendInvalidEmail = async (userId: string): Promise<void> => {
-    return await this.httpClient
+    return this.httpClient
       .get<any>(
         this.configService.config.apiRoot +
           "users/" +
@@ -115,7 +115,7 @@ export class APIService {
   };
 
   public downloadCsv = async (eventId: string): Promise<Blob> => {
-    return await this.httpClient
+    return this.httpClient
       .get<Blob>(
         this.configService.config.apiRoot +
           "events/" +
@@ -127,7 +127,7 @@ export class APIService {
   };
 
   public attend = async (eventId: string, userId: string): Promise<void> => {
-    return await this.httpClient
+    return this.httpClient
       .post<any>(
         this.configService.config.apiRoot +
           "events/" +
@@ -141,7 +141,7 @@ export class APIService {
   };
 
   public unattend = async (eventId: string, userId: string): Promise<void> => {
-    return await this.httpClient
+    return this.httpClient
       .post<any>(
         this.configService.config.apiRoot +
           "events/" +
@@ -201,13 +201,13 @@ export class APIService {
   };
 
   public getEvents = async (): Promise<EventModel[]> => {
-    return await this.httpClient
+    return this.httpClient
       .get<any>(this.configService.config.apiRoot + "events/")
       .toPromise();
   };
 
   public addTag = async (userId: string, tag: string): Promise<void> => {
-    return await this.httpClient
+    return this.httpClient
       .post<any>(
         this.configService.config.apiRoot +
           "users/" +
@@ -221,7 +221,7 @@ export class APIService {
   };
 
   public removeTag = async (userId: string, tag: string): Promise<void> => {
-    return await this.httpClient
+    return this.httpClient
       .post<any>(
         this.configService.config.apiRoot +
           "users/" +
@@ -235,7 +235,7 @@ export class APIService {
   };
 
   public giveAdmin = async (userId: string): Promise<void> => {
-    return await this.httpClient
+    return this.httpClient
       .get<any>(
         this.configService.config.apiRoot +
           "users/" +
@@ -246,7 +246,7 @@ export class APIService {
   };
 
   public removeAdmin = async (userId: string): Promise<void> => {
-    return await this.httpClient
+    return this.httpClient
       .get<any>(
         this.configService.config.apiRoot +
           "users/" +
@@ -272,14 +272,14 @@ export class APIService {
       .toPromise()) as UserModel;
   };
 
-  public getUsers = async (): Promise<Array<UserModel>> => {
+  public getUsers = async (): Promise<UserModel[]> => {
     return (await this.httpClient
       .get<any>(this.configService.config.apiRoot + "users")
-      .toPromise()) as Array<UserModel>;
+      .toPromise()) as UserModel[];
   };
 
   public signUp = async (eventId: string): Promise<void> => {
-    return await this.httpClient
+    return this.httpClient
       .post<any>(this.configService.config.apiRoot + "events/me/signUp/", {
         eventId
       })
@@ -309,7 +309,7 @@ export class APIService {
   };
 
   public drop = async (eventId: string): Promise<void> => {
-    return await this.httpClient
+    return this.httpClient
       .post<any>(this.configService.config.apiRoot + "events/me/drop/", {
         eventId
       })
@@ -323,7 +323,7 @@ export class APIService {
   };
 
   public enterCode = async (eventId: string, code: string): Promise<void> => {
-    return await this.httpClient
+    return this.httpClient
       .post<any>(
         this.configService.config.apiRoot +
           "events/" +
@@ -336,10 +336,10 @@ export class APIService {
       .toPromise();
   };
 
-  public getMyAvailableEvents = async (): Promise<Array<EventModel>> => {
+  public getMyAvailableEvents = async (): Promise<EventModel[]> => {
     return (await this.httpClient
       .get<any>(this.configService.config.apiRoot + "events/me/available/")
-      .toPromise()) as Array<EventModel>;
+      .toPromise()) as EventModel[];
   };
 
   public logOut = () => localStorage.removeItem("session");

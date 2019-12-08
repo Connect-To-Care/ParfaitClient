@@ -6,17 +6,17 @@ import { APIService } from "../../services/api.service";
   templateUrl: "./navbar.component.html",
   styleUrls: ["./navbar.component.scss"]
 })
-export class NavbarComponent implements OnInit {
-  @Input() hideLinks: boolean;
+export class NavbarComponent {
+  @Input() public hideLinks: boolean;
 
-  readonly navBarAnnouncements = [
+  public readonly navBarAnnouncements = [
     {
       title: "Back to site",
       url: "https://connect-tocare.org"
     }
   ];
 
-  readonly navBarLinks = [
+  public readonly navBarLinks = [
     {
       title: "Browse Events",
       url: "/dash",
@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
     }
   ];
 
-  readonly accountLoggedIn = [
+  public readonly accountLoggedIn = [
     {
       title: "My Account",
       url: "/account"
@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit {
     }
   ];
 
-  readonly accountLoggedOut = [
+  public readonly accountLoggedOut = [
     {
       title: "Login",
       url: "/login"
@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
     }
   ];
 
-  readonly navBarAdmin = [
+  public readonly navBarAdmin = [
     {
       title: "Manage Events",
       url: "/admin/events",
@@ -64,6 +64,4 @@ export class NavbarComponent implements OnInit {
   ];
 
   constructor(public readonly apiService: APIService) {}
-
-  ngOnInit() {}
 }

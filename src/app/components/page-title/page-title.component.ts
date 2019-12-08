@@ -5,14 +5,6 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './page-title.component.html',
   styleUrls: ['./page-title.component.scss']
 })
-export class PageTitleComponent implements OnInit {
-  @Input() title: string;
-
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
+export class PageTitleComponent {
+  @Input() public title: string;
 }

@@ -10,8 +10,8 @@ import {MatChipInputEvent, MatDialog, MatSnackBar} from '@angular/material';
 })
 export class EditUserComponent implements OnInit {
 
-  user: UserModel;
-  userLoading = false;
+  public user: UserModel;
+  public userLoading = false;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -21,7 +21,7 @@ export class EditUserComponent implements OnInit {
   ) {
   }
 
-  async ngOnInit() {
+  public async ngOnInit() {
     this.getUser();
   }
 

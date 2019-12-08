@@ -46,12 +46,12 @@ import { FacilitatorActionsDialogComponent } from "../facilitator-actions/facili
   ]
 })
 export class DashComponent implements OnInit {
-  availableEvents: Array<EventModel>;
-  availableEventsSource: Array<EventModel>;
+  public availableEvents: EventModel[];
+  public availableEventsSource: EventModel[];
 
-  myEvents: MyEventsResponse;
+  public myEvents: MyEventsResponse;
 
-  showUnqualified: boolean;
+  public showUnqualified: boolean;
 
   constructor(
     private readonly apiService: APIService,
@@ -59,14 +59,14 @@ export class DashComponent implements OnInit {
     private readonly dialog: MatDialog
   ) {}
 
-  async ngOnInit() {
+  public async ngOnInit() {
     this.showUnqualified = false;
 
     this.refreshEvents();
     this.refreshMyEvents();
   }
 
-  drop = async (event: EventModel) => {
+  public drop = async (event: EventModel) => {
     try {
       await this.apiService.drop(event._id);
       this.refreshEvents();
@@ -76,7 +76,7 @@ export class DashComponent implements OnInit {
     }
   };
 
-  refreshEvents = async () => {
+  public refreshEvents = async () => {
     try {
       this.availableEvents = await this.apiService.getMyAvailableEvents();
       this.applyQualifiedFilter();
@@ -85,7 +85,7 @@ export class DashComponent implements OnInit {
     }
   };
 
-  refreshMyEvents = async () => {
+  public refreshMyEvents = async () => {
     try {
       this.myEvents = await this.apiService.getMyEvents();
     } catch (e) {
@@ -93,7 +93,7 @@ export class DashComponent implements OnInit {
     }
   };
 
-  signUp = async (event: EventModel): Promise<void> => {
+  public signUp = async (event: EventModel): Promise<void> => {
     try {
       await this.apiService.signUp(event._id);
       this.refreshEvents();
@@ -103,7 +103,7 @@ export class DashComponent implements OnInit {
     }
   };
 
-  enterCode = async (event: EventModel): Promise<void> => {
+  public enterCode = async (event: EventModel): Promise<void> => {
     const dialogRef = this.dialog.open(FacilitatorAddDialogComponent, {
       data: {
         code: ""
@@ -119,7 +119,7 @@ export class DashComponent implements OnInit {
     });
   };
 
-  tryCode = async (event: EventModel, code: string) => {
+  public tryCode = async (event: EventModel, code: string) => {
     try {
       await this.apiService.enterCode(event._id, code);
       this.refreshMyEvents();
@@ -129,7 +129,7 @@ export class DashComponent implements OnInit {
     }
   };
 
-  checkEventFacilitator = (event: EventModel): boolean => {
+  public checkEventFacilitator = (event: EventModel): boolean => {
     return (
       event.facilitators.find(
         facilitator =>
@@ -138,7 +138,7 @@ export class DashComponent implements OnInit {
     );
   };
 
-  checkQualified = (event: EventModel): boolean => {
+  public checkQualified = (event: EventModel): boolean => {
     if (event.requiredTags.length === 0) {
       return true;
     }
@@ -148,18 +148,18 @@ export class DashComponent implements OnInit {
     );
   };
 
-  updateUnqualified = () => {
+  public updateUnqualified = () => {
     this.showUnqualified = !this.showUnqualified;
     this.applyQualifiedFilter();
   };
 
-  applyQualifiedFilter = () => {
+  public applyQualifiedFilter = () => {
     this.availableEventsSource = this.showUnqualified
       ? this.availableEvents
       : this.availableEvents.filter(event => this.checkQualified(event));
   };
 
-  openFacilitatorActions = (event: EventModel) => {
+  public openFacilitatorActions = (event: EventModel) => {
     this.dialog.open(FacilitatorActionsDialogComponent, {
       data: {
         event
@@ -182,7 +182,7 @@ export class FacilitatorAddDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: FacilitatorAddDialogData
   ) {}
 
-  onNoClick(): void {
+  public onNoClick(): void {
     this.dialogRef.close();
   }
 }

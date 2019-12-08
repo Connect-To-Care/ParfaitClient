@@ -13,7 +13,7 @@ export class DeauthGuard implements CanActivate {
   ) {
   }
 
-  canActivate(
+  public canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
     if (this.apiService.userSession) {

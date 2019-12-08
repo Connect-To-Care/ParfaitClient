@@ -7,14 +7,13 @@ import { APIService, UserModel } from "../../services/api.service";
   styleUrls: ["./manage-users.component.scss"]
 })
 export class ManageUsersComponent implements OnInit {
-  users: Array<UserModel>;
-  usersSource: Array<UserModel>;
+  public users: UserModel[];
+  public usersSource: UserModel[];
 
   constructor(private readonly apiService: APIService) {}
 
-  async ngOnInit() {
+  public async ngOnInit() {
     await this.getUsers();
-    console.log(this.usersSource);
   }
 
   public getUsers = async () => {

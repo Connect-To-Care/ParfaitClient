@@ -8,14 +8,14 @@ import {APIService, UserModel} from '../../services/api.service';
 })
 export class AccountComponent implements OnInit {
 
-  user: UserModel;
+  public user: UserModel;
 
   constructor(
     private readonly apiService: APIService
   ) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.user = this.apiService.userSession.data.user;
   }
 

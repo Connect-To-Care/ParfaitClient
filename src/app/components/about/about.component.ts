@@ -6,8 +6,6 @@ import { ConfigService } from "../../services/config.service";
   templateUrl: "./about.component.html",
   styleUrls: ["./about.component.scss"]
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent {
   constructor(public readonly configService: ConfigService) {}
-
-  ngOnInit() {}
 }

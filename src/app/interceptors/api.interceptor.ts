@@ -13,7 +13,7 @@ import { APIService } from "../services/api.service";
 export class APIInterceptor implements HttpInterceptor {
   constructor(private readonly apiService: APIService) {}
 
-  intercept(
+  public intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
@@ -28,7 +28,6 @@ export class APIInterceptor implements HttpInterceptor {
           // Make sure we clear the server on logout
           location.reload(true);
         }
-        console.log(err);
         const error = err.error.message || err.statusText;
         return throwError(error);
       })

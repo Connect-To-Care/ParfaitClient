@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this.configService.config.debug) {
       this.snackbar.open('Running in development mode. Using local API server.')._dismissAfter(2000);
     }

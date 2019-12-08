@@ -14,13 +14,9 @@ export class EventSigninClockComponent implements OnInit {
   public time: string;
   public minsLeft: number;
 
-  @Input() event: EventModel;
+  @Input() public event: EventModel;
 
-
-  constructor() {
-  }
-
-  ngOnInit() {
+  public ngOnInit() {
     this.updateTime();
     this.timeSubscription = interval(1000).subscribe(() => this.updateTime());
   }

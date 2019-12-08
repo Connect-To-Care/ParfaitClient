@@ -8,14 +8,14 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./oauth-login.component.scss"]
 })
 export class OAuthLoginComponent implements OnInit {
-  loading = false;
+  public loading = false;
 
   constructor(
     public readonly configService: ConfigService,
     private readonly activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     const decaLogin = this.activatedRoute.snapshot.queryParams.deca;
     const returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl;
 

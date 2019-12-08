@@ -16,7 +16,7 @@ export class OAuthSuccessComponent implements OnInit {
   ) {
   }
 
-  async ngOnInit() {
+  public async ngOnInit() {
     const jwt = this.activatedRoute.snapshot.paramMap.get('jwt');
     if (jwt) {
       this.apiService.saveJwt(jwt);

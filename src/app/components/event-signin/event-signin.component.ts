@@ -29,9 +29,9 @@ import {DisplayUtil} from '../../../DisplayUtil';
 })
 export class EventSigninComponent implements OnInit, AfterViewInit {
 
-  socket: SocketIOClient.Socket;
-  event: EventModel;
-  signedUp: Array<SignupModel>;
+  public socket: SocketIOClient.Socket;
+  public event: EventModel;
+  public signedUp: SignupModel[];
   private readonly elem: any;
 
   constructor(
@@ -45,7 +45,7 @@ export class EventSigninComponent implements OnInit, AfterViewInit {
     this.elem = document.documentElement;
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     const eventId = this.activatedRoute.snapshot.paramMap.get('event');
 
     this.socket = io.connect(this.configService.config.apiRoot + 'events');
@@ -66,7 +66,7 @@ export class EventSigninComponent implements OnInit, AfterViewInit {
     this.signedUp = event.signedUp.filter(signUp => !signUp.attended);
   };
 
-  ngAfterViewInit() {
+  public ngAfterViewInit() {
     DisplayUtil.openFullscreen(this.elem);
   }
 

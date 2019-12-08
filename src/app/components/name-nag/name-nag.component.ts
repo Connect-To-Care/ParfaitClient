@@ -10,12 +10,12 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./name-nag.component.scss']
 })
 export class NameNagComponent implements OnInit {
-  nameForm = new FormGroup({
+  public nameForm = new FormGroup({
     name: new FormControl('Example Name', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
   });
-  nameFormLoading = false;
+  public nameFormLoading = false;
 
-  returnUrl: string;
+  public returnUrl: string;
 
   constructor(
     private readonly router: Router,
@@ -26,7 +26,7 @@ export class NameNagComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/dash';
     this.getName();
   }

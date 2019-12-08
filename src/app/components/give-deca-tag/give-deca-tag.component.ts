@@ -9,7 +9,7 @@ import { MatSnackBar } from "@angular/material";
   styleUrls: ["./give-deca-tag.component.scss"]
 })
 export class GiveDecaTagComponent implements OnInit {
-  bigError: string;
+  public bigError: string;
 
   constructor(
     private readonly apiService: APIService,
@@ -17,7 +17,7 @@ export class GiveDecaTagComponent implements OnInit {
     private readonly snackbar: MatSnackBar
   ) {}
 
-  async ngOnInit() {
+  public async ngOnInit() {
     try {
       await this.apiService.giveDecaTag();
     } catch (e) {

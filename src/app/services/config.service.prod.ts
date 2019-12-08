@@ -13,8 +13,6 @@ export interface Config {
   providedIn: "root"
 })
 export class ConfigService {
-  constructor() {}
-
   get config(): Config {
     return {
       apiRoot: "https://api.connect-tocare.org/",

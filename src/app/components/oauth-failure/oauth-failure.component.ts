@@ -5,12 +5,5 @@ import {Component, OnInit} from '@angular/core';
   templateUrl: './oauth-failure.component.html',
   styleUrls: ['./oauth-failure.component.scss']
 })
-export class OAuthFailureComponent implements OnInit {
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
+export class OAuthFailureComponent {
 }

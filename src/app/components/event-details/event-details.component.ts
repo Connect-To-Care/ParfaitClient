@@ -7,22 +7,17 @@ import {DateUtil} from '../../../DateUtil';
   templateUrl: './event-details.component.html',
   styleUrls: ['./event-details.component.scss']
 })
-export class EventDetailsComponent implements OnInit {
+export class EventDetailsComponent {
 
-  @Input() event: EventModel;
+  @Input() public event: EventModel;
   public formatDate = DateUtil.formatDate; // Make this accessible in the component
 
-  constructor() {
-  }
 
-  ngOnInit() {
-  }
-
-  getSignUps = (event: EventModel): Array<UserModel> => {
+  public getSignUps = (event: EventModel): UserModel[] => {
     return event.signedUp.map(signUp => signUp.user);
   };
 
-  formatMembers = (people: UserModel[]): string => {
+  public formatMembers = (people: UserModel[]): string => {
     let members = '';
     people.forEach(member => {
       members += member.name.fullName + ', ';

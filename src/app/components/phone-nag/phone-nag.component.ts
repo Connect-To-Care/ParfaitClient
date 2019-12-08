@@ -5,7 +5,7 @@ import {ErrorStateMatcher, MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  public isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
     return !!(control && control.invalid);
   }
@@ -24,13 +24,13 @@ export interface PhoneNagData {
 export class PhoneNagComponent implements OnInit {
 
   // https://stackblitz.com/edit/angular-2m1vdq-7vzaq8?file=app%2Finput-error-state-matcher-example.html
-  phoneForm = new FormGroup({
+  public phoneForm = new FormGroup({
     phoneNumber: new FormControl('', [Validators.pattern('[6-9]\\d{9}')]),
   });
-  phoneFormLoading = false;
-  matcher = new MyErrorStateMatcher();
+  public phoneFormLoading = false;
+  public matcher = new MyErrorStateMatcher();
 
-  returnUrl: string;
+  public returnUrl: string;
 
   constructor(
     private readonly router: Router,
@@ -41,7 +41,7 @@ export class PhoneNagComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/dash';
   }
 

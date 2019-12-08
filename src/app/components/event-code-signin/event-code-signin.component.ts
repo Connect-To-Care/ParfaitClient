@@ -20,13 +20,13 @@ import { interval, Subscription } from "rxjs";
 })
 export class EventCodeSigninComponent implements OnInit, AfterViewInit {
   public expireInSubscription: Subscription;
-  expireIn: number;
+  public expireIn: number;
 
-  currentCode: SigninCodeModel;
-  currentCodeUrl: string;
+  public currentCode: SigninCodeModel;
+  public currentCodeUrl: string;
 
-  socket: SocketIOClient.Socket;
-  event: EventModel;
+  public socket: SocketIOClient.Socket;
+  public event: EventModel;
   private readonly elem: any;
 
   constructor(
@@ -40,7 +40,7 @@ export class EventCodeSigninComponent implements OnInit, AfterViewInit {
     this.elem = document.documentElement;
   }
 
-  async ngOnInit() {
+  public async ngOnInit() {
     this.expireInSubscription = interval(1000).subscribe(() =>
       this.updateExpireIn()
     );
@@ -61,7 +61,6 @@ export class EventCodeSigninComponent implements OnInit, AfterViewInit {
   }
 
   public getNewCode = () => {
-    console.log("new code requestd");
     this.socket.emit(
       "getNew",
       {
@@ -76,7 +75,7 @@ export class EventCodeSigninComponent implements OnInit, AfterViewInit {
     );
   };
 
-  ngAfterViewInit() {
+  public ngAfterViewInit() {
     DisplayUtil.openFullscreen(this.elem);
   }
 

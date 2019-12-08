@@ -24,10 +24,10 @@ import {MatDialog} from '@angular/material';
 })
 export class ManageEventsComponent implements OnInit {
 
-  pastEvents: Array<EventModel>;
-  pastEventsSource: Array<EventModel>;
+  public pastEvents: EventModel[];
+  public pastEventsSource: EventModel[];
 
-  events: Array<EventModel>;
+  public events: EventModel[];
 
   constructor(
     private readonly apiService: APIService,
@@ -35,7 +35,7 @@ export class ManageEventsComponent implements OnInit {
   ) {
   }
 
-  async ngOnInit() {
+  public async ngOnInit() {
     const events = await this.apiService.getEvents();
 
     this.pastEvents = [];
@@ -63,7 +63,7 @@ export class ManageEventsComponent implements OnInit {
     }
   };
 
-  openFacilitatorActions = (event: EventModel) => {
+  public openFacilitatorActions = (event: EventModel) => {
     this.dialog.open(FacilitatorActionsDialogComponent, {
       data: {
         event
