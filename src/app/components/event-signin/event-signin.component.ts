@@ -7,8 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {DOCUMENT} from '@angular/common';
 import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
 import {MatSnackBar} from '@angular/material';
-import {interval, Subscription} from 'rxjs';
-import {DateUtil} from '../../../DateUtil';
+import {DisplayUtil} from '../../../DisplayUtil';
 
 @Component({
   selector: 'app-event-signin',
@@ -33,10 +32,7 @@ export class EventSigninComponent implements OnInit, AfterViewInit {
   socket: SocketIOClient.Socket;
   event: EventModel;
   signedUp: Array<SignupModel>;
-  public timeSubscription: Subscription;
-  public time: string;
-  public minsLeft: number;
-  private elem: any;
+  private readonly elem: any;
 
   constructor(
     private readonly configService: ConfigService,
@@ -44,19 +40,15 @@ export class EventSigninComponent implements OnInit, AfterViewInit {
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
     private readonly snackbar: MatSnackBar,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
   ) {
-    console.log(configService.config.apiRoot);
-    this.socket = io.connect(configService.config.apiRoot + 'events');
     this.elem = document.documentElement;
   }
 
   ngOnInit() {
     const eventId = this.activatedRoute.snapshot.paramMap.get('event');
 
-    this.updateTime();
-    this.timeSubscription = interval(1000).subscribe(() => this.updateTime());
-
+    this.socket = io.connect(this.configService.config.apiRoot + 'events');
     this.socket.on('connect', () => {
       this.socket.emit('subscribe', {
         authorization: `Bearer ${this.apiService.userSession.token}`,
@@ -75,37 +67,12 @@ export class EventSigninComponent implements OnInit, AfterViewInit {
   };
 
   ngAfterViewInit() {
-    this.openFullscreen();
+    DisplayUtil.openFullscreen(this.elem);
   }
 
-  public openFullscreen = () => {
-    if (this.elem.requestFullscreen) {
-      this.elem.requestFullscreen().catch(e => console.log('Failed opening full screen:', e));
-    } else if (this.elem.mozRequestFullScreen) {
-      this.elem.mozRequestFullScreen();
-    } else if (this.elem.webkitRequestFullscreen) {
-      this.elem.webkitRequestFullscreen();
-    } else if (this.elem.msRequestFullscreen) {
-      this.elem.msRequestFullscreen();
-    }
-  };
-
   public exit = async () => {
-    this.closeFullscreen();
+    DisplayUtil.closeFullscreen(this.document);
     await this.router.navigateByUrl('/admin/events');
-  };
-
-  public closeFullscreen = () => {
-    if (this.document.exitFullscreen) {
-      this.document.exitFullscreen().catch(() => {
-      }); // Ignore
-    } else if (this.document.mozCancelFullScreen) {
-      this.document.mozCancelFullScreen();
-    } else if (this.document.webkitExitFullscreen) {
-      this.document.webkitExitFullscreen();
-    } else if (this.document.msExitFullscreen) {
-      this.document.msExitFullscreen();
-    }
   };
 
   public attend = async (user: UserModel) => {
@@ -115,18 +82,4 @@ export class EventSigninComponent implements OnInit, AfterViewInit {
       this.snackbar.open(e)._dismissAfter(2000);
     }
   };
-
-  public updateTime = () => {
-    const date = new Date();
-
-    this.time = DateUtil.getStrTime(date);
-
-    if (this.event) {
-      const endTime = new Date(this.event.endTime);
-      this.minsLeft = Math.floor((endTime.getTime() - date.getTime()) / 1000 / 60);
-    } else {
-      this.minsLeft = 0;
-    }
-  };
-
 }

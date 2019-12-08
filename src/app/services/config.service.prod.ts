@@ -6,6 +6,7 @@ export interface Config {
   googleOAuthURL: string;
   debug: boolean;
   hash: string;
+  rootUrl: string;
 }
 
 @Injectable({
@@ -22,7 +23,8 @@ export class ConfigService {
       apiRoot: 'https://api.connect-tocare.org/',
       googleOAuthURL: 'https://api.connect-tocare.org/auth/google',
       debug: false,
-      hash: git.raw || 'Unknown'
+      hash: git.raw || 'Unknown',
+      rootUrl: 'https://volunteer.connect-tocare.org/',
     };
   }
 }

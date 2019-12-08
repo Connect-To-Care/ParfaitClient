@@ -20,6 +20,7 @@ import {HomeComponent} from './components/home/home.component';
 import {EventSigninComponent} from './components/event-signin/event-signin.component';
 import {AboutComponent} from './components/about/about.component';
 import {NameNagComponent} from './components/name-nag/name-nag.component';
+import {EventCodeSigninComponent} from './components/event-code-signin/event-code-signin.component';
 
 
 const routes: Routes = [
@@ -104,8 +105,13 @@ const routes: Routes = [
     canActivate: [AuthGuard] // We handle this on the page itself because the user may be a facilitator
   },
   {
-    path: 'admin/events/:event/signin',
+    path: 'admin/events/:event/signin/kiosk',
     component: EventSigninComponent,
+    canActivate: [AuthGuard] // We handle this on the page itself because the user may be a facilitator
+  },
+  {
+    path: 'admin/events/:event/signin',
+    component: EventCodeSigninComponent,
     canActivate: [AuthGuard] // We handle this on the page itself because the user may be a facilitator
   },
   {

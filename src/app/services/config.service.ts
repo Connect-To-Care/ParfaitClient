@@ -7,6 +7,7 @@ export interface Config {
   googleOAuthURL: string;
   debug: boolean;
   hash: string;
+  rootUrl: string;
 }
 
 @Injectable({
@@ -22,6 +23,7 @@ export class ConfigService {
     return {
       apiRoot: 'http://localhost:3000/',
       googleOAuthURL: 'http://localhost:3000/auth/google',
+      rootUrl: 'http://localhost:4200/',
       debug: true,
       hash: git.raw || 'Unknown'
     };

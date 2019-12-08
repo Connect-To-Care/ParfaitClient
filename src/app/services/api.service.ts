@@ -2,6 +2,16 @@ import {Injectable} from '@angular/core';
 import {ConfigService} from './config.service';
 import {HttpClient} from '@angular/common/http';
 
+export enum SigninCodeStatus {
+  NOT_CLAIMED = 'NOT_CLAIMED', PENDING = 'PENDING', CLAIMED = 'CLAIMED',
+}
+
+export interface SigninCodeModel {
+  code: string;
+  status: SigninCodeStatus;
+  createdDate: string;
+}
+
 export enum AuthStrategy {
   GOOGLE = 'google',
 }
@@ -36,12 +46,6 @@ export interface UserSession {
 export interface SignupModel {
   attended: boolean;
   user: UserModel;
-}
-
-export interface SigninCodeModel {
-  code: string;
-  status: string;
-  createdDate: string;
 }
 
 export interface EventModel {

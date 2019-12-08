@@ -58,6 +58,9 @@ import {AboutComponent} from './components/about/about.component';
 import {NameNagComponent} from './components/name-nag/name-nag.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
+import {EventCodeSigninComponent} from './components/event-code-signin/event-code-signin.component';
+import {EventSigninClockComponent} from './components/event-signin-clock/event-signin-clock.component';
+import {NgxQRCodeModule} from 'ngx-qrcode2';
 
 Sentry.init({
   dsn: 'https://0c84ea0d000c41958b0be30eccc3fa81@sentry.connect-tocare.org/2'
@@ -99,7 +102,9 @@ export class SentryErrorHandler implements ErrorHandler {
     HomeComponent,
     EventSigninComponent,
     AboutComponent,
-    NameNagComponent
+    NameNagComponent,
+    EventCodeSigninComponent,
+    EventSigninClockComponent
   ],
   imports: [
     HttpClientModule,
@@ -134,7 +139,8 @@ export class SentryErrorHandler implements ErrorHandler {
     MatMomentDateModule,
     MatProgressBarModule,
     MatMenuModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    NgxQRCodeModule,
   ],
   providers: [
     {

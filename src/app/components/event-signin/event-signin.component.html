@@ -2,10 +2,7 @@
   <app-page-title title="Event signin">
     <button (click)="exit()" color="primary" mat-raised-button>Back</button>
   </app-page-title>
-  <div *ngIf="event" class="center" id="countdown">
-    <h1>{{ time }}</h1>
-    <h2>{{ minsLeft }} minutes left until end</h2>
-  </div>
+  <app-event-signin-clock [event]="event"></app-event-signin-clock>
   <div *ngIf="signedUp" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px" id="signinManager">
     <div [@listStagger]="signedUp" class="cards">
       <mat-toolbar class="mat-primary rounded-bar">
