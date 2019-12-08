@@ -31,7 +31,7 @@ export class EventSigninClockComponent implements OnInit {
 
     if (this.event) {
       const endTime = new Date(this.event.endTime);
-      this.minsLeft = Math.floor((endTime.getTime() - date.getTime()) / 1000 / 60);
+      this.minsLeft = Math.max(0, Math.floor((endTime.getTime() - date.getTime()) / 1000 / 60));
     } else {
       this.minsLeft = 0;
     }
