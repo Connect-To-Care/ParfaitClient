@@ -129,6 +129,14 @@ export class DashComponent implements OnInit {
       this.availableEvents :
       this.availableEvents.filter(event => this.checkQualified(event)));
   };
+
+  openFacilitatorActions = (event: EventModel) => {
+    this.dialog.open(FacilitatorActionsDialogComponent, {
+      data: {
+        event
+      }
+    });
+  };
 }
 
 export interface FacilitatorAddDialogData {
@@ -136,7 +144,7 @@ export interface FacilitatorAddDialogData {
 }
 
 @Component({
-  selector: 'app-remove-tag',
+  selector: 'app-facilitator-add',
   templateUrl: 'facilitatorAdd.dialog.component.html',
 })
 export class FacilitatorAddDialogComponent {
@@ -144,6 +152,26 @@ export class FacilitatorAddDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<FacilitatorAddDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: FacilitatorAddDialogData) {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+export interface FacilitatorActionsDialogData {
+  event: EventModel;
+}
+
+@Component({
+  selector: 'app-facilitator-actions',
+  templateUrl: 'facilitatorActions.dialog.component.html',
+})
+export class FacilitatorActionsDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<FacilitatorAddDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: FacilitatorActionsDialogData) {
   }
 
   onNoClick(): void {

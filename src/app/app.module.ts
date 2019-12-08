@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './components/app/app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavbarComponent} from './components/navbar/navbar.component';
-import {DashComponent, FacilitatorAddDialogComponent} from './components/dash/dash.component';
+import {DashComponent, FacilitatorActionsDialogComponent, FacilitatorAddDialogComponent} from './components/dash/dash.component';
 import {
   MatBadgeModule,
   MatButtonModule,
@@ -62,9 +62,9 @@ import {EventCodeSigninComponent} from './components/event-code-signin/event-cod
 import {EventSigninClockComponent} from './components/event-signin-clock/event-signin-clock.component';
 import {NgxQRCodeModule} from 'ngx-qrcode2';
 
-Sentry.init({
-  dsn: 'https://0c84ea0d000c41958b0be30eccc3fa81@sentry.connect-tocare.org/2'
-});
+// Sentry.init({
+//   dsn: 'https://0c84ea0d000c41958b0be30eccc3fa81@sentry.connect-tocare.org/2'
+// });
 
 @Injectable()
 export class SentryErrorHandler implements ErrorHandler {
@@ -104,7 +104,8 @@ export class SentryErrorHandler implements ErrorHandler {
     AboutComponent,
     NameNagComponent,
     EventCodeSigninComponent,
-    EventSigninClockComponent
+    EventSigninClockComponent,
+    FacilitatorActionsDialogComponent
   ],
   imports: [
     HttpClientModule,
@@ -140,7 +141,7 @@ export class SentryErrorHandler implements ErrorHandler {
     MatProgressBarModule,
     MatMenuModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    NgxQRCodeModule,
+    NgxQRCodeModule
   ],
   providers: [
     {
@@ -160,7 +161,8 @@ export class SentryErrorHandler implements ErrorHandler {
   entryComponents: [
     PhoneNagDialogComponent,
     FacilitatorAddDialogComponent,
-    DeleteEventDialogComponent
+    DeleteEventDialogComponent,
+    FacilitatorActionsDialogComponent,
   ],
   bootstrap: [AppComponent]
 })

@@ -40,11 +40,8 @@
           <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
                   matTooltip="Become an event facilitator">ENTER CODE
           </button>
-          <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Edit event details"
-                  routerLink="/admin/events/{{ event._id }}">EDIT
-          </button>
-          <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Enter event kiosk mode"
-                  routerLink="/admin/events/{{ event._id }}/signin">SIGNIN
+          <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Facilitator actions"
+                  (click)="openFacilitatorActions(event)">ACTIONS
           </button>
         </mat-card-actions>
       </mat-card>
@@ -69,11 +66,8 @@
               </mat-expansion-panel-header>
               <app-event-details [event]="event"></app-event-details>
               <mat-action-row>
-                <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Edit event details"
-                        routerLink="/admin/events/{{ event._id }}">EDIT
-                </button>
-                <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Enter event kiosk mode"
-                        routerLink="/admin/events/{{ event._id }}/signin">SIGNIN
+                <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Facilitator actions"
+                        (click)="openFacilitatorActions(event)">ACTIONS
                 </button>
                 <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
                         matTooltip="Become an event facilitator">CODE
@@ -93,18 +87,18 @@
               </mat-expansion-panel-header>
             </mat-expansion-panel>
           </mat-accordion>
-          <mat-accordion *ngFor="let future of myEvents.future">
+          <mat-accordion *ngFor="let event of myEvents.future">
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                {{ future.displayName }} <span *ngIf="future.recurring" class="recurring">[RECURRING]</span>
+                {{ event.displayName }} <span *ngIf="event.recurring" class="recurring">[RECURRING]</span>
               </mat-expansion-panel-header>
-              <app-event-details [event]="future"></app-event-details>
+              <app-event-details [event]="event"></app-event-details>
               <mat-action-row>
-                <button (click)="drop(future)" mat-button>DROP</button>
-                <button *ngIf="checkEventFacilitator(future)" mat-button matTooltip="Edit event details"
-                        routerLink="/admin/events/{{ future._id }}">EDIT
+                <button (click)="drop(event)" mat-button>DROP</button>
+                <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Facilitator actions"
+                        (click)="openFacilitatorActions(event)">ACTIONS
                 </button>
-                <button (click)="enterCode(future)" *ngIf="!checkEventFacilitator(future)" mat-button
+                <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
                         matTooltip="Become an event facilitator">CODE
                 </button>
               </mat-action-row>
@@ -129,8 +123,8 @@
               </mat-expansion-panel-header>
               <app-event-details [event]="event"></app-event-details>
               <mat-action-row>
-                <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Edit event details"
-                        routerLink="/admin/events/{{ event._id }}">EDIT
+                <button *ngIf="checkEventFacilitator(event)" mat-button matTooltip="Facilitator actions"
+                        (click)="openFacilitatorActions(event)">ACTIONS
                 </button>
                 <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
                         matTooltip="Become an event facilitator">CODE

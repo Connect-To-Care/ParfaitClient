@@ -105,7 +105,7 @@ const routes: Routes = [
     canActivate: [AuthGuard] // We handle this on the page itself because the user may be a facilitator
   },
   {
-    path: 'admin/events/:event/signin/kiosk',
+    path: 'admin/events/:event/signin/manual',
     component: EventSigninComponent,
     canActivate: [AuthGuard] // We handle this on the page itself because the user may be a facilitator
   },
