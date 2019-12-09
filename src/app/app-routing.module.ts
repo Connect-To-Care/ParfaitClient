@@ -21,6 +21,7 @@ import {EventKioskManualComponent} from './components/event-kiosk-manual/event-k
 import {AboutComponent} from './components/about/about.component';
 import {NameNagComponent} from './components/name-nag/name-nag.component';
 import {EventKioskCodeComponent} from './components/event-kiosk-code/event-kiosk-code.component';
+import {EventSigninComponent} from './components/event-signin/event-signin.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,11 @@ const routes: Routes = [
     path: 'dash',
     component: DashComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'events/:event/signin/:code',
+    component: EventSigninComponent,
+    canActivate: [] // We will auto detect if the user is signed in
   },
   {
     path: 'account',

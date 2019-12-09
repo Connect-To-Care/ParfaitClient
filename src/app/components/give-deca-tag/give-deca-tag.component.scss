@@ -1,6 +1,10 @@
-.error {
+#error {
   color: red;
   text-align: center;
+
+  button {
+    margin-top: 20px;
+  }
 }
 
 mat-card-content {

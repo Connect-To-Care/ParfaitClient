@@ -103,6 +103,34 @@ export class APIService {
     };
   }
 
+  public reserveSigninCode = async (eventId: string, code: string): Promise<void> => {
+    return this.httpClient
+      .post<any>(
+        this.configService.config.apiRoot +
+        "events/" +
+        eventId.replace("/", "") +
+        "/attend/code/reserve",
+        {
+          code
+        }
+      )
+      .toPromise();
+  };
+
+  public useSigninCode = async (eventId: string, code: string): Promise<void> => {
+    return this.httpClient
+      .post<any>(
+        this.configService.config.apiRoot +
+        "events/" +
+        eventId.replace("/", "") +
+        "/attend/code",
+        {
+          code
+        }
+      )
+      .toPromise();
+  };
+
   public sendInvalidEmail = async (userId: string): Promise<void> => {
     return this.httpClient
       .get<any>(
@@ -133,20 +161,6 @@ export class APIService {
           "events/" +
           eventId.replace("/", "") +
           "/attend",
-        {
-          userId
-        }
-      )
-      .toPromise();
-  };
-
-  public unattend = async (eventId: string, userId: string): Promise<void> => {
-    return this.httpClient
-      .post<any>(
-        this.configService.config.apiRoot +
-          "events/" +
-          eventId.replace("/", "") +
-          "/unattend",
         {
           userId
         }

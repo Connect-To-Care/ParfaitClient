@@ -1,5 +1,5 @@
 <app-navbar>
-  <app-page-title title="DECA"></app-page-title>
+  <app-page-title title="Welcome!"></app-page-title>
   <mat-progress-bar *ngIf="!bigError" mode="indeterminate"></mat-progress-bar>
 
   <mat-card class="z-depth center">
@@ -7,10 +7,9 @@
       <mat-card-title>Please wait...</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <img alt="DECA Logo" src="/assets/deca2019.png">
-      <p *ngIf="!bigError">Please wait, checking for CTC x DECA events...</p>
+      <p *ngIf="!bigError">Please wait, signing in...</p>
       <div id="error" *ngIf="bigError">
-        <p><b>Sorry, failed to sign up:</b> {{ bigError }}</p>
+        <p><b>Sorry, failed to sign in:</b> {{ bigError }}</p>
         <button mat-raised-button color="primary">Back to dashboard</button>
       </div>
     </mat-card-content>

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnDestroy, OnInit} from '@angular/core';
 
 import * as io from 'socket.io-client';
 import {ConfigService} from '../../services/config.service';
@@ -27,7 +27,7 @@ import {DisplayUtil} from '../../../DisplayUtil';
     ])
   ]
 })
-export class EventKioskManualComponent implements OnInit, AfterViewInit {
+export class EventKioskManualComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public socket: SocketIOClient.Socket;
   public event: EventModel;
@@ -45,23 +45,37 @@ export class EventKioskManualComponent implements OnInit, AfterViewInit {
     this.elem = document.documentElement;
   }
 
+  public ngOnDestroy() {
+    if (this.socket) {
+      this.socket.disconnect();
+    }
+  }
+
   public ngOnInit() {
     const eventId = this.activatedRoute.snapshot.paramMap.get('event');
 
     this.socket = io.connect(this.configService.config.apiRoot + 'events');
+
     this.socket.on('connect', () => {
+      console.log('on connect');
       this.socket.emit('subscribe', {
         authorization: `Bearer ${this.apiService.userSession.token}`,
         event: eventId
-      }, data => this.updateSignup(data));
+      }, data => {
+        this.updateSignup(data);
+        console.log('init subbb');
+      });
 
       this.socket.on('eventUpdate', data => this.updateSignup(data));
     }).on('exception', () => { // The user lied! This don't have access to this
       this.router.navigateByUrl('/');
     });
+
+    this.socket.on('disconnect', () => this.socket.removeAllListeners());
   }
 
   public updateSignup = (event: EventModel) => {
+    console.debug('heyo!!');
     this.event = event;
     this.signedUp = event.signedUp.filter(signUp => !signUp.attended);
   };
