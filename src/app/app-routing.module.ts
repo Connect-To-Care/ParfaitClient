@@ -28,57 +28,68 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    canActivate: []
+    canActivate: [],
+    data: {title: 'Home'}
   },
   {
     path: 'about',
     component: AboutComponent,
-    canActivate: []
+    canActivate: [],
+    data: {title: 'About'}
   },
   {
     path: 'dash',
     component: DashComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {title: 'Dashboard'}
   },
   {
     path: 'events/:event/signin/:code',
     component: EventSigninComponent,
-    canActivate: [] // We will auto detect if the user is signed in
+    canActivate: [], // We will auto detect if the user is signed in
+    data: {title: 'Quick Signin'}
   },
   {
     path: 'account',
     component: AccountComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {title: 'Account'}
   },
   {
     path: 'deca',
     component: GiveDecaTagComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {title: 'DECA'}
   },
   {
     path: 'nag/name',
     component: NameNagComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {title: 'Account Alert'}
   },
   {
     path: 'nag/phone',
     component: PhoneNagComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {title: 'Account Alert'}
   },
   {
     path: 'login',
     component: OAuthLoginComponent,
-    canActivate: [DeauthGuard]
+    canActivate: [DeauthGuard],
+    data: {title: 'Login'}
   },
   {
     path: 'login/success/:jwt',
     component: OAuthSuccessComponent,
-    canActivate: [DeauthGuard]
+    canActivate: [DeauthGuard],
+    data: {title: 'Please Wait...'}
   },
   {
     path: 'login/failure',
     component: OAuthFailureComponent,
-    canActivate: [DeauthGuard]
+    canActivate: [DeauthGuard],
+    data: {title: 'Error'}
   },
   {
     path: 'logout',
@@ -88,41 +99,49 @@ const routes: Routes = [
   {
     path: 'admin/users',
     component: ManageUsersComponent,
-    canActivate: [AuthGuard, AdminGuard]
+    canActivate: [AuthGuard, AdminGuard],
+    data: {title: 'Manage Users'}
   },
   {
     path: 'admin/users/:user',
     component: EditUserComponent,
-    canActivate: [AuthGuard, AdminGuard]
+    canActivate: [AuthGuard, AdminGuard],
+    data: {title: 'Manage User'}
   },
   {
     path: 'admin/events',
     component: ManageEventsComponent,
-    canActivate: [AuthGuard, AdminGuard]
+    canActivate: [AuthGuard, AdminGuard],
+    data: {title: 'Manage Events'}
   },
   {
     path: 'admin/events/new',
     component: EditEventComponent,
-    canActivate: [AuthGuard, AdminGuard]
+    canActivate: [AuthGuard, AdminGuard],
+    data: {title: 'Manage Event'}
   },
   {
     path: 'admin/events/:event',
     component: EditEventComponent,
-    canActivate: [AuthGuard] // We handle this on the page itself because the user may be a facilitator
+    canActivate: [AuthGuard], // We handle this on the page itself because the user may be a facilitator
+    data: {title: 'Manage Event'}
   },
   {
     path: 'admin/events/:event/kiosk/manual',
     component: EventKioskManualComponent,
-    canActivate: [AuthGuard] // We handle this on the page itself because the user may be a facilitator
+    canActivate: [AuthGuard], // We handle this on the page itself because the user may be a facilitator
+    data: {title: 'Kiosk Signin'}
   },
   {
     path: 'admin/events/:event/kiosk/code',
     component: EventKioskCodeComponent,
-    canActivate: [AuthGuard] // We handle this on the page itself because the user may be a facilitator
+    canActivate: [AuthGuard], // We handle this on the page itself because the user may be a facilitator
+    data: {title: 'Kiosk Signin'}
   },
   {
     path: '**',
-    component: NotFoundComponent
+    component: NotFoundComponent,
+    data: {title: 'Page Not Found'}
   }
 ];
 
