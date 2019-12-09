@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Inject, OnInit } from "@angular/core";
+import {AfterViewInit, Component, Inject, OnDestroy, OnInit} from '@angular/core';
 
 import * as io from "socket.io-client";
 import { ConfigService } from "../../services/config.service";
@@ -18,7 +18,7 @@ import { interval, Subscription } from "rxjs";
   templateUrl: "./event-kiosk-code.component.html",
   styleUrls: ["./event-kiosk-code.component.scss"]
 })
-export class EventKioskCodeComponent implements OnInit, AfterViewInit {
+export class EventKioskCodeComponent implements OnInit, AfterViewInit, OnDestroy {
   public expireInSubscription: Subscription;
   public expireIn: number;
 
@@ -38,6 +38,12 @@ export class EventKioskCodeComponent implements OnInit, AfterViewInit {
     @Inject(DOCUMENT) private document: any
   ) {
     this.elem = document.documentElement;
+  }
+
+  public ngOnDestroy() {
+    if (this.socket) {
+      this.socket.disconnect();
+    }
   }
 
   public async ngOnInit() {
