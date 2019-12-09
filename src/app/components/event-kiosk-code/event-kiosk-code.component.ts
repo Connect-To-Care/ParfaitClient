@@ -48,7 +48,7 @@ export class EventKioskCodeComponent implements OnInit, AfterViewInit {
     const eventId = this.activatedRoute.snapshot.paramMap.get("event");
     this.event = await this.apiService.getEvent(eventId);
 
-    this.socket = io.connect(this.configService.config.apiRoot + "codes");
+    this.socket = io.connect(this.configService.config.apiRoot);
     this.socket
       .on("connect", () => {
         this.getNewCode();

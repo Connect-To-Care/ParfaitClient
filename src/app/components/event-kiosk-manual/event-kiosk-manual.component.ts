@@ -54,17 +54,13 @@ export class EventKioskManualComponent implements OnInit, AfterViewInit, OnDestr
   public ngOnInit() {
     const eventId = this.activatedRoute.snapshot.paramMap.get('event');
 
-    this.socket = io.connect(this.configService.config.apiRoot + 'events');
+    this.socket = io.connect(this.configService.config.apiRoot);
 
     this.socket.on('connect', () => {
-      console.log('on connect');
       this.socket.emit('subscribe', {
         authorization: `Bearer ${this.apiService.userSession.token}`,
         event: eventId
-      }, data => {
-        this.updateSignup(data);
-        console.log('init subbb');
-      });
+      }, data => this.updateSignup(data));
 
       this.socket.on('eventUpdate', data => this.updateSignup(data));
     }).on('exception', () => { // The user lied! This don't have access to this
@@ -75,7 +71,6 @@ export class EventKioskManualComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   public updateSignup = (event: EventModel) => {
-    console.debug('heyo!!');
     this.event = event;
     this.signedUp = event.signedUp.filter(signUp => !signUp.attended);
   };
