@@ -103,13 +103,16 @@ export class APIService {
     };
   }
 
-  public reserveSigninCode = async (eventId: string, code: string): Promise<void> => {
+  public reserveSigninCode = async (
+    eventId: string,
+    code: string
+  ): Promise<void> => {
     return this.httpClient
       .post<any>(
         this.configService.config.apiRoot +
-        "events/" +
-        eventId.replace("/", "") +
-        "/attend/code/reserve",
+          "events/" +
+          eventId.replace("/", "") +
+          "/attend/code/reserve",
         {
           code
         }
@@ -117,13 +120,16 @@ export class APIService {
       .toPromise();
   };
 
-  public useSigninCode = async (eventId: string, code: string): Promise<void> => {
+  public useSigninCode = async (
+    eventId: string,
+    code: string
+  ): Promise<void> => {
     return this.httpClient
       .post<any>(
         this.configService.config.apiRoot +
-        "events/" +
-        eventId.replace("/", "") +
-        "/attend/code",
+          "events/" +
+          eventId.replace("/", "") +
+          "/attend/code",
         {
           code
         }

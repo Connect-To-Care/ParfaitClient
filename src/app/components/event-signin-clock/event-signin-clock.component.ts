@@ -1,15 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {interval, Subscription} from 'rxjs';
-import {EventModel} from '../../services/api.service';
-import {DateUtil} from '../../../DateUtil';
+import { Component, Input, OnInit } from "@angular/core";
+import { interval, Subscription } from "rxjs";
+import { EventModel } from "../../services/api.service";
+import { DateUtil } from "../../../DateUtil";
 
 @Component({
-  selector: 'app-event-signin-clock',
-  templateUrl: './event-signin-clock.component.html',
-  styleUrls: ['./event-signin-clock.component.scss']
+  selector: "app-event-signin-clock",
+  templateUrl: "./event-signin-clock.component.html",
+  styleUrls: ["./event-signin-clock.component.scss"]
 })
 export class EventSigninClockComponent implements OnInit {
-
   public timeSubscription: Subscription;
   public time: string;
   public minsLeft: number;
@@ -28,10 +27,12 @@ export class EventSigninClockComponent implements OnInit {
 
     if (this.event) {
       const endTime = new Date(this.event.endTime);
-      this.minsLeft = Math.max(0, Math.floor((endTime.getTime() - date.getTime()) / 1000 / 60));
+      this.minsLeft = Math.max(
+        0,
+        Math.floor((endTime.getTime() - date.getTime()) / 1000 / 60)
+      );
     } else {
       this.minsLeft = 0;
     }
   };
-
 }

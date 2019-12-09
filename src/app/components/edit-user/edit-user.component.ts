@@ -1,15 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {APIService, UserModel} from '../../services/api.service';
-import {MatChipInputEvent, MatDialog, MatSnackBar} from '@angular/material';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { APIService, UserModel } from "../../services/api.service";
+import { MatChipInputEvent, MatDialog, MatSnackBar } from "@angular/material";
 
 @Component({
-  selector: 'app-edit-user',
-  templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.scss']
+  selector: "app-edit-user",
+  templateUrl: "./edit-user.component.html",
+  styleUrls: ["./edit-user.component.scss"]
 })
 export class EditUserComponent implements OnInit {
-
   public user: UserModel;
   public userLoading = false;
 
@@ -18,15 +17,14 @@ export class EditUserComponent implements OnInit {
     private readonly apiService: APIService,
     private readonly dialog: MatDialog,
     private readonly snackbar: MatSnackBar
-  ) {
-  }
+  ) {}
 
   public async ngOnInit() {
     this.getUser();
   }
 
   public getUser = async () => {
-    const userId = this.activatedRoute.snapshot.paramMap.get('user');
+    const userId = this.activatedRoute.snapshot.paramMap.get("user");
     try {
       this.user = await this.apiService.getUser(userId);
     } catch (e) {
@@ -43,7 +41,7 @@ export class EditUserComponent implements OnInit {
       this.snackbar.open(e)._dismissAfter(2000);
     }
     this.userLoading = false;
-    event.input.value = '';
+    event.input.value = "";
   };
 
   public giveAdmin = async () => {
@@ -84,7 +82,7 @@ export class EditUserComponent implements OnInit {
   public invalidName = async () => {
     try {
       await this.apiService.sendInvalidEmail(this.user._id);
-      this.snackbar.open('Email sent!')._dismissAfter(2000);
+      this.snackbar.open("Email sent!")._dismissAfter(2000);
     } catch (e) {
       this.snackbar.open(e)._dismissAfter(2000);
     }

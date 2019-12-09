@@ -1,23 +1,27 @@
-import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-import {APIService} from '../services/api.service';
+import { Injectable } from "@angular/core";
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot
+} from "@angular/router";
+import { APIService } from "../services/api.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class DeauthGuard implements CanActivate {
-
   constructor(
     private readonly apiService: APIService,
-    private readonly router: Router,
-  ) {
-  }
+    private readonly router: Router
+  ) {}
 
   public canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean {
+    state: RouterStateSnapshot
+  ): boolean {
     if (this.apiService.userSession) {
-      this.router.navigateByUrl('/dash');
+      this.router.navigateByUrl("/dash");
       return false;
     }
     return true;

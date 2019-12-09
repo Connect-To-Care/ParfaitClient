@@ -1,18 +1,48 @@
 <app-navbar>
   <app-page-title title="Browse events"></app-page-title>
-  <mat-progress-bar *ngIf="!availableEvents || !myEvents" mode="indeterminate"></mat-progress-bar>
+  <mat-progress-bar
+    *ngIf="!availableEvents || !myEvents"
+    mode="indeterminate"
+  ></mat-progress-bar>
 
-  <div *ngIf="availableEventsSource && myEvents" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px"
-       id="eventManager">
-    <div [@listStagger]="availableEventsSource" class="cards" fxFlex="60%" fxFlex.lt-sm="0 1" fxFlexOrder.lt-sm="2">
+  <div
+    *ngIf="availableEventsSource && myEvents"
+    fxLayout="row"
+    fxLayout.lt-sm="column"
+    fxLayoutGap="20px"
+    id="eventManager"
+  >
+    <div
+      [@listStagger]="availableEventsSource"
+      class="cards"
+      fxFlex="60%"
+      fxFlex.lt-sm="0 1"
+      fxFlexOrder.lt-sm="2"
+    >
       <mat-toolbar class="mat-primary rounded-bar">
         Available Events
         <div class="spacer"></div>
-        <mat-icon (click)="updateUnqualified()" aria-hidden="false" aria-label="Refresh" class="updateUnqualified"
-                  matTooltip="{{ this.showUnqualified ? 'Hide unqualified events' : 'Show unqualified events' }}">{{ this.showUnqualified ? 'remove_circle' : 'remove_circle_outline' }}
+        <mat-icon
+          (click)="updateUnqualified()"
+          aria-hidden="false"
+          aria-label="Refresh"
+          class="updateUnqualified"
+          matTooltip="{{
+            this.showUnqualified
+              ? 'Hide unqualified events'
+              : 'Show unqualified events'
+          }}"
+          >{{
+            this.showUnqualified ? "remove_circle" : "remove_circle_outline"
+          }}
         </mat-icon>
-        <mat-icon (click)="refreshEvents()" aria-hidden="false" aria-label="Refresh" class="refresh"
-                  matTooltip="Refresh">refresh
+        <mat-icon
+          (click)="refreshEvents()"
+          aria-hidden="false"
+          aria-label="Refresh"
+          class="refresh"
+          matTooltip="Refresh"
+          >refresh
         </mat-icon>
       </mat-toolbar>
       <mat-card *ngIf="availableEventsSource.length == 0">
@@ -24,24 +54,42 @@
       </mat-card>
       <mat-card *ngFor="let event of availableEventsSource">
         <mat-card-header>
-          <mat-card-title>{{ event.displayName }} <span *ngIf="event.recurring" class="recurring">[RECURRING]</span>
+          <mat-card-title
+            >{{ event.displayName }}
+            <span *ngIf="event.recurring" class="recurring">[RECURRING]</span>
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <app-event-details [event]="event"></app-event-details>
-          <p *ngIf="!checkQualified(event)" class="notQualified">You are missing a required qualification for this
-            event</p>
+          <p *ngIf="!checkQualified(event)" class="notQualified">
+            You are missing a required qualification for this event
+          </p>
         </mat-card-content>
         <mat-card-actions>
-          <button (click)="signUp(event)" [disabled]="!checkQualified(event)" mat-button
-                  matTooltip="Sign up for this event">SIGN UP
+          <button
+            (click)="signUp(event)"
+            [disabled]="!checkQualified(event)"
+            mat-button
+            matTooltip="Sign up for this event"
+          >
+            SIGN UP
           </button>
           <div fxFlex></div>
-          <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
-                  matTooltip="Become an event facilitator">ENTER CODE
+          <button
+            (click)="enterCode(event)"
+            *ngIf="!checkEventFacilitator(event)"
+            mat-button
+            matTooltip="Become an event facilitator"
+          >
+            ENTER CODE
           </button>
-          <button (click)="openFacilitatorActions(event)" *ngIf="checkEventFacilitator(event)" mat-button
-                  matTooltip="Facilitator actions">ACTIONS
+          <button
+            (click)="openFacilitatorActions(event)"
+            *ngIf="checkEventFacilitator(event)"
+            mat-button
+            matTooltip="Facilitator actions"
+          >
+            ACTIONS
           </button>
         </mat-card-actions>
       </mat-card>
@@ -50,27 +98,47 @@
       <mat-toolbar class="mat-primary rounded-bar">
         Your Events
         <div class="spacer"></div>
-        <mat-icon (click)="refreshMyEvents()" aria-hidden="false" aria-label="Refresh" class="refresh"
-                  matTooltip="Refresh">refresh
+        <mat-icon
+          (click)="refreshMyEvents()"
+          aria-hidden="false"
+          aria-label="Refresh"
+          class="refresh"
+          matTooltip="Refresh"
+          >refresh
         </mat-icon>
       </mat-toolbar>
       <mat-tab-group>
         <mat-tab *ngIf="myEvents.now.length !== 0">
           <ng-template matTabLabel>
-            <span matBadge="{{ myEvents.now.length }}" matBadgeOverlap="false">Right now</span>
+            <span matBadge="{{ myEvents.now.length }}" matBadgeOverlap="false"
+              >Right now</span
+            >
           </ng-template>
           <mat-accordion *ngFor="let event of myEvents.now">
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                {{ event.displayName }} <span *ngIf="event.recurring" class="recurring">[RECURRING]</span>
+                {{ event.displayName }}
+                <span *ngIf="event.recurring" class="recurring"
+                  >[RECURRING]</span
+                >
               </mat-expansion-panel-header>
               <app-event-details [event]="event"></app-event-details>
               <mat-action-row>
-                <button (click)="openFacilitatorActions(event)" *ngIf="checkEventFacilitator(event)" mat-button
-                        matTooltip="Facilitator actions">ACTIONS
+                <button
+                  (click)="openFacilitatorActions(event)"
+                  *ngIf="checkEventFacilitator(event)"
+                  mat-button
+                  matTooltip="Facilitator actions"
+                >
+                  ACTIONS
                 </button>
-                <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
-                        matTooltip="Become an event facilitator">CODE
+                <button
+                  (click)="enterCode(event)"
+                  *ngIf="!checkEventFacilitator(event)"
+                  mat-button
+                  matTooltip="Become an event facilitator"
+                >
+                  CODE
                 </button>
               </mat-action-row>
             </mat-expansion-panel>
@@ -78,7 +146,11 @@
         </mat-tab>
         <mat-tab>
           <ng-template matTabLabel>
-            <span matBadge="{{ myEvents.future.length }}" matBadgeOverlap="false">Upcoming</span>
+            <span
+              matBadge="{{ myEvents.future.length }}"
+              matBadgeOverlap="false"
+              >Upcoming</span
+            >
           </ng-template>
           <mat-accordion *ngIf="myEvents.future.length == 0">
             <mat-expansion-panel [disabled]="true">
@@ -90,16 +162,29 @@
           <mat-accordion *ngFor="let event of myEvents.future">
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                {{ event.displayName }} <span *ngIf="event.recurring" class="recurring">[RECURRING]</span>
+                {{ event.displayName }}
+                <span *ngIf="event.recurring" class="recurring"
+                  >[RECURRING]</span
+                >
               </mat-expansion-panel-header>
               <app-event-details [event]="event"></app-event-details>
               <mat-action-row>
                 <button (click)="drop(event)" mat-button>DROP</button>
-                <button (click)="openFacilitatorActions(event)" *ngIf="checkEventFacilitator(event)" mat-button
-                        matTooltip="Facilitator actions">ACTIONS
+                <button
+                  (click)="openFacilitatorActions(event)"
+                  *ngIf="checkEventFacilitator(event)"
+                  mat-button
+                  matTooltip="Facilitator actions"
+                >
+                  ACTIONS
                 </button>
-                <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
-                        matTooltip="Become an event facilitator">CODE
+                <button
+                  (click)="enterCode(event)"
+                  *ngIf="!checkEventFacilitator(event)"
+                  mat-button
+                  matTooltip="Become an event facilitator"
+                >
+                  CODE
                 </button>
               </mat-action-row>
             </mat-expansion-panel>
@@ -107,7 +192,9 @@
         </mat-tab>
         <mat-tab>
           <ng-template matTabLabel>
-            <span matBadge="{{ myEvents.past.length }}" matBadgeOverlap="false">Past</span>
+            <span matBadge="{{ myEvents.past.length }}" matBadgeOverlap="false"
+              >Past</span
+            >
           </ng-template>
           <mat-accordion *ngIf="myEvents.past.length == 0">
             <mat-expansion-panel [disabled]="true">
@@ -119,15 +206,28 @@
           <mat-accordion *ngFor="let event of myEvents.past">
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                {{ event.displayName }} <span *ngIf="event.recurring" class="recurring">[RECURRING]</span>
+                {{ event.displayName }}
+                <span *ngIf="event.recurring" class="recurring"
+                  >[RECURRING]</span
+                >
               </mat-expansion-panel-header>
               <app-event-details [event]="event"></app-event-details>
               <mat-action-row>
-                <button (click)="openFacilitatorActions(event)" *ngIf="checkEventFacilitator(event)" mat-button
-                        matTooltip="Facilitator actions">ACTIONS
+                <button
+                  (click)="openFacilitatorActions(event)"
+                  *ngIf="checkEventFacilitator(event)"
+                  mat-button
+                  matTooltip="Facilitator actions"
+                >
+                  ACTIONS
                 </button>
-                <button (click)="enterCode(event)" *ngIf="!checkEventFacilitator(event)" mat-button
-                        matTooltip="Become an event facilitator">CODE
+                <button
+                  (click)="enterCode(event)"
+                  *ngIf="!checkEventFacilitator(event)"
+                  mat-button
+                  matTooltip="Become an event facilitator"
+                >
+                  CODE
                 </button>
               </mat-action-row>
             </mat-expansion-panel>

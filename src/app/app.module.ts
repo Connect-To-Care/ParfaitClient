@@ -78,7 +78,7 @@ import { EventKioskCodeComponent } from "./components/event-kiosk-code/event-kio
 import { EventSigninClockComponent } from "./components/event-signin-clock/event-signin-clock.component";
 import { NgxQRCodeModule } from "ngx-qrcode2";
 import { FacilitatorActionsDialogComponent } from "./components/facilitator-actions/facilitator-actions.component";
-import { EventSigninComponent } from './components/event-signin/event-signin.component';
+import { EventSigninComponent } from "./components/event-signin/event-signin.component";
 
 // Sentry.init({
 //   dsn: 'https://0c84ea0d000c41958b0be30eccc3fa81@sentry.connect-tocare.org/2'

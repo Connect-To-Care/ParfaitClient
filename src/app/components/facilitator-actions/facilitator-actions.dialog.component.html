@@ -1,12 +1,27 @@
 <h1 mat-dialog-title>Facilitator actions</h1>
 <div mat-dialog-actions>
-  <button mat-button matDialogClose
-          matTooltip="Edit event details" routerLink="/admin/events/{{ data.event._id }}">EDIT
+  <button
+    mat-button
+    matDialogClose
+    matTooltip="Edit event details"
+    routerLink="/admin/events/{{ data.event._id }}"
+  >
+    EDIT
   </button>
-  <button mat-button matDialogClose
-          matTooltip="Manually sign people in" routerLink="/admin/events/{{ data.event._id }}/kiosk/manual">MANUAL KIOSK
+  <button
+    mat-button
+    matDialogClose
+    matTooltip="Manually sign people in"
+    routerLink="/admin/events/{{ data.event._id }}/kiosk/manual"
+  >
+    MANUAL KIOSK
   </button>
-  <button mat-button matDialogClose
-          matTooltip="Open Kiosk mode" routerLink="/admin/events/{{ data.event._id }}/kiosk/code">AUTO KIOSK
+  <button
+    mat-button
+    matDialogClose
+    matTooltip="Open Kiosk mode"
+    routerLink="/admin/events/{{ data.event._id }}/kiosk/code"
+  >
+    AUTO KIOSK
   </button>
 </div>

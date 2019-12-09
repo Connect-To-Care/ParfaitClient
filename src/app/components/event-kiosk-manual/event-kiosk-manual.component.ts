@@ -1,34 +1,52 @@
-import {AfterViewInit, Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit
+} from "@angular/core";
 
-import * as io from 'socket.io-client';
-import {ConfigService} from '../../services/config.service';
-import {APIService, EventModel, SignupModel, UserModel} from '../../services/api.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {DOCUMENT} from '@angular/common';
-import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
-import {MatSnackBar} from '@angular/material';
-import {DisplayUtil} from '../../../DisplayUtil';
+import * as io from "socket.io-client";
+import { ConfigService } from "../../services/config.service";
+import {
+  APIService,
+  EventModel,
+  SignupModel,
+  UserModel
+} from "../../services/api.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { DOCUMENT } from "@angular/common";
+import {
+  animate,
+  query,
+  stagger,
+  style,
+  transition,
+  trigger
+} from "@angular/animations";
+import { MatSnackBar } from "@angular/material";
+import { DisplayUtil } from "../../../DisplayUtil";
 
 @Component({
-  selector: 'app-event-kiosk-manual',
-  templateUrl: './event-kiosk-manual.component.html',
-  styleUrls: ['./event-kiosk-manual.component.scss'],
+  selector: "app-event-kiosk-manual",
+  templateUrl: "./event-kiosk-manual.component.html",
+  styleUrls: ["./event-kiosk-manual.component.scss"],
   animations: [
-    trigger('listStagger', [
-      transition('* <=> *', [
+    trigger("listStagger", [
+      transition("* <=> *", [
         query(
-          ':enter',
+          ":enter",
           [
-            style({opacity: 0, transform: 'translateY(-15px)'}),
+            style({ opacity: 0, transform: "translateY(-15px)" }),
             stagger(
-              '50ms',
+              "50ms",
               animate(
-                '550ms ease-out',
-                style({opacity: 0.7, transform: 'translateY(0px)'})
+                "550ms ease-out",
+                style({ opacity: 0.7, transform: "translateY(0px)" })
               )
             )
           ],
-          {optional: true}
+          { optional: true }
         )
       ])
     ])
@@ -63,16 +81,16 @@ export class EventKioskManualComponent
   }
 
   public ngOnInit() {
-    const eventId = this.activatedRoute.snapshot.paramMap.get('event');
+    const eventId = this.activatedRoute.snapshot.paramMap.get("event");
 
-    this.signedUpFilterValue = '';
+    this.signedUpFilterValue = "";
 
     this.socket = io.connect(this.configService.config.apiRoot);
 
     this.socket
-      .on('connect', () => {
+      .on("connect", () => {
         this.socket.emit(
-          'subscribe',
+          "subscribe",
           {
             authorization: `Bearer ${this.apiService.userSession.token}`,
             event: eventId
@@ -80,14 +98,14 @@ export class EventKioskManualComponent
           data => this.updateSignup(data)
         );
 
-        this.socket.on('eventUpdate', data => this.updateSignup(data));
+        this.socket.on("eventUpdate", data => this.updateSignup(data));
       })
-      .on('exception', () => {
+      .on("exception", () => {
         // The user lied! This don't have access to this
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl("/");
       });
 
-    this.socket.on('disconnect', () => this.socket.removeAllListeners());
+    this.socket.on("disconnect", () => this.socket.removeAllListeners());
   }
 
   public updateSignup = (event: EventModel) => {
@@ -103,7 +121,7 @@ export class EventKioskManualComponent
 
   public exit = async () => {
     DisplayUtil.closeFullscreen(this.document);
-    await this.router.navigateByUrl('/admin/events');
+    await this.router.navigateByUrl("/admin/events");
   };
 
   public attend = async (user: UserModel) => {
@@ -118,9 +136,12 @@ export class EventKioskManualComponent
   };
 
   public applyUserFilter = () => {
-    if (this.signedUpFilterValue !== '') {
+    if (this.signedUpFilterValue !== "") {
       this.signedUpSource = this.signedUp.filter(
-        candidate => candidate.user.name.fullName.toLowerCase().includes(this.signedUpFilterValue.toLowerCase()) ||
+        candidate =>
+          candidate.user.name.fullName
+            .toLowerCase()
+            .includes(this.signedUpFilterValue.toLowerCase()) ||
           candidate.user.email.includes(this.signedUpFilterValue)
       );
     } else {

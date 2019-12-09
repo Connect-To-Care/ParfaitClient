@@ -6,23 +6,31 @@
     </mat-card-header>
     <mat-progress-bar *ngIf="!user" mode="indeterminate"></mat-progress-bar>
     <mat-card-content *ngIf="user">
-      <p>At Connect To Care, we deeply value user privacy. We will never share your personal information with anyone and
-        do not store your account password.</p>
-      <p>If you have any questions about your account, send our <a href="mailto:contact@connect-tocare.org">support</a>
-        an email.</p>
-      <br>
+      <p>
+        At Connect To Care, we deeply value user privacy. We will never share
+        your personal information with anyone and do not store your account
+        password.
+      </p>
+      <p>
+        If you have any questions about your account, send our
+        <a href="mailto:contact@connect-tocare.org">support</a> an email.
+      </p>
+      <br />
       <p><b>Account info:</b></p>
       <div class="shifted">
         <p><b>Name:</b> {{ user.name.fullName }}</p>
         <p><b>Name Checked:</b> {{ user.name.checked }}</p>
         <p><b>Email:</b> {{ user.email }}</p>
         <p><b>User tags:</b> {{ user.userTags }}</p>
-        <p>See something unexpected? Try reloading your account data by logging out and back in.</p>
+        <p>
+          See something unexpected? Try reloading your account data by logging
+          out and back in.
+        </p>
       </div>
-      <br>
+      <br />
       <p><b>Personal info:</b></p>
       <div class="shifted">
-        <p><b>Phone Number:</b> {{ user.phone || 'Not provided'}}</p>
+        <p><b>Phone Number:</b> {{ user.phone || "Not provided" }}</p>
       </div>
     </mat-card-content>
     <mat-card-actions>

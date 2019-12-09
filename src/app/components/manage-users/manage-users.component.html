@@ -6,10 +6,20 @@
     <mat-toolbar class="mat-primary rounded-bar">
       Registered Users
       <div class="spacer"></div>
-      <mat-icon (click)="getUsers()" aria-hidden="false" aria-label="Refresh" class="refresh">refresh</mat-icon>
+      <mat-icon
+        (click)="getUsers()"
+        aria-hidden="false"
+        aria-label="Refresh"
+        class="refresh"
+        >refresh</mat-icon
+      >
     </mat-toolbar>
     <mat-form-field>
-      <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+      <input
+        (keyup)="applyFilter($event.target.value)"
+        matInput
+        placeholder="Filter"
+      />
     </mat-form-field>
     <mat-accordion *ngFor="let user of usersSource">
       <mat-expansion-panel>
@@ -18,11 +28,13 @@
         </mat-expansion-panel-header>
         <p><b>Email:</b> {{ user.email }}</p>
         <p><b>Admin:</b> {{ user.isAdmin }}</p>
-        <p><b>Phone:</b> {{ user.phone || 'Not provided' }}</p>
+        <p><b>Phone:</b> {{ user.phone || "Not provided" }}</p>
         <p><b>Tags:</b> {{ user.userTags }}</p>
         <p><b>Auth:</b> {{ user.auth.strategy }};{{ user.auth.profileID }}</p>
         <mat-action-row>
-          <button mat-button routerLink="/admin/users/{{ user._id }}">EDIT</button>
+          <button mat-button routerLink="/admin/users/{{ user._id }}">
+            EDIT
+          </button>
         </mat-action-row>
       </mat-expansion-panel>
     </mat-accordion>

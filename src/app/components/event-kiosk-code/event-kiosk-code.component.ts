@@ -1,4 +1,10 @@
-import {AfterViewInit, Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit
+} from "@angular/core";
 
 import * as io from "socket.io-client";
 import { ConfigService } from "../../services/config.service";
@@ -18,7 +24,8 @@ import { interval, Subscription } from "rxjs";
   templateUrl: "./event-kiosk-code.component.html",
   styleUrls: ["./event-kiosk-code.component.scss"]
 })
-export class EventKioskCodeComponent implements OnInit, AfterViewInit, OnDestroy {
+export class EventKioskCodeComponent
+  implements OnInit, AfterViewInit, OnDestroy {
   public expireInSubscription: Subscription;
   public expireIn: number;
 
@@ -78,7 +85,7 @@ export class EventKioskCodeComponent implements OnInit, AfterViewInit, OnDestroy
         this.currentCode = data;
         this.currentCodeUrl = `${this.configService.config.rootUrl}events/${this.event._id}/signin/${this.currentCode.code}`;
         // tslint:disable-next-line:no-console
-        console.debug('New URL: ' + this.currentCodeUrl);
+        console.debug("New URL: " + this.currentCodeUrl);
       }
     );
   };
