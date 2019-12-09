@@ -8,6 +8,9 @@
       <mat-toolbar class="mat-primary rounded-bar">
         Please select your name from below
       </mat-toolbar>
+      <mat-form-field>
+        <input (keyup)="applyUserFilter()" [(ngModel)]="signedUpFilterValue" matInput placeholder="Filter">
+      </mat-form-field>
       <mat-card *ngIf="signedUp.length == 0">
         <mat-card-content>
           <p>
@@ -15,7 +18,7 @@
           </p>
         </mat-card-content>
       </mat-card>
-      <mat-card (click)="attend(signUp.user)" *ngFor="let signUp of signedUp">
+      <mat-card (click)="attend(signUp.user)" *ngFor="let signUp of signedUpSource">
         <mat-card-header>
           <mat-card-title>{{ signUp.user.name.fullName }}</mat-card-title>
         </mat-card-header>

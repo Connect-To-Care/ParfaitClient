@@ -15,23 +15,34 @@ import {DisplayUtil} from '../../../DisplayUtil';
   styleUrls: ['./event-kiosk-manual.component.scss'],
   animations: [
     trigger('listStagger', [
-      transition('* <=> *',
-        [
-          query(':enter', [
+      transition('* <=> *', [
+        query(
+          ':enter',
+          [
             style({opacity: 0, transform: 'translateY(-15px)'}),
-            stagger('50ms',
-              animate('550ms ease-out',
-                style({opacity: .7, transform: 'translateY(0px)'})))
-          ], {optional: true})
-        ])
+            stagger(
+              '50ms',
+              animate(
+                '550ms ease-out',
+                style({opacity: 0.7, transform: 'translateY(0px)'})
+              )
+            )
+          ],
+          {optional: true}
+        )
+      ])
     ])
   ]
 })
-export class EventKioskManualComponent implements OnInit, AfterViewInit, OnDestroy {
-
+export class EventKioskManualComponent
+  implements OnInit, AfterViewInit, OnDestroy {
   public socket: SocketIOClient.Socket;
   public event: EventModel;
+
+  public signedUpFilterValue: string;
+  public signedUpSource: SignupModel[];
   public signedUp: SignupModel[];
+
   private readonly elem: any;
 
   constructor(
@@ -40,7 +51,7 @@ export class EventKioskManualComponent implements OnInit, AfterViewInit, OnDestr
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
     private readonly snackbar: MatSnackBar,
-    @Inject(DOCUMENT) private document: any,
+    @Inject(DOCUMENT) private document: any
   ) {
     this.elem = document.documentElement;
   }
@@ -54,18 +65,27 @@ export class EventKioskManualComponent implements OnInit, AfterViewInit, OnDestr
   public ngOnInit() {
     const eventId = this.activatedRoute.snapshot.paramMap.get('event');
 
+    this.signedUpFilterValue = '';
+
     this.socket = io.connect(this.configService.config.apiRoot);
 
-    this.socket.on('connect', () => {
-      this.socket.emit('subscribe', {
-        authorization: `Bearer ${this.apiService.userSession.token}`,
-        event: eventId
-      }, data => this.updateSignup(data));
+    this.socket
+      .on('connect', () => {
+        this.socket.emit(
+          'subscribe',
+          {
+            authorization: `Bearer ${this.apiService.userSession.token}`,
+            event: eventId
+          },
+          data => this.updateSignup(data)
+        );
 
-      this.socket.on('eventUpdate', data => this.updateSignup(data));
-    }).on('exception', () => { // The user lied! This don't have access to this
-      this.router.navigateByUrl('/');
-    });
+        this.socket.on('eventUpdate', data => this.updateSignup(data));
+      })
+      .on('exception', () => {
+        // The user lied! This don't have access to this
+        this.router.navigateByUrl('/');
+      });
 
     this.socket.on('disconnect', () => this.socket.removeAllListeners());
   }
@@ -73,6 +93,8 @@ export class EventKioskManualComponent implements OnInit, AfterViewInit, OnDestr
   public updateSignup = (event: EventModel) => {
     this.event = event;
     this.signedUp = event.signedUp.filter(signUp => !signUp.attended);
+
+    this.applyUserFilter();
   };
 
   public ngAfterViewInit() {
@@ -89,6 +111,20 @@ export class EventKioskManualComponent implements OnInit, AfterViewInit, OnDestr
       await this.apiService.attend(this.event._id, user._id);
     } catch (e) {
       this.snackbar.open(e)._dismissAfter(2000);
+    }
+
+    this.signedUpFilterValue = "";
+    this.applyUserFilter();
+  };
+
+  public applyUserFilter = () => {
+    if (this.signedUpFilterValue !== '') {
+      this.signedUpSource = this.signedUp.filter(
+        candidate => candidate.user.name.fullName.toLowerCase().includes(this.signedUpFilterValue.toLowerCase()) ||
+          candidate.user.email.includes(this.signedUpFilterValue)
+      );
+    } else {
+      this.signedUpSource = this.signedUp;
     }
   };
 }
