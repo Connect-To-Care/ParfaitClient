@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "node git.js"
+    "build:prod": "node git.js && ng build --prod && node minifier.js"
   },
   "private": true,
   "dependencies": {
@@ -49,6 +49,7 @@
     "@types/socket.io-client": "^1.4.32",
     "codelyzer": "^5.0.0",
     "git-describe": "^4.0.4",
+    "html-minifier": "^4.0.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
