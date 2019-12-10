@@ -26,7 +26,7 @@ export class EventSigninComponent implements OnInit {
       if (this.apiService.userSession) {
         await this.apiService.useSigninCode(eventId, code);
         const snackbar = this.snackbar
-          .open("You are now signed in! Have fun!", "Wrong name?", {
+          .open("Signed in as '" + this.apiService.userSession.data.user.name.fullName + "'", "Wrong name?", {
             duration: 5000
           });
         snackbar.onAction().subscribe(() => {
