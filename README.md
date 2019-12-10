@@ -24,7 +24,7 @@ The Parfait client uses Angular and Material for the front-end. This lets us kee
 
 ## Using this yourself
 
-Clone the Github repo and install the Angular CLI using `npm i @angular/cli -g`. You can build the app using `ng build --prod` (production) and host a live development server using `ng serve`.
+Clone the Github repo and install the Angular CLI using `npm i @angular/cli -g`. You can build the app using `npm run build:prod` (production) and host a live development server using `ng serve`.
 
 Keep in mind that you must point the Parfait client to use your custom API instance. Do this by editing the `config.service.prod.ts` file with your own API endpoint URL. It's pretty simple.
 
