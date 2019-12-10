@@ -25,9 +25,14 @@ export class EventSigninComponent implements OnInit {
     try {
       if (this.apiService.userSession) {
         await this.apiService.useSigninCode(eventId, code);
-        this.snackbar
-          .open("You are now signed in! Have fun!")
-          ._dismissAfter(2000);
+        const snackbar = this.snackbar
+          .open("You are now signed in! Have fun!", "Wrong name?", {
+            duration: 5000
+          });
+        snackbar.onAction().subscribe(() => {
+          this.router.navigateByUrl("/nag/name");
+        });
+
         await this.router.navigateByUrl("/dash");
       } else {
         // User is signed out
