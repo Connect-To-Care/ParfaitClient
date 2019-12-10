@@ -10,7 +10,7 @@
       <p *ngIf="!bigError">Please wait, signing in...</p>
       <div id="error" *ngIf="bigError">
         <p><b>Sorry, failed to sign in:</b> {{ bigError }}</p>
-        <button mat-raised-button color="primary">Back to dashboard</button>
+        <button mat-raised-button color="primary" routerLink="/dash">Back to dashboard</button>
       </div>
     </mat-card-content>
   </mat-card>

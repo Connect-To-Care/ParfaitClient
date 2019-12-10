@@ -11,7 +11,7 @@
       <p *ngIf="!bigError">Please wait, checking for CTC x DECA events...</p>
       <div id="error" *ngIf="bigError">
         <p><b>Sorry, failed to sign up:</b> {{ bigError }}</p>
-        <button mat-raised-button color="primary">Back to dashboard</button>
+        <button mat-raised-button color="primary" routerLink="/dash">Back to dashboard</button>
       </div>
     </mat-card-content>
   </mat-card>
