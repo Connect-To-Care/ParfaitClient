@@ -19,7 +19,7 @@ export class ConfigService {
       googleOAuthURL: "http://localhost:3000/auth/google",
       rootUrl: "http://localhost:4200/",
       debug: true,
-      hash: (git.tag || 'Unknown' ) + '-' + (git.hash|| "Unknown")
+      hash: (git.tag || 'Latest' ) + '-' + (git.hash|| "Unknown")
     };
   }
 }
