@@ -78,6 +78,7 @@ export class EventKioskManualComponent
     if (this.socket) {
       this.socket.disconnect();
     }
+    this.socket.removeAllListeners();
   }
 
   public ngOnInit() {

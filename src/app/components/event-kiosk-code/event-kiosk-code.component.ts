@@ -51,6 +51,8 @@ export class EventKioskCodeComponent
     if (this.socket) {
       this.socket.disconnect();
     }
+    this.socket.removeAllListeners();
+    this.expireInSubscription.unsubscribe();
   }
 
   public async ngOnInit() {
