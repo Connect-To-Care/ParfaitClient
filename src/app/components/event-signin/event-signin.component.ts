@@ -25,10 +25,15 @@ export class EventSigninComponent implements OnInit {
     try {
       if (this.apiService.userSession) {
         await this.apiService.useSigninCode(eventId, code);
-        const snackbar = this.snackbar
-          .open("Signed in as '" + this.apiService.userSession.data.user.name.fullName + "'", "Wrong name?", {
+        const snackbar = this.snackbar.open(
+          "Signed in as '" +
+            this.apiService.userSession.data.user.name.fullName +
+            "'",
+          "Wrong name?",
+          {
             duration: 5000
-          });
+          }
+        );
         snackbar.onAction().subscribe(() => {
           this.router.navigateByUrl("/nag/name");
         });

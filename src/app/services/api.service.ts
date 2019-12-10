@@ -11,7 +11,7 @@ export enum SigninCodeStatus {
 export interface SigninCodeModel {
   code: string;
   status: SigninCodeStatus;
-  createdDate: string;
+  expireDate: string;
 }
 
 export enum AuthStrategy {

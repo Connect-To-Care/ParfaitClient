@@ -83,7 +83,6 @@ export class EventKioskCodeComponent
         event: this.event._id
       },
       data => {
-        this.expireIn = 30;
         this.currentCode = data;
         this.currentCodeUrl = `${this.configService.config.rootUrl}events/${this.event._id}/signin/${this.currentCode.code}`;
         // tslint:disable-next-line:no-console
@@ -102,12 +101,17 @@ export class EventKioskCodeComponent
   };
 
   public updateExpireIn = () => {
-    if (this.expireIn !== undefined) {
-      if (this.expireIn > 0) {
-        --this.expireIn;
-      } else {
-        this.getNewCode(); // Request new code when below 0
-      }
+    const expireDate = new Date(this.currentCode.expireDate);
+
+    expireDate.setSeconds(expireDate.getSeconds() - 15); // 15 second grace
+
+    this.expireIn = Math.max(
+      0,
+      (expireDate.getTime() - new Date().getTime()) / 1000
+    );
+
+    if (new Date().getTime() > expireDate.getTime()) {
+      this.getNewCode();
     }
   };
 }

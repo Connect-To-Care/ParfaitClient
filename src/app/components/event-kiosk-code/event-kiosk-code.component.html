@@ -2,7 +2,10 @@
   <app-page-title title="Event signin kiosk">
     <button (click)="exit()" color="primary" mat-raised-button>Back</button>
   </app-page-title>
-  <mat-progress-bar *ngIf="!this.socket || !this.socket.connected" mode="indeterminate"></mat-progress-bar>
+  <mat-progress-bar
+    *ngIf="!this.socket || !this.socket.connected"
+    mode="indeterminate"
+  ></mat-progress-bar>
   <mat-progress-bar
     *ngIf="expireIn"
     mode="determinate"
