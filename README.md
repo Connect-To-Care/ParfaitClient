@@ -3,7 +3,7 @@
 Parfait is a all-in-one online volunteer platform, developed by Connect To Care.
 
 <p align="center">
-  <img src="https://i.imgur.com/F8BpDF5.png" alt="Website" width="738">
+  <img src="https://i.imgur.com/oYQv2wY.png" alt="Website" width="738">
 </p>
 
 * Parfait includes automated ***text reminders*** and ***emails***.
