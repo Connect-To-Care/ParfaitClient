@@ -35,9 +35,6 @@
                 routerLink="{{ link.url }}">{{ link.title }}</button>
       </mat-menu>
     </div>
-    <div *ngIf="!hideLinks" fxHide.lt-md="true" fxShow="true" id="announcementsNav">
-      <a *ngFor="let link of navBarAnnouncements" href="{{ link.url }}" mat-button> {{ link.title }} </a>
-    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container fxFlexFill>
@@ -59,10 +56,6 @@
       <div *ngIf="!apiService.userSession">
         <a *ngFor="let link of accountLoggedOut" class="sidenav-btn" mat-button
            routerLink="{{ link.url }}"> {{ link.title }} </a>
-      </div>
-      <div>
-        <a *ngFor="let link of navBarAnnouncements" class="sidenav-btn" href="{{ link.url }}"
-           mat-button> {{ link.title }} </a>
       </div>
     </div>
   </mat-sidenav>

@@ -9,13 +9,6 @@ import { APIService } from "../../services/api.service";
 export class NavbarComponent {
   @Input() public hideLinks: boolean;
 
-  public readonly navBarAnnouncements = [
-    {
-      title: "Back to site",
-      url: "https://connect-tocare.org"
-    }
-  ];
-
   public readonly navBarLinks = [
     {
       title: "Browse Events",
