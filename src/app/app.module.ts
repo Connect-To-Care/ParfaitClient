@@ -4,13 +4,13 @@ import { ErrorHandler, Injectable, NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./components/app/app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NavbarComponent } from "./components/navbar/navbar.component";
+import {AlertSheetComponent, NavbarComponent} from "./components/navbar/navbar.component";
 import {
   DashComponent,
   FacilitatorAddDialogComponent
 } from "./components/dash/dash.component";
 import {
-  MatBadgeModule,
+  MatBadgeModule, MatBottomSheet, MatBottomSheetModule,
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
@@ -122,7 +122,8 @@ export class SentryErrorHandler implements ErrorHandler {
     EventSigninClockComponent,
     FacilitatorActionsDialogComponent,
     EditWarningDialogComponent,
-    EventSigninComponent
+    EventSigninComponent,
+    AlertSheetComponent,
   ],
   imports: [
     HttpClientModule,
@@ -160,7 +161,8 @@ export class SentryErrorHandler implements ErrorHandler {
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production
     }),
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    MatBottomSheetModule,
   ],
   providers: [
     {
@@ -182,7 +184,8 @@ export class SentryErrorHandler implements ErrorHandler {
     FacilitatorAddDialogComponent,
     DeleteEventDialogComponent,
     FacilitatorActionsDialogComponent,
-    EditWarningDialogComponent
+    EditWarningDialogComponent,
+    AlertSheetComponent,
   ],
   bootstrap: [AppComponent]
 })

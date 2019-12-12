@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { APIService } from "../../services/api.service";
+import {MatBottomSheet, MatBottomSheetRef} from "@angular/material";
 
 @Component({
   selector: "app-navbar",
@@ -56,5 +57,27 @@ export class NavbarComponent {
     }
   ];
 
-  constructor(public readonly apiService: APIService) {}
+  constructor(
+    public readonly apiService: APIService,
+    private readonly bottomSheet: MatBottomSheet,
+  ) {}
+
+  public openAlerts = () => {
+    this.bottomSheet.open(AlertSheetComponent);
+  }
+}
+
+@Component({
+  selector: 'alerts-sheet',
+  templateUrl: './alerts.sheet.component.html',
+})
+export class AlertSheetComponent {
+  constructor(
+    private readonly bottomSheetRef: MatBottomSheetRef<AlertSheetComponent>
+  ) {}
+
+  // openLink(event: MouseEvent): void {
+  //   this.bottomSheetRef.dismiss();
+  //   event.preventDefault();
+  // }
 }
