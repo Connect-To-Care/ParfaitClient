@@ -74,12 +74,15 @@ export class NavbarComponent implements OnInit {
 
   async ngOnInit() {
     this.alerts = []; // No alerts to start off
-    this.alerts = await this.apiService.getMyAlerts();
-    this.unshownAlerts = this.alerts.find(alert => alert.prompt) !== undefined;
-    this.alerts.reverse(); // Reserve the list to get the new alerts on top
-    // this.alertsSubscription = interval(1000 * 60).subscribe(() =>
-    //   this.getAlerts()
-    // );
+
+    if (this.apiService.userSession) { // Only get alerts when logged in
+      this.alerts = await this.apiService.getMyAlerts();
+      this.unshownAlerts = this.alerts.find(alert => alert.prompt) !== undefined;
+      this.alerts.reverse(); // Reserve the list to get the new alerts on top
+      // this.alertsSubscription = interval(1000 * 60).subscribe(() =>
+      //   this.getAlerts()
+      // );
+    }
   }
 
   // ngOnDestroy() {
