@@ -101,17 +101,19 @@ export class EventKioskCodeComponent
   };
 
   public updateExpireIn = () => {
-    const expireDate = new Date(this.currentCode.expireDate);
+    if (this.currentCode) {
+      const expireDate = new Date(this.currentCode.expireDate);
 
-    expireDate.setSeconds(expireDate.getSeconds() - 15); // 15 second grace
+      expireDate.setSeconds(expireDate.getSeconds() - 15); // 15 second grace
 
-    this.expireIn = Math.max(
-      0,
-      (expireDate.getTime() - new Date().getTime()) / 1000
-    );
+      this.expireIn = Math.max(
+        0,
+        (expireDate.getTime() - new Date().getTime()) / 1000
+      );
 
-    if (new Date().getTime() > expireDate.getTime()) {
-      this.getNewCode();
+      if (new Date().getTime() > expireDate.getTime()) {
+        this.getNewCode();
+      }
     }
   };
 }
