@@ -139,6 +139,25 @@ export class APIService {
       .toPromise()) as AlertModel;
   };
 
+  public reportSigninCode = async (
+    lastCode: string,
+    lastUser: string,
+    eventId: string
+  ): Promise<void> => {
+    return this.httpClient
+      .post<any>(
+        this.configService.config.apiRoot +
+        "events/" +
+        eventId.replace("/", "") +
+        "/attend/code/report",
+        {
+          lastCode,
+          lastUser,
+        }
+      )
+      .toPromise();
+  };
+
   public reserveSigninCode = async (
     eventId: string,
     code: string
