@@ -6,7 +6,7 @@ import { MatDialog, MatSnackBar } from "@angular/material";
 export interface LastData {
   lastCode: string;
   lastUser: string;
-  lastEvent: string
+  lastEvent: string;
 }
 
 @Component({
@@ -63,25 +63,33 @@ export class EventSigninComponent implements OnInit {
   }
 
   public detectReuse = async (eventId: string, code: string): Promise<void> => {
-    const lastData = localStorage.getItem('lastSignin');
+    const lastData = localStorage.getItem("lastSignin");
 
     if (lastData) {
       const lastDataJson: LastData = JSON.parse(lastData);
 
-      if (lastDataJson.lastEvent === eventId &&
+      if (
+        lastDataJson.lastEvent === eventId &&
         lastDataJson.lastUser !== this.apiService.userSession.data.user._id &&
-        lastDataJson.lastCode !== code) {
-
+        lastDataJson.lastCode !== code
+      ) {
         // This could be a suspicious login
-        await this.apiService.reportSigninCode(lastDataJson.lastCode, lastDataJson.lastUser, eventId);
-      } else {
-        // Keep this for later
-        localStorage.setItem('lastSignin', JSON.stringify({
+        await this.apiService.reportSigninCode(
+          lastDataJson.lastCode,
+          lastDataJson.lastUser,
+          eventId
+        );
+      }
+    } else {
+      // Keep this for later
+      localStorage.setItem(
+        "lastSignin",
+        JSON.stringify({
           lastUser: this.apiService.userSession.data.user._id,
           lastCode: code,
           lastEvent: eventId
-        }));
-      }
+        })
+      );
     }
-  }
+  };
 }
