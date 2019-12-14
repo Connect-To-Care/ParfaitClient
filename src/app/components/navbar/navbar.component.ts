@@ -12,7 +12,7 @@ import { interval, Subscription } from "rxjs";
   templateUrl: "./navbar.component.html",
   styleUrls: ["./navbar.component.scss"]
 })
-export class NavbarComponent implements OnInit, OnDestroy {
+export class NavbarComponent implements OnInit {
   @Input() public hideLinks: boolean;
 
   public readonly navBarLinks = [
@@ -62,7 +62,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   ];
 
-  public alertsSubscription: Subscription;
+  // public alertsSubscription: Subscription;
 
   public alerts: AlertModel[];
   public unshownAlerts: boolean;
@@ -72,19 +72,21 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private readonly bottomSheet: MatBottomSheet
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.alerts = []; // No alerts to start off
-    this.getAlerts();
-    this.alertsSubscription = interval(1000 * 60).subscribe(() =>
-      this.getAlerts()
-    );
+    this.alerts = await this.apiService.getMyAlerts();
+    this.unshownAlerts = this.alerts.find(alert => alert.prompt) !== undefined;
+    this.alerts.reverse(); // Reserve the list to get the new alerts on top
+    // this.alertsSubscription = interval(1000 * 60).subscribe(() =>
+    //   this.getAlerts()
+    // );
   }
 
-  ngOnDestroy() {
-    if (this.alertsSubscription) {
-      this.alertsSubscription.unsubscribe();
-    }
-  }
+  // ngOnDestroy() {
+  //   if (this.alertsSubscription) {
+  //     this.alertsSubscription.unsubscribe();
+  //   }
+  // }
 
   public openAlerts = () => {
     this.unshownAlerts = false;
@@ -93,12 +95,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
         alerts: this.alerts
       }
     });
-  };
-
-  public getAlerts = async () => {
-    this.alerts = await this.apiService.getMyAlerts();
-    this.unshownAlerts = this.alerts.find(alert => alert.prompt) !== undefined;
-    this.alerts.reverse(); // Reserve the list to get the new alerts on top
   };
 }
 

@@ -3,4 +3,7 @@
     <span mat-line> <mat-chip color="primary" *ngIf="alert.prompt">New</mat-chip> {{ alert.title }}</span>
     <span mat-line>{{ alert.description }}</span>
   </mat-list-item>
+  <mat-list-item *ngIf="data.alerts.length === 0">
+    <span mat-line>No alerts to display. Check back later.</span>
+  </mat-list-item>
 </mat-nav-list>
