@@ -26,7 +26,7 @@
         <button *ngFor="let link of accountLoggedIn" mat-menu-item routerLink="{{ link.url }}">{{ link.title }}</button>
       </mat-menu>
       <button (click)="openAlerts()" mat-button>
-        <mat-icon>notification_important</mat-icon>
+        <mat-icon>{{ this.unshownAlerts ? 'notifications' : 'notifications_none' }}</mat-icon>
       </button>
     </div>
     <div *ngIf="!apiService.userSession && !hideLinks" fxHide.lt-md="true" fxShow="true" id="loggedOutNav">

@@ -1,13 +1,18 @@
-import { Component, Input } from "@angular/core";
-import { APIService } from "../../services/api.service";
-import {MatBottomSheet, MatBottomSheetRef} from "@angular/material";
+import { Component, Inject, Input, OnDestroy, OnInit } from "@angular/core";
+import { AlertModel, APIService } from "../../services/api.service";
+import {
+  MAT_BOTTOM_SHEET_DATA,
+  MatBottomSheet,
+  MatBottomSheetRef
+} from "@angular/material";
+import { interval, Subscription } from "rxjs";
 
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
   styleUrls: ["./navbar.component.scss"]
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit, OnDestroy {
   @Input() public hideLinks: boolean;
 
   public readonly navBarLinks = [
@@ -57,27 +62,53 @@ export class NavbarComponent {
     }
   ];
 
+  public alertsSubscription: Subscription;
+
+  public alerts: AlertModel[];
+  public unshownAlerts: boolean;
+
   constructor(
     public readonly apiService: APIService,
-    private readonly bottomSheet: MatBottomSheet,
+    private readonly bottomSheet: MatBottomSheet
   ) {}
 
-  public openAlerts = () => {
-    this.bottomSheet.open(AlertSheetComponent);
+  ngOnInit() {
+    this.alerts = []; // No alerts to start off
+    this.getAlerts();
+    this.alertsSubscription = interval(1000 * 60).subscribe(() =>
+      this.getAlerts()
+    );
   }
+
+  ngOnDestroy() {
+    if (this.alertsSubscription) {
+      this.alertsSubscription.unsubscribe();
+    }
+  }
+
+  public openAlerts = () => {
+    this.unshownAlerts = false;
+    this.bottomSheet.open(AlertSheetComponent, {
+      data: {
+        alerts: this.alerts
+      }
+    });
+  };
+
+  public getAlerts = async () => {
+    this.alerts = await this.apiService.getMyAlerts();
+    this.unshownAlerts = this.alerts.find(alert => alert.prompt) !== undefined;
+    this.alerts.reverse(); // Reserve the list to get the new alerts on top
+  };
 }
 
 @Component({
-  selector: 'alerts-sheet',
-  templateUrl: './alerts.sheet.component.html',
+  selector: "alerts-sheet",
+  templateUrl: "./alerts.sheet.component.html"
 })
 export class AlertSheetComponent {
   constructor(
-    private readonly bottomSheetRef: MatBottomSheetRef<AlertSheetComponent>
+    private readonly bottomSheetRef: MatBottomSheetRef<AlertSheetComponent>,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: { alerts: AlertModel[] }
   ) {}
-
-  // openLink(event: MouseEvent): void {
-  //   this.bottomSheetRef.dismiss();
-  //   event.preventDefault();
-  // }
 }

@@ -74,6 +74,20 @@ export interface MyEventsResponse {
   future: EventModel[];
 }
 
+export interface ShowTo {
+  user?: UserModel;
+  admins: boolean;
+  tags: string[];
+}
+
+export interface AlertModel {
+  title: string;
+  to: ShowTo;
+  description: string;
+  prompt: boolean;
+  _id: string;
+}
+
 @Injectable({
   providedIn: "root"
 })
@@ -102,6 +116,28 @@ export class APIService {
       data: sessionJson
     };
   }
+
+  public getAlerts = async () => {
+    return this.httpClient
+      .get<any>(this.configService.config.apiRoot + "alerts/")
+      .toPromise();
+  };
+
+  public getMyAlerts = async (): Promise<AlertModel[]> => {
+    return (await this.httpClient
+      .get<any>(
+        this.configService.config.apiRoot + "alerts/my") // Prevent //'s from escaping the url
+      )
+      .toPromise();
+  };
+
+  public getAlert = async (alertId: string): Promise<AlertModel> => {
+    return (await this.httpClient
+      .get<any>(
+        this.configService.config.apiRoot + "alerts/" + alertId.replace("/", "") // Prevent //'s from escaping the url
+      )
+      .toPromise()) as AlertModel;
+  };
 
   public reserveSigninCode = async (
     eventId: string,

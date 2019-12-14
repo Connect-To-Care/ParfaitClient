@@ -1,10 +1,6 @@
 <mat-nav-list>
-  <mat-list-item>
-    <span mat-line>Alert Title</span>
-    <span mat-line>Oh nooo!</span>
-  </mat-list-item>
-  <mat-list-item>
-    <span mat-line>Alert Title</span>
-    <span mat-line>Oh nooo!</span>
+  <mat-list-item *ngFor="let alert of data.alerts">
+    <span mat-line> <mat-chip color="primary" *ngIf="alert.prompt">New</mat-chip> {{ alert.title }}</span>
+    <span mat-line>{{ alert.description }}</span>
   </mat-list-item>
 </mat-nav-list>
