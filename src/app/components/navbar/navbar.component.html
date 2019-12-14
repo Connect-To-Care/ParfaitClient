@@ -25,6 +25,8 @@
       <mat-menu #accountMenu="matMenu" xPosition="before">
         <button *ngFor="let link of accountLoggedIn" mat-menu-item routerLink="{{ link.url }}">{{ link.title }}</button>
       </mat-menu>
+    </div>
+    <div *ngIf="apiService.userSession && !hideLinks">
       <button (click)="openAlerts()" mat-button>
         <mat-icon>{{ this.unshownAlerts ? 'notifications' : 'notifications_none' }}</mat-icon>
       </button>
@@ -55,6 +57,8 @@
       <div *ngIf="apiService.userSession">
         <a *ngFor="let link of accountLoggedIn" class="sidenav-btn" mat-button
            routerLink="{{ link.url }}"> {{ link.title }} </a>
+        <a class="sidenav-btn" mat-button
+           (click)="openAlerts()"> Alerts <span *ngIf="unshownAlerts">(Unseen alerts)</span></a>
       </div>
       <div *ngIf="!apiService.userSession">
         <a *ngFor="let link of accountLoggedOut" class="sidenav-btn" mat-button
