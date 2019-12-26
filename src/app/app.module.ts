@@ -79,6 +79,7 @@ import { EventSigninClockComponent } from "./components/event-signin-clock/event
 import { NgxQRCodeModule } from "ngx-qrcode2";
 import { FacilitatorActionsDialogComponent } from "./components/facilitator-actions/facilitator-actions.component";
 import { EventSigninComponent } from "./components/event-signin/event-signin.component";
+import { ExportDataComponent } from './components/export-data/export-data.component';
 
 // Sentry.init({
 //   dsn: 'https://0c84ea0d000c41958b0be30eccc3fa81@sentry.connect-tocare.org/2'
@@ -124,6 +125,7 @@ export class SentryErrorHandler implements ErrorHandler {
     EditWarningDialogComponent,
     EventSigninComponent,
     AlertSheetComponent,
+    ExportDataComponent,
   ],
   imports: [
     HttpClientModule,
